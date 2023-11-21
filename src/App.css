@@ -1,0 +1,103 @@
+App {
+  text-align: center;
+}
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+.App-header {
+  background-color: #282C34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+.App-link {
+  color: #61DAFB;
+}
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.mainContainer {
+  flex: 1;
+  /* background-color: #61DAFB; */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+.ribbonContaier {
+  width: 100%;
+  height: 184px;
+  background-color: #072840;
+}
+.dashboardContainer {
+  /* background-color: blue; */
+  flex: 1;
+}
+.dashboardContainer h2 {
+  text-transform: uppercase;
+  border-bottom: 1px solid grey;
+}
+.statsContainer {
+  width: 100%;
+  height: 150px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.statsNumber {
+  font-size: 24px;
+  margin: 0px;
+}
+.tableContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  flex: 1;
+  height: 100%;
+}
+.tableBoxContainer {
+  width: 50%;
+}
+.vLine {
+  height: 90%;
+  background-color: lightgray;
+  width: 1px;
+}
+ .table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+.th, td {
+      /* border: 1px solid #DDDDDD; */
+      text-align: left;
+      padding: 8px;
+    }
+.th {
+      background-color: #F2F2F2;
+    }
+.tableCell{
+    white-space: normal;
+  }
+
+
+
+
+
+
