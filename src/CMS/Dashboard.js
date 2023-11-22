@@ -10,15 +10,15 @@ function Dashboard() {
         <h2>Dashboard</h2>
         <div className="statsContainer">
           <div style={{ display: "flex", flexDirection: "column", width: 122 }}>
-            <p>Sales</p>
+          <p className="statsName">Sales</p>
             <p className="statsNumber">300</p>
           </div>
           <div style={{ display: "flex", flexDirection: "column", width: 122 }}>
-            <p>Sales</p>
+            <p className="statsName">Sales</p>
             <p className="statsNumber">300</p>
           </div>
           <div style={{ display: "flex", flexDirection: "column", width: 122 }}>
-            <p>Sales</p>
+          <p className="statsName">Sales</p>
             <p className="statsNumber">300</p>
           </div>
         </div>

@@ -79,6 +79,11 @@ App {
   width: 41px;
   font-weight: 400;
 }
+.statsName {
+  font-size: 14px;
+  color: grey;
+  font-weight:400;
+}
 .tableContainer {
   display: flex;
   flex-direction: row;
