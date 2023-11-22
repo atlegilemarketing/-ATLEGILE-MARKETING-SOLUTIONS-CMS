@@ -136,7 +136,7 @@ function ManageUsers() {
                     <td>0123456789</td>
                     <td>example@mail.com</td>
                     <td className="tableCell">
-                      1235 Vilakazi Street, Orlando West, Soweto, 1804, South
+                      1235 Vilakazi Street, Orlando West, Soweto, 1804, South,
                       Africa
                     </td>
                     <td>
