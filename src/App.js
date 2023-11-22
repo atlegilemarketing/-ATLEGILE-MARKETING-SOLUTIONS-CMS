@@ -4,19 +4,22 @@ import SideNav from "./SideNav";
 import Dashboard from "./CMS/Dashboard";
 import ManageUsers from "./CMS/ManageUsers";
 import ManageBusiness from "./CMS/ManageBusiness";
+import SignIn from "./CMS/SignIn";
 
 const Layout = ({ children }) => (
   <div style={{ display: "flex" }}>
     <SideNav />
-    <div style={{ flex: 1}}>{children}</div>
+    <div style={{ flex: 1, }}>{children}</div>
   </div>
 );
+
 function App() {
   return (
     <Router>
       <Routes>
+      <Route path="/" element={<SignIn />} />
         <Route
-          path="/"
+          path="main"
           element={
             <Layout>
               <Outlet />
@@ -27,6 +30,7 @@ function App() {
           <Route path="users" element={<ManageUsers />} />
           <Route path="businesses" element={<ManageBusiness />} />
         </Route>
+
       </Routes>
     </Router>
   );
