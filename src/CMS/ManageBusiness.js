@@ -1,11 +1,10 @@
 import React from "react";
-import UnfoldMoreIcon from '@mui/icons-material/UnfoldMore';
-import SearchIcon from '@mui/icons-material/Search';
+import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
+import SearchIcon from "@mui/icons-material/Search";
 import clipArt from "../images/clipArtBusinesses.png";
-import './manageBusiness.css'
+import "./manageBusiness.css";
 
 export default function ManageBusinesses() {
-
   function calculateBackgroundProperties() {
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
@@ -50,7 +49,7 @@ export default function ManageBusinesses() {
         450 * ratioY
       )}px`;
     }
-    backgroundPositionX += (backgroundPositionX/2);
+    backgroundPositionX += backgroundPositionX / 2;
     backgroundPositionY += 0;
     return { backgroundPositionX, backgroundPositionY, backgroundSize };
   }
@@ -118,7 +117,6 @@ export default function ManageBusinesses() {
         height: "100%",
       }}
     >
-      
       <div style={{ height: "100%", width: "100%" }}>
         <div
           style={{
@@ -231,10 +229,11 @@ export default function ManageBusinesses() {
                 style={{
                   border: "none",
                   borderRight: "1px lightgray solid",
-                  paddingRight: 10,color:"gray"
+                  paddingRight: 10,
+                  color: "gray",
                 }}
               >
-                <UnfoldMoreIcon  />
+                <UnfoldMoreIcon />
                 <SearchIcon />
               </span>
             </div>
@@ -257,7 +256,7 @@ export default function ManageBusinesses() {
                   border: "none",
                   borderRight: "1px lightgray solid",
                   paddingRight: 10,
-                  color:"gray"
+                  color: "gray",
                 }}
               >
                 <UnfoldMoreIcon />
@@ -282,7 +281,7 @@ export default function ManageBusinesses() {
                   border: "none",
                   borderRight: "1px lightgray solid",
                   paddingRight: 10,
-                  color:"gray"
+                  color: "gray",
                 }}
               >
                 <UnfoldMoreIcon />
@@ -307,10 +306,10 @@ export default function ManageBusinesses() {
                   border: "none",
                   borderRight: "1px lightgray solid",
                   paddingRight: 10,
-                  color:"gray"
+                  color: "gray",
                 }}
               >
-                <UnfoldMoreIcon/>
+                <UnfoldMoreIcon />
               </span>
             </div>
 
@@ -333,7 +332,12 @@ export default function ManageBusinesses() {
             {fakeBusinessesList.map((business) => (
               <div
                 key={business.id}
-                style={{ display: "flex", flexDirection: "row" }}
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  border: "none",
+                  borderBottom: "1px lightgray solid",
+                }}
               >
                 <div
                   style={{
