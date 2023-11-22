@@ -12,6 +12,7 @@ const Layout = ({ children }) => (
     <div style={{ flex: 1, }}>{children}</div>
   </div>
 );
+
 function App() {
   return (
     <Router>
