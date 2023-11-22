@@ -9,11 +9,7 @@ import SignIn from "./CMS/SignIn";
 const Layout = ({ children }) => (
   <div style={{ display: "flex" }}>
     <SideNav />
-<<<<<<< HEAD
-    <div style={{ flex: 1}}>{children}</div>
-=======
     <div style={{ flex: 1, }}>{children}</div>
->>>>>>> 5feeef1b932b68702ab058a742e21df78d55c644
   </div>
 );
 function App() {
