@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { FaGoogle } from "react-icons/fa";
+
+import GoogleIcon from '@mui/icons-material/Google';
 import { useNavigate } from "react-router-dom";
 
 const logo = require("../images/cropped-AMS-Shadow-Queen-Logo_BNY-1320x772 1.png");
@@ -181,9 +182,10 @@ export default function SignIn() {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              color:"#d32f2f"
             }}
           >
-            <FaGoogle color="#d32f2f" size={20} />
+            <GoogleIcon color="#d32f2f" size={20} />
             <a
               className="button google"
               href="http://localhost:3000/"

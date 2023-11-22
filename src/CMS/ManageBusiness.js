@@ -1,6 +1,6 @@
 import React from "react";
-import { PiCaretUpDownFill } from "react-icons/pi";
-import { AiOutlineSearch } from "react-icons/ai";
+import UnfoldMoreIcon from '@mui/icons-material/UnfoldMore';
+import SearchIcon from '@mui/icons-material/Search';
 import clipArt from "../images/clipArtBusinesses.png";
 import './manageBusiness.css'
 
@@ -231,11 +231,11 @@ export default function ManageBusinesses() {
                 style={{
                   border: "none",
                   borderRight: "1px lightgray solid",
-                  paddingRight: 10,
+                  paddingRight: 10,color:"gray"
                 }}
               >
-                <PiCaretUpDownFill color="gray" />
-                <AiOutlineSearch color="gray" />
+                <UnfoldMoreIcon  />
+                <SearchIcon />
               </span>
             </div>
 
@@ -257,9 +257,10 @@ export default function ManageBusinesses() {
                   border: "none",
                   borderRight: "1px lightgray solid",
                   paddingRight: 10,
+                  color:"gray"
                 }}
               >
-                <PiCaretUpDownFill color="gray" />
+                <UnfoldMoreIcon />
               </span>
             </div>
 
@@ -281,9 +282,10 @@ export default function ManageBusinesses() {
                   border: "none",
                   borderRight: "1px lightgray solid",
                   paddingRight: 10,
+                  color:"gray"
                 }}
               >
-                <PiCaretUpDownFill color="gray" />
+                <UnfoldMoreIcon />
               </span>
             </div>
 
@@ -305,9 +307,10 @@ export default function ManageBusinesses() {
                   border: "none",
                   borderRight: "1px lightgray solid",
                   paddingRight: 10,
+                  color:"gray"
                 }}
               >
-                <PiCaretUpDownFill color="gray" />
+                <UnfoldMoreIcon/>
               </span>
             </div>
 
