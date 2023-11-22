@@ -42,7 +42,7 @@ App {
 }
 .ribbonContaier {
   width: 100%;
-  height: 250px;
+  height: 184px;
   padding: 80px, 20px, 80px, 20px;
   background-color: #072840;
 }
@@ -53,6 +53,7 @@ App {
 .dashboardContainer h2 {
   text-transform: uppercase;
   border-bottom: 1px solid grey;
+  width: 1455px ;
 }
 .statsContainer {
   width: 100%;
@@ -75,11 +76,11 @@ App {
 .tableBoxContainer {
   width: 50%;
 }
-.vLine {
+/* .vLine {
   height: 90%;
   background-color: lightgray;
   width: 1px;
-}
+} */
  .table {
       width: 100%;
       border-collapse: collapse;
@@ -89,12 +90,14 @@ App {
       /* border: 1px solid #DDDDDD; */
       text-align: left;
       padding: 8px;
+      border-bottom: 1px solid grey;
     }
 .th {
       background-color: #F2F2F2;
     }
 .tableCell{
     white-space: normal;
+    
   }
 
 

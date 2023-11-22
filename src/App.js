@@ -8,7 +8,7 @@ import ManageBusiness from "./CMS/ManageBusiness";
 const Layout = ({ children }) => (
   <div style={{ display: "flex" }}>
     <SideNav />
-    <div style={{ flex: 1, padding: "16px" }}>{children}</div>
+    <div style={{ flex: 1}}>{children}</div>
   </div>
 );
 function App() {
