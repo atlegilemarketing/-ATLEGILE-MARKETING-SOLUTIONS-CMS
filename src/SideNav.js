@@ -20,7 +20,8 @@ function SideNav() {
         height: "97vh",
         border: "none",
         borderRight: "1px lightgray solid",
-        padding: 2,
+        padding: 2
+,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -49,7 +50,7 @@ function SideNav() {
           Sarah
         </Typography>
         <Typography sx={{ fontWeight: 600, color: "black" }}>0123456789</Typography>
-        <Typography sx={{ fontWeight: 600, color: "black" }}>example@gmail.com</Typography>
+        <Typography sx={{ fontWeight: 600, color: "black" }}>example@mail.com</Typography>
       </Box>
       <Box sx={{ mt: 2 }}>
         <Button
