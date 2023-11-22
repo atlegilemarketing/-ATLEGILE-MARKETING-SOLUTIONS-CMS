@@ -5,13 +5,13 @@ import { useNavigate } from "react-router-dom";
 function SideNav() {
   const navigate = useNavigate();
   const handleNavigateToDashboard = () => {
-    navigate("/dashboard");
+    navigate("dashboard");
   };
   const handleNavigateToBusinesses = () => {
-    navigate("/businesses");
+    navigate("businesses");
   };
   const handleNavigateToUsers = () => {
-    navigate("/users");
+    navigate("users");
   };
   return (
     <Box

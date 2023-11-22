@@ -22,7 +22,7 @@ export default function SignIn() {
     console.log("Email: ", email);
     console.log("Password: ", password);
     alert("Logged in successfully!")
-    navigate("/main");
+    navigate("/main/dashboard");
   };
 
   return (
