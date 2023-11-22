@@ -2,7 +2,7 @@ import React from "react";
 import { PiCaretUpDownFill } from "react-icons/pi";
 import { AiOutlineSearch } from "react-icons/ai";
 import clipArt from "../images/clipArtBusinesses.png";
-// import './manageBusiness.css'
+import './manageBusiness.css'
 
 export default function ManageBusinesses() {
 
