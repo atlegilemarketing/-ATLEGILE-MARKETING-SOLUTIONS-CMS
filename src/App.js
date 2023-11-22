@@ -17,9 +17,9 @@ function App() {
   return (
     <Router>
       <Routes>
-      <Route path="signIn" element={<SignIn />} />
+      <Route path="/" element={<SignIn />} />
         <Route
-          path="/"
+          path="main"
           element={
             <Layout>
               <Outlet />

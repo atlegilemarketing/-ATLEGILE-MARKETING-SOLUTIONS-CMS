@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { FaGoogle } from "react-icons/fa";
-
+import { useNavigate } from "react-router-dom";
 
 const logo = require("../images/cropped-AMS-Shadow-Queen-Logo_BNY-1320x772 1.png");
 
 export default function SignIn() {
+  
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isEmailValid, setIsEmailValid] = useState(true);
@@ -20,6 +22,7 @@ export default function SignIn() {
     console.log("Email: ", email);
     console.log("Password: ", password);
     alert("Logged in successfully!")
+    navigate("/main");
   };
 
   return (
