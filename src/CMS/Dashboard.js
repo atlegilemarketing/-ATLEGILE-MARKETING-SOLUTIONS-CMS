@@ -19,7 +19,7 @@ function Dashboard() {
           </div>
           <div style={{ display: "flex", flexDirection: "column", width: 122 }}>
           <p className="statsName">Sales</p>
-            <p className="statsNumber">300</p>
+            <p className="statsNumber">30</p>
           </div>
         </div>
         <div className="tableContainer">
