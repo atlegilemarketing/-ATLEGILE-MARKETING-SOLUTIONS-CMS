@@ -38,62 +38,7 @@ export default function ManageBusinesses() {
   const handleActions = () => {
     alert("Actions clicked");
   };
-
-<<<<<<< HEAD
-=======
-  const fakeBusinessesList = [
-    {
-      id: "00",
-      name: "Tech Logistics",
-      surname: "N/A",
-      phone: "Township",
-      email: "Technology",
-      location: "View Details",
-      action:["Block User","View Details"]
-    },
- 
-    {
-      id: "01",
-      name: "Tech Logistics",
-      surname: "N/A",
-      phone: "Township",
-      email: "Technology",
-      location: "View Details",
-      action:["Block User","View Details"]
-    },
- 
-    {
-      id: "02",
-      name: "Tech Logistics",
-      surname: "N/A",
-      phone: "Township",
-      email: "Technology",
-      location: "View Details",
-      action:["Block User","View Details"]
-    },
- 
-    {
-      id: "03",
-      name: "Tech Logistics",
-      surname: "N/A",
-      phone: "Township",
-      email: "Technology",
-      location: "View Details",
-      action:["Block User","View Details"]
-    },
- 
-    {
-      id: "04",
-      name: "Tech Logistics",
-      surname: "N/A",
-      phone: "Township",
-      email: "Technology",
-      location: "View Details",
-      action:["Block User","View Details"]
-    },
-  ];
-
->>>>>>> 3cf66925322608618ee7428c8c3f7af7da8d4a0c
+  
   return (
     <Box
       sx={{
