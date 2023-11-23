@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-
 import GoogleIcon from '@mui/icons-material/Google';
 import { useNavigate } from "react-router-dom";
+import {firebase} from "../config";
 
 const logo = require("../images/cropped-AMS-Shadow-Queen-Logo_BNY-1320x772 1.png");
 
 export default function SignIn() {
-  
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isEmailValid, setIsEmailValid] = useState(true);
-  // eslint-disable-next-line
+
   let validRegex = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}");
+
   const handleEmailChange = (e) => {
     const inputEmail = e.target.value;
     setEmail(inputEmail);
@@ -20,9 +20,24 @@ export default function SignIn() {
   };
 
   const handleSignIn = () => {
-    console.log("Email: ", email);
-    console.log("Password: ", password);
-    alert("Logged in successfully!")
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log("User signed in:", user);
+        alert("Logged in successfully!");
+        navigate("/main/dashboard");
+      })
+      .catch((error) => {
+        // Log more details about the error
+        console.error("Error signing in:", error.code, error.message);
+      });
+  };
+
+  const handleGuestSignIn = () => {
+    // Implement logic for guest sign-in here
+    alert("Signed in as a guest!");
     navigate("/main/dashboard");
   };
 
