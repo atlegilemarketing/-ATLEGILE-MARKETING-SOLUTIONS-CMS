@@ -21,30 +21,30 @@ function ManageUsers() {
     <div className="mainContainer">
       <div className="ribbonContaier"></div>
       <div className="dashboardContainer">
-        <Typography variant="h2">Dashboard</Typography>
+        <Typography variant="h4">MANAGE USERS</Typography>
         <div className="statsContainer">
           <div style={{ display: "flex", flexDirection: "column", width: 122 }}>
-            <Typography variant="body1">Sales</Typography>
-            <Typography variant="h4" className="statsNumber">
+            <Typography variant="body2">Sales</Typography>
+            <Typography variant="h8" className="statsNumber">
               300
             </Typography>
           </div>
           <div style={{ display: "flex", flexDirection: "column", width: 122 }}>
-            <Typography variant="body1">New Businesses</Typography>
-            <Typography variant="h4" className="statsNumber">
+            <Typography variant="body2">New Businesses</Typography>
+            <Typography variant="h8" className="statsNumber">
               300
             </Typography>
           </div>
           <div style={{ display: "flex", flexDirection: "column", width: 122 }}>
-            <Typography variant="body1">New Users</Typography>
-            <Typography variant="h4" className="statsNumber">
+            <Typography variant="body2">New Users</Typography>
+            <Typography variant="h8" className="statsNumber">
               300
             </Typography>
           </div>
         </div>
         <div className="tableContainer">
           <div className="tableBoxContainer" style={{ marginRight: 8 }}>
-            <Typography variant="h2">New Users</Typography>
+            <Typography variant="h5"><strong>NEW USERS</strong></Typography>
             <div
               style={{ width: "190%", height: 500, backgroundColor: "white" }}
             >
