@@ -1,61 +1,14 @@
 import React from "react";
+import { Box, Typography, Button } from "@mui/material";
 import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
 import SearchIcon from "@mui/icons-material/Search";
 import clipArt from "../images/clipArtBusinesses.png";
-import "./manageBusiness.css";
+
 
 export default function ManageBusinesses() {
-  function calculateBackgroundProperties() {
-    const screenWidth = window.innerWidth;
-    const screenHeight = window.innerHeight;
-    let backgroundPositionX, backgroundPositionY, backgroundSize;
-
-    // Define the standard screen sizes and their corresponding values
-    const screenSizes = [
-      {
-        width: 1515,
-        height: 1441,
-        positionX: 340,
-        positionY: -150,
-        size: "700px 450px",
-      },
-      {
-        width: 1738,
-        height: 871,
-        positionX: 530,
-        positionY: -115,
-        size: "600px 350px",
-      },
-      // Add more screen sizes and values as needed
-    ];
-
-    // Calculate the ratio of the screen size to the standard sizes
-    const matchingSize = screenSizes.find(
-      (size) => size.width === screenWidth && size.height === screenHeight
-    );
-
-    if (matchingSize) {
-      backgroundPositionX = matchingSize.positionX;
-      backgroundPositionY = matchingSize.positionY;
-      backgroundSize = matchingSize.size;
-    } else {
-      // Calculate ratios for custom screen sizes
-      const ratioX = screenWidth / screenSizes[0].width;
-      const ratioY = screenHeight / screenSizes[0].height;
-
-      backgroundPositionX = Math.round(screenSizes[0].positionX * ratioX);
-      backgroundPositionY = Math.round(screenSizes[0].positionY * ratioY);
-      backgroundSize = `${Math.round(700 * ratioX)}px ${Math.round(
-        450 * ratioY
-      )}px`;
-    }
-    backgroundPositionX += backgroundPositionX / 2;
-    backgroundPositionY += 0;
-    return { backgroundPositionX, backgroundPositionY, backgroundSize };
-  }
-
-  const { backgroundPositionX, backgroundPositionY, backgroundSize } =
-    calculateBackgroundProperties();
+  const handleActions = () => {
+    alert("Actions clicked");
+  };
 
   const fakeBusinessesList = [
     {
@@ -109,305 +62,307 @@ export default function ManageBusinesses() {
   ];
 
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        flexDirection: "row",
-        height: "100%",
+    <Box
+      sx={{
+        height: "100vh",
+        overflow: "hidden",
+        overflowY: "auto",
       }}
     >
-      <div style={{ height: "100%", width: "100%" }}>
-        <div
-          style={{
-            height: "15%",
-            backgroundColor: "#072840",
+      <Box
+        sx={{
+          height: "20vh",
+          backgroundColor: "#072840",
+          display: "flex",
+        }}
+      >
+        <Box
+          sx={{
+            backgroundImage: `url(${clipArt})`,
+            width: "100%",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "120% 50%",
+            backgroundSize: "50%",
             display: "flex",
-            flexDirection: "row",
             alignItems: "center",
           }}
         >
-          <span
-            style={{
+          <Typography
+            sx={{
               color: "white",
-              fontSize: 20,
+              fontSize: 30,
               fontWeight: 600,
-              paddingLeft: 20,
+              paddingLeft: 2,
+            }}
+          >
+            MANAGE BUSINESSES
+          </Typography>
+        </Box>
+      </Box>
+
+      <Box
+        sx={{
+          height: "80vh",
+        }}
+      >
+        <Box
+          sx={{
+            ml: 4,
+            mt: 4,
+            border: "none",
+            borderBottom: "1px lightgray solid",
+          }}
+        >
+          <Typography sx={{ fontWeight: 700 }}>USERS</Typography>
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            ml: 4,
+            mt: 8,
+          }}
+        >
+          <Box
+            sx={{
+              width: "100px",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <Typography sx={{ color: "gray", fontSize: 12 }}>Sales</Typography>
+            <Typography sx={{ fontWeight: 400, fontSize: 20 }}>300</Typography>
+          </Box>
+
+          <Box
+            sx={{
+              width: "100px",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <Typography sx={{ color: "gray", fontSize: 12 }}>
+              New Businesses
+            </Typography>
+            <Typography sx={{ fontWeight: 400, fontSize: 20 }}>300</Typography>
+          </Box>
+
+          <Box
+            sx={{
+              width: "100px",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <Typography sx={{ color: "gray", fontSize: 12 }}>
+              New Users
+            </Typography>
+            <Typography sx={{ fontWeight: 400, fontSize: 20 }}>300</Typography>
+          </Box>
+        </Box>
+        <Box
+          sx={{
+            //paddingBottom: 10,
+            border: "none",
+            borderBottom: "1px lightgray solid",
+            ml: 4,
+            mt: 4,
+          }}
+        >
+          <Typography sx={{ fontWeight: 700 }}>NEW BUSINESSES</Typography>
+        </Box>
+
+        <Box
+          sx={{
+            backgroundColor: "#fafafa",
+            display: "flex",
+            flexDirection: "row",
+            ml: 2,
+            mt: 2,
+            pt: 2,
+            pb: 2,
+            border: "none",
+            borderBottom: "1px lightgray solid",
+          }}
+        >
+          <Box
+            sx={{
               width: "20%",
-            }}
-          >
-            Manage Businesses
-          </span>
-          <div
-            style={{
-              backgroundImage: `url(${clipArt})`,
-              width: "80%",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: `${backgroundPositionX}px ${backgroundPositionY}px`,
-              backgroundSize: backgroundSize,
-              height: "100%",
-            }}
-          ></div>
-        </div>
-
-        <div style={{ padding: 20 }}>
-          <div
-            style={{
-              paddingBottom: 10,
-              border: "none",
-              borderBottom: "1px lightgray solid",
-              marginLeft: 10,
-            }}
-          >
-            <span style={{ fontWeight: 700 }}>USERS</span>
-          </div>
-
-          <div
-            style={{
+              pl: 2,
+              pr: 2,
               display: "flex",
               flexDirection: "row",
-              paddingTop: 50,
-              paddingBottom: 50,
-              marginLeft: 10,
-            }}
-          >
-            <div
-              style={{ width: "20%", display: "flex", flexDirection: "column" }}
-            >
-              <span style={{ color: "gray" }}>Sales</span>
-              <span style={{ fontWeight: 400 }}>300</span>
-            </div>
-
-            <div
-              style={{ width: "20%", display: "flex", flexDirection: "column" }}
-            >
-              <span style={{ color: "gray" }}>New Businesses</span>
-              <span style={{ fontWeight: 400 }}>300</span>
-            </div>
-
-            <div
-              style={{ width: "20%", display: "flex", flexDirection: "column" }}
-            >
-              <span style={{ color: "gray" }}>New Users</span>
-              <span style={{ fontWeight: 400 }}>300</span>
-            </div>
-          </div>
-          <div
-            style={{
-              paddingBottom: 10,
+              alignItems: "center",
+              justifyContent: "space-between",
               border: "none",
-              borderBottom: "1px lightgray solid",
-              marginLeft: 10,
+              borderRight: "1px lightgray solid",
             }}
           >
-            <span style={{ fontWeight: 700 }}>NEW BUSINESSES</span>
-          </div>
+            <Typography sx={{ fontWeight: 600 }}>Business Name</Typography>
+            <Typography
+              sx={{
+                color: "gray",
+              }}
+            >
+              <UnfoldMoreIcon />
+              <SearchIcon />
+            </Typography>
+          </Box>
 
-          <div
-            style={{
-              width: "100%",
-              backgroundColor: "#fafafa",
+          <Box
+            sx={{
+              width: "20%",
+              pl: 2,
+              pr: 2,
               display: "flex",
               flexDirection: "row",
-              marginTop: 20,
+              alignItems: "center",
+              justifyContent: "space-between",
+              border: "none",
+              borderRight: "1px lightgray solid",
             }}
           >
-            <div
-              style={{
-                width: "20%",
-                display: "flex",
-                flexDirection: "row",
-                paddingTop: 10,
-                paddingBottom: 10,
-                justifyContent: "space-between",
-                paddingLeft: 10,
-                paddingRight: 10,
+            <Typography sx={{ fontWeight: 600 }}>Reg Number</Typography>
+            <Typography
+              sx={{
+                color: "gray",
               }}
             >
-              <span style={{ fontWeight: 600 }}>Business Name</span>
-              <span
-                style={{
-                  border: "none",
-                  borderRight: "1px lightgray solid",
-                  paddingRight: 10,
-                  color: "gray",
-                }}
-              >
-                <UnfoldMoreIcon />
-                <SearchIcon />
-              </span>
-            </div>
+              <UnfoldMoreIcon />
+            </Typography>
+          </Box>
 
-            <div
-              style={{
-                width: "20%",
-                display: "flex",
-                flexDirection: "row",
-                paddingTop: 10,
-                paddingBottom: 10,
-                justifyContent: "space-between",
-                paddingLeft: 10,
-                paddingRight: 10,
+          <Box
+            sx={{
+              width: "20%",
+              pl: 2,
+              pr: 2,
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+              border: "none",
+              borderRight: "1px lightgray solid",
+            }}
+          >
+            <Typography sx={{ fontWeight: 600 }}>Type of Business</Typography>
+            <Typography
+              sx={{
+                color: "gray",
               }}
             >
-              <span style={{ fontWeight: 600 }}>Reg Number</span>
-              <span
-                style={{
-                  border: "none",
-                  borderRight: "1px lightgray solid",
-                  paddingRight: 10,
-                  color: "gray",
-                }}
-              >
-                <UnfoldMoreIcon />
-              </span>
-            </div>
+              <UnfoldMoreIcon />
+            </Typography>
+          </Box>
 
-            <div
-              style={{
-                width: "20%",
-                display: "flex",
-                flexDirection: "row",
-                paddingTop: 10,
-                paddingBottom: 10,
-                justifyContent: "space-between",
-                paddingLeft: 10,
-                paddingRight: 10,
+          <Box
+            sx={{
+              width: "20%",
+              pl: 2,
+              pr: 2,
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+              border: "none",
+              borderRight: "1px lightgray solid",
+            }}
+          >
+            <Typography sx={{ fontWeight: 600 }}>Industry</Typography>
+            <Typography
+              sx={{
+                color: "gray",
               }}
             >
-              <span style={{ fontWeight: 600 }}>Type of Business</span>
-              <span
-                style={{
-                  border: "none",
-                  borderRight: "1px lightgray solid",
-                  paddingRight: 10,
-                  color: "gray",
-                }}
-              >
-                <UnfoldMoreIcon />
-              </span>
-            </div>
+              <UnfoldMoreIcon />
+            </Typography>
+          </Box>
 
-            <div
-              style={{
+          <Box
+            sx={{
+              width: "20%",
+              pl: 2,
+              pr: 2,
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <Typography sx={{ fontWeight: 600 }}>Actions</Typography>
+          </Box>
+        </Box>
+        {fakeBusinessesList.map((business) => (
+          <Box
+            key={business.id}
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              border: "none",
+              borderBottom: "1px lightgray solid",
+              ml: 2,
+              mt: 2,
+            }}
+          >
+            <Box
+              sx={{
                 width: "20%",
-                display: "flex",
-                flexDirection: "row",
-                paddingTop: 10,
-                paddingBottom: 10,
-                justifyContent: "space-between",
-                paddingLeft: 10,
-                paddingRight: 10,
+                pl: 2,
+                pr: 2,
               }}
             >
-              <span style={{ fontWeight: 600 }}>Industry</span>
-              <span
-                style={{
-                  border: "none",
-                  borderRight: "1px lightgray solid",
-                  paddingRight: 10,
-                  color: "gray",
-                }}
-              >
-                <UnfoldMoreIcon />
-              </span>
-            </div>
+              <Typography >{business.name}</Typography>
+            </Box>
 
-            <div
-              style={{
+            <Box
+              sx={{
                 width: "20%",
-                display: "flex",
-                flexDirection: "row",
-                paddingTop: 10,
-                paddingBottom: 10,
-                justifyContent: "space-between",
-                paddingLeft: 10,
-                paddingRight: 10,
+                pl: 2,
+                pr: 2,
               }}
             >
-              <span style={{ fontWeight: 600 }}>Actions</span>
-            </div>
-          </div>
-          <div>
-            {fakeBusinessesList.map((business) => (
-              <div
-                key={business.id}
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  border: "none",
-                  borderBottom: "1px lightgray solid",
-                }}
+              <Typography >{business.regNum}</Typography>
+            </Box>
+
+            <Box
+              sx={{
+                width: "20%",
+                pl: 2,
+                pr: 2,
+              }}
+            >
+              <Typography >{business.bizType}</Typography>
+            </Box>
+
+            <Box
+              sx={{
+                width: "20%",
+                pl: 2,
+                pr: 2,
+              }}
+            >
+              <Typography >{business.Industry}</Typography>
+            </Box>
+
+            <Box
+              sx={{
+                width: "20%",
+                pl: 1,
+                pr: 1,
+              }}
+            >
+              <Button
+                onClick={handleActions}
+                variant="text"
+                //fullWidth
+                sx={{ textDecoration: "none", color: "#1890ff" }}
               >
-                <div
-                  style={{
-                    width: "20%",
-                    paddingTop: 10,
-                    paddingBottom: 10,
-                    paddingLeft: 10,
-                    paddingRight: 10,
-                  }}
-                >
-                  <span style={{}}>{business.name}</span>
-                </div>
-
-                <div
-                  style={{
-                    width: "20%",
-                    paddingTop: 10,
-                    paddingBottom: 10,
-                    paddingLeft: 10,
-                    paddingRight: 10,
-                  }}
-                >
-                  <span style={{}}>{business.regNum}</span>
-                </div>
-
-                <div
-                  style={{
-                    width: "20%",
-                    paddingTop: 10,
-                    paddingBottom: 10,
-                    paddingLeft: 10,
-                    paddingRight: 10,
-                  }}
-                >
-                  <span style={{}}>{business.bizType}</span>
-                </div>
-
-                <div
-                  style={{
-                    width: "20%",
-                    paddingTop: 10,
-                    paddingBottom: 10,
-                    paddingLeft: 10,
-                    paddingRight: 10,
-                  }}
-                >
-                  <span style={{}}>{business.Industry}</span>
-                </div>
-
-                <div
-                  style={{
-                    width: "20%",
-                    paddingTop: 10,
-                    paddingBottom: 10,
-                    paddingLeft: 10,
-                    paddingRight: 10,
-                  }}
-                >
-                  <a
-                    href="http://localhost:3000/"
-                    style={{ textDecoration: "none", color: "#1890ff" }}
-                  >
-                    {business.actions}
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
+                {business.actions}
+              </Button>
+            </Box>
+          </Box>
+        ))}
+      </Box>
+    </Box>
   );
 }

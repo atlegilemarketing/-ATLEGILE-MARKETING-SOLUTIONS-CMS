@@ -20,8 +20,7 @@ function SideNav() {
         height: "97vh",
         border: "none",
         borderRight: "1px lightgray solid",
-        padding: 2
-,
+        padding: 2,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
