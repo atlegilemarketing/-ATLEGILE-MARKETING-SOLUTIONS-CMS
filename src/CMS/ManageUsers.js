@@ -4,7 +4,6 @@ import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
 import SearchIcon from "@mui/icons-material/Search";
 import clipArt from "../images/clipArtUsers.png";
 
-
 export default function ManageBusinesses() {
   const handleActions = () => {
     alert("Actions clicked");
@@ -13,51 +12,57 @@ export default function ManageBusinesses() {
   const fakeBusinessesList = [
     {
       id: "00",
-      name: "Tech Logistics",
-      regNum: "N/A",
-      bizType: "Township",
-      Industry: "Technology",
-      actions: "View Details",
+      name: "Jane",
+      surname: "Doe",
+      email: "example@mail.com",
+      phone: "0123456789",
+      location:
+        " 1235 Vilakazi Street, Orlando West, Soweto, 1804, South Africa",
+      actions: ["Block User", "View Details"],
     },
+
     {
       id: "01",
-      name: "Tech Logistics",
-      regNum: "N/A",
-      bizType: "Township",
-      Industry: "Technology",
-      actions: "View Details",
+      name: "Jane",
+      surname: "Doe",
+      email: "example@mail.com",
+      phone: "0123456789",
+      location:
+        " 1235 Vilakazi Street, Orlando West, Soweto, 1804, South Africa",
+      actions: ["Block User", "View Details"],
     },
+
     {
       id: "02",
-      name: "Tech Logistics",
-      regNum: "N/A",
-      bizType: "Township",
-      Industry: "Technology",
-      actions: "View Details",
+      name: "Jane",
+      surname: "Doe",
+      email: "example@mail.com",
+      phone: "0123456789",
+      location:
+        " 1235 Vilakazi Street, Orlando West, Soweto, 1804, South Africa",
+      actions: ["Block User", "View Details"],
     },
+
     {
       id: "03",
-      name: "Tech Logistics",
-      regNum: "N/A",
-      bizType: "Township",
-      Industry: "Technology",
-      actions: "View Details",
+      name: "Jane",
+      surname: "Doe",
+      email: "example@mail.com",
+      phone: "0123456789",
+      location:
+        " 1235 Vilakazi Street, Orlando West, Soweto, 1804, South Africa",
+      actions: ["Block User", "View Details"],
     },
+
     {
       id: "04",
-      name: "Tech Logistics",
-      regNum: "N/A",
-      bizType: "Township",
-      Industry: "Technology",
-      actions: "View Details",
-    },
-    {
-      id: "05",
-      name: "Tech Logistics",
-      regNum: "N/A",
-      bizType: "Township",
-      Industry: "Technology",
-      actions: "View Details",
+      name: "Jane",
+      surname: "Doe",
+      email: "example@mail.com",
+      phone: "0123456789",
+      location:
+        " 1235 Vilakazi Street, Orlando West, Soweto, 1804, South Africa",
+      actions: ["Block User", "View Details"],
     },
   ];
 
@@ -170,7 +175,7 @@ export default function ManageBusinesses() {
             mt: 4,
           }}
         >
-          <Typography sx={{ fontWeight: 700 }}>NEW BUSINESSES</Typography>
+          <Typography sx={{ fontWeight: 700 }}>NEW USERS</Typography>
         </Box>
 
         <Box
@@ -188,7 +193,7 @@ export default function ManageBusinesses() {
         >
           <Box
             sx={{
-              width: "20%",
+              width: "16%",
               pl: 2,
               pr: 2,
               display: "flex",
@@ -199,7 +204,7 @@ export default function ManageBusinesses() {
               borderRight: "1px lightgray solid",
             }}
           >
-            <Typography sx={{ fontWeight: 600 }}>Business Name</Typography>
+            <Typography sx={{ fontWeight: 600 }}>Name</Typography>
             <Typography
               sx={{
                 color: "gray",
@@ -212,7 +217,7 @@ export default function ManageBusinesses() {
 
           <Box
             sx={{
-              width: "20%",
+              width: "16%",
               pl: 2,
               pr: 2,
               display: "flex",
@@ -223,7 +228,7 @@ export default function ManageBusinesses() {
               borderRight: "1px lightgray solid",
             }}
           >
-            <Typography sx={{ fontWeight: 600 }}>Reg Number</Typography>
+            <Typography sx={{ fontWeight: 600 }}>Surname</Typography>
             <Typography
               sx={{
                 color: "gray",
@@ -235,7 +240,7 @@ export default function ManageBusinesses() {
 
           <Box
             sx={{
-              width: "20%",
+              width: "17%",
               pl: 2,
               pr: 2,
               display: "flex",
@@ -246,7 +251,7 @@ export default function ManageBusinesses() {
               borderRight: "1px lightgray solid",
             }}
           >
-            <Typography sx={{ fontWeight: 600 }}>Type of Business</Typography>
+            <Typography sx={{ fontWeight: 600 }}>Phone</Typography>
             <Typography
               sx={{
                 color: "gray",
@@ -258,7 +263,7 @@ export default function ManageBusinesses() {
 
           <Box
             sx={{
-              width: "20%",
+              width: "17%",
               pl: 2,
               pr: 2,
               display: "flex",
@@ -269,7 +274,7 @@ export default function ManageBusinesses() {
               borderRight: "1px lightgray solid",
             }}
           >
-            <Typography sx={{ fontWeight: 600 }}>Industry</Typography>
+            <Typography sx={{ fontWeight: 600 }}>Email</Typography>
             <Typography
               sx={{
                 color: "gray",
@@ -281,7 +286,30 @@ export default function ManageBusinesses() {
 
           <Box
             sx={{
-              width: "20%",
+              width: "17%",
+              pl: 2,
+              pr: 2,
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+              border: "none",
+              borderRight: "1px lightgray solid",
+            }}
+          >
+            <Typography sx={{ fontWeight: 600 }}>Location</Typography>
+            <Typography
+              sx={{
+                color: "gray",
+              }}
+            >
+              <UnfoldMoreIcon />
+            </Typography>
+          </Box>
+
+          <Box
+            sx={{
+              width: "17%",
               pl: 2,
               pr: 2,
               display: "flex",
@@ -306,47 +334,57 @@ export default function ManageBusinesses() {
           >
             <Box
               sx={{
-                width: "20%",
+                width: "16%",
                 pl: 2,
                 pr: 2,
               }}
             >
-              <Typography >{business.name}</Typography>
+              <Typography>{business.name}</Typography>
             </Box>
 
             <Box
               sx={{
-                width: "20%",
+                width: "16%",
                 pl: 2,
                 pr: 2,
               }}
             >
-              <Typography >{business.regNum}</Typography>
+              <Typography>{business.surname}</Typography>
             </Box>
 
             <Box
               sx={{
-                width: "20%",
+                width: "17%",
                 pl: 2,
                 pr: 2,
               }}
             >
-              <Typography >{business.bizType}</Typography>
+              <Typography>{business.phone}</Typography>
             </Box>
 
             <Box
               sx={{
-                width: "20%",
+                width: "17%",
                 pl: 2,
                 pr: 2,
               }}
             >
-              <Typography >{business.Industry}</Typography>
+              <Typography>{business.email}</Typography>
             </Box>
 
             <Box
               sx={{
-                width: "20%",
+                width: "17%",
+                pl: 2,
+                pr: 2,
+              }}
+            >
+              <Typography noWrap>{business.location}</Typography>
+            </Box>
+
+            <Box
+              sx={{
+                width: "17%",
                 pl: 1,
                 pr: 1,
               }}
@@ -357,7 +395,12 @@ export default function ManageBusinesses() {
                 //fullWidth
                 sx={{ textDecoration: "none", color: "#1890ff" }}
               >
-                {business.actions}
+                <Box
+                  sx={{ pr: 1,border: "none", borderRight: "1px lightgray solid" }}
+                >
+                  {business.actions[0]}
+                </Box>
+                <Box sx={{pl: 1,}}>{business.actions[1]}</Box>
               </Button>
             </Box>
           </Box>
