@@ -14,11 +14,11 @@ function Dashboard() {
             <p className="statsNumber">300</p>
           </div>
           <div style={{ display: "flex", flexDirection: "column", width: 122 }}>
-            <p className="statsName">Sales</p>
+            <p className="statsName">New Businesses</p>
             <p className="statsNumber">300</p>
           </div>
           <div style={{ display: "flex", flexDirection: "column", width: 122 }}>
-            <p className="statsName">Sales</p>
+            <p className="statsName">New Users</p>
             <p className="statsNumber">300</p>
           </div>
         </div>
