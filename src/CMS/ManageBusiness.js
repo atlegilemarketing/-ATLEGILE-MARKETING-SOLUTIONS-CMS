@@ -38,7 +38,7 @@ export default function ManageBusinesses() {
   const handleActions = () => {
     alert("Actions clicked");
   };
-  
+
   return (
     <Box
       sx={{
@@ -154,8 +154,8 @@ export default function ManageBusinesses() {
         </Box>
 
         <Box
-          sx={{
-            backgroundColor: "#fafafa",
+           sx={{
+            backgroundColor: "#FAFAFA",
             display: "flex",
             flexDirection: "row",
             ml: 2,
@@ -189,7 +189,6 @@ export default function ManageBusinesses() {
               <SearchIcon />
             </Typography>
           </Box>
-
           <Box
             sx={{
               width: "20%",
@@ -202,7 +201,6 @@ export default function ManageBusinesses() {
               border: "none",
               borderRight: "1px lightgray solid",
             }}
-            
           >
             <Typography sx={{ fontWeight: 600 }}>Reg Number</Typography>
             <Typography
@@ -213,20 +211,20 @@ export default function ManageBusinesses() {
               <UnfoldMoreIcon />
             </Typography>
           </Box>
-
           <Box
             sx={{
               width: "20%",
-              pl: 1,
-              pr: 1,
+              pl: 2,
+              pr: 2,
               display: "flex",
               flexDirection: "row",
               alignItems: "center",
+              justifyContent: "space-between",
+              border: "none",
+              borderRight: "1px lightgray solid",
             }}
-            
           >
-
-            <Typography sx={{ fontWeight: 600 }}>Business Type</Typography>
+            <Typography sx={{ fontWeight: 600 }}>Type of Business</Typography>
             <Typography
               sx={{
                 color: "gray",
@@ -235,7 +233,6 @@ export default function ManageBusinesses() {
               <UnfoldMoreIcon />
             </Typography>
           </Box>
-
           <Box
             sx={{
               width: "20%",
@@ -258,12 +255,11 @@ export default function ManageBusinesses() {
               <UnfoldMoreIcon />
             </Typography>
           </Box>
-
           <Box
             sx={{
               width: "20%",
-              pl: 1,
-              pr: 1,
+              pl: 2,
+              pr: 2,
               display: "flex",
               flexDirection: "row",
               alignItems: "center",
