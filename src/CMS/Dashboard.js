@@ -1,4 +1,5 @@
 import React from "react";
+import {Typography} from "@mui/material";
 import "../App.css";
 
 function Dashboard() {
@@ -6,7 +7,7 @@ function Dashboard() {
     <div className="mainContainer">
       <div className="ribbonContaier"></div>
       <div className="dashboardContainer">
-        <h2>Dashboard</h2>
+      <Typography variant="h5"><strong>DASHBOARD</strong></Typography>
         <div className="statsContainer">
           <div style={{ display: "flex", flexDirection: "column", width: 122 }}>
             <p className="statsName">Sales</p>
@@ -23,9 +24,9 @@ function Dashboard() {
         </div>
         <div className="tableContainer">
           <div className="tableBoxContainer" style={{ marginRight: 8 }}>
-            <h2>New Users</h2>
+          <Typography variant="h5"><strong>NEW USERS</strong></Typography>
             <div style={{ width: "100%", height: 500 }}>
-              <table style={{ width: "100%", height: 500 }}>
+              <table style={{ width: "100%", height: 340}}>
                 <thead style={{ height: "55px", width: "154px" }}>
                   <tr style={{ backgroundColor: "#FAFAFA" }}>
                     <th>Name</th>
@@ -77,9 +78,9 @@ function Dashboard() {
           </div>
           <div className="vLine"></div>
           <div className="tableBoxContainer" style={{ marginLeft: 8 }}>
-            <h2>New Businesses</h2>
+          <Typography variant="h5"><strong>NEW BUSINESSES</strong></Typography>
             <div style={{ width: "100%", height: 500 }}>
-              <table style={{ width: "100%", height: 500 }}>
+              <table style={{ width: "100%", height: 340 }}>
                 <thead
                   style={{
                     height: "55px",

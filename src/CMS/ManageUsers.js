@@ -21,35 +21,29 @@ function ManageUsers() {
     <div className="mainContainer">
       <div className="ribbonContaier"></div>
       <div className="dashboardContainer">
-        <Typography variant="h4">MANAGE USERS</Typography>
+        <Typography variant="h5"><strong>MANAGE USERS</strong></Typography>
         <div className="statsContainer">
           <div style={{ display: "flex", flexDirection: "column", width: 122 }}>
-            <Typography variant="body2">Sales</Typography>
-            <Typography variant="h8" className="statsNumber">
-              300
-            </Typography>
+          <p className="statsName">Sales</p>
+            <p className="statsNumber">300</p>
           </div>
           <div style={{ display: "flex", flexDirection: "column", width: 122 }}>
-            <Typography variant="body2">New Businesses</Typography>
-            <Typography variant="h8" className="statsNumber">
-              300
-            </Typography>
+            <p className="statsName">New Businesses</p>
+            <p className="statsNumber">300</p>
           </div>
           <div style={{ display: "flex", flexDirection: "column", width: 122 }}>
-            <Typography variant="body2">New Users</Typography>
-            <Typography variant="h8" className="statsNumber">
-              300
-            </Typography>
+            <p className="statsName">New Users</p>
+            <p className="statsNumber">300</p>
           </div>
         </div>
         <div className="tableContainer">
           <div className="tableBoxContainer" style={{ marginRight: 8 }}>
             <Typography variant="h5"><strong>NEW USERS</strong></Typography>
             <div
-              style={{ width: "190%", height: 500, backgroundColor: "white" }}
+              style={{ width: "187%", height: 500, backgroundColor: "white" }}
             >
-              <table style={{ width: "100%" }}>
-                <thead>
+              <table style={{ width: "100%", height: 340,  }}>
+              <thead style={{ height: "55px", width: "154px" }}>
                   <tr style={{ backgroundColor: "#FAFAFA" }}>
                     <th>Name</th>
                     <th>Surname</th>
@@ -59,13 +53,13 @@ function ManageUsers() {
                     <th>Actions</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody style={{ height: "55px", width: "770px" }}>
                   <tr>
                     <td>Jane</td>
                     <td>Doe</td>
                     <td>0123456789</td>
                     <td>example@mail.com</td>
-                    <td className="tableCell">
+                    <td style={{ whiteSpace: "pre-wrap" }}>
                       1235 Vilakazi Street, Orlando West, Soweto, 1804, South
                       Africa
                     </td>
@@ -100,7 +94,7 @@ function ManageUsers() {
                     <td>Doe</td>
                     <td>0123456789</td>
                     <td>example@mail.com</td>
-                    <td className="tableCell">
+                    <td style={{ whiteSpace: "pre-wrap" }}>
                       1235 Vilakazi Street, Orlando West, Soweto, 1804, South
                       Africa
                     </td>
@@ -135,7 +129,7 @@ function ManageUsers() {
                     <td>Doe</td>
                     <td>0123456789</td>
                     <td>example@mail.com</td>
-                    <td className="tableCell">
+                    <td style={{ whiteSpace: "pre-wrap" }}>
                       1235 Vilakazi Street, Orlando West, Soweto, 1804, South
                       Africa
                     </td>
@@ -170,7 +164,7 @@ function ManageUsers() {
                     <td>Doe</td>
                     <td>0123456789</td>
                     <td>example@mail.com</td>
-                    <td className="tableCell">
+                    <td style={{ whiteSpace: "pre-wrap" }}>
                       1235 Vilakazi Street, Orlando West, Soweto, 1804, South
                       Africa
                     </td>
@@ -205,7 +199,7 @@ function ManageUsers() {
                     <td>Doe</td>
                     <td>0123456789</td>
                     <td>example@mail.com</td>
-                    <td className="tableCell">
+                    <td style={{ whiteSpace: "pre-wrap" }}>
                       1235 Vilakazi Street, Orlando West, Soweto, 1804, South
                       Africa
                     </td>
