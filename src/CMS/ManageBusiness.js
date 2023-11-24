@@ -1,65 +1,43 @@
-import React from "react";
-import { Box, Typography, Button } from "@mui/material";
-import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
-import SearchIcon from "@mui/icons-material/Search";
+import React, { useState, useEffect } from 'react';
+import { Box, Typography, Button } from '@mui/material';
+import UnfoldMoreIcon from '@mui/icons-material/UnfoldMore';
+import SearchIcon from '@mui/icons-material/Search';
+import { firebase } from '../config';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import clipArt from "../images/clipArtBusinesses.png";
 
-
 export default function ManageBusinesses() {
+  const [businessesList, setBusinessesList] = useState([]);
+  const [user] = useAuthState(firebase.auth());
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const businessesRef = firebase.firestore().collection('Business');
+        const snapshot = await businessesRef.get();
+        const businessesData = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          businessName: doc.data().businessName,
+          regNumber: doc.data().regNumber,
+          businessType: doc.data().businessType,
+          industry: doc.data().industry,
+        }));
+        setBusinessesList(businessesData);
+      } catch (error) {
+        console.error('Error fetching businesses:', error);
+      }
+    };
+
+    if (user) {
+      fetchData();
+    }
+  }, [user]);
+
   const handleActions = () => {
     alert("Actions clicked");
   };
-
-  const fakeBusinessesList = [
-    {
-      id: "00",
-      name: "Tech Logistics",
-      regNum: "N/A",
-      bizType: "Township",
-      Industry: "Technology",
-      actions: "View Details",
-    },
-    {
-      id: "01",
-      name: "Tech Logistics",
-      regNum: "N/A",
-      bizType: "Township",
-      Industry: "Technology",
-      actions: "View Details",
-    },
-    {
-      id: "02",
-      name: "Tech Logistics",
-      regNum: "N/A",
-      bizType: "Township",
-      Industry: "Technology",
-      actions: "View Details",
-    },
-    {
-      id: "03",
-      name: "Tech Logistics",
-      regNum: "N/A",
-      bizType: "Township",
-      Industry: "Technology",
-      actions: "View Details",
-    },
-    {
-      id: "04",
-      name: "Tech Logistics",
-      regNum: "N/A",
-      bizType: "Township",
-      Industry: "Technology",
-      actions: "View Details",
-    },
-    {
-      id: "05",
-      name: "Tech Logistics",
-      regNum: "N/A",
-      bizType: "Township",
-      Industry: "Technology",
-      actions: "View Details",
-    },
-  ];
 
   return (
     <Box
@@ -78,6 +56,7 @@ export default function ManageBusinesses() {
       >
         <Box
           sx={{
+          
             backgroundImage: `url(${clipArt})`,
             width: "100%",
             backgroundRepeat: "no-repeat",
@@ -124,6 +103,7 @@ export default function ManageBusinesses() {
             mt: 8,
           }}
         >
+         
           <Box
             sx={{
               width: "100px",
@@ -161,9 +141,9 @@ export default function ManageBusinesses() {
             <Typography sx={{ fontWeight: 400, fontSize: 20 }}>300</Typography>
           </Box>
         </Box>
+
         <Box
           sx={{
-            //paddingBottom: 10,
             border: "none",
             borderBottom: "1px lightgray solid",
             ml: 4,
@@ -174,8 +154,8 @@ export default function ManageBusinesses() {
         </Box>
 
         <Box
-          sx={{
-            backgroundColor: "#fafafa",
+           sx={{
+            backgroundColor: "#FAFAFA",
             display: "flex",
             flexDirection: "row",
             ml: 2,
@@ -209,7 +189,6 @@ export default function ManageBusinesses() {
               <SearchIcon />
             </Typography>
           </Box>
-
           <Box
             sx={{
               width: "20%",
@@ -232,7 +211,6 @@ export default function ManageBusinesses() {
               <UnfoldMoreIcon />
             </Typography>
           </Box>
-
           <Box
             sx={{
               width: "20%",
@@ -255,7 +233,6 @@ export default function ManageBusinesses() {
               <UnfoldMoreIcon />
             </Typography>
           </Box>
-
           <Box
             sx={{
               width: "20%",
@@ -278,7 +255,6 @@ export default function ManageBusinesses() {
               <UnfoldMoreIcon />
             </Typography>
           </Box>
-
           <Box
             sx={{
               width: "20%",
@@ -293,7 +269,7 @@ export default function ManageBusinesses() {
           </Box>
         </Box>
 
-        {fakeBusinessesList.map((business) => (
+        {businessesList.map((business) => (
           <Box
             key={business.id}
             sx={{
@@ -312,7 +288,7 @@ export default function ManageBusinesses() {
                 pr: 2,
               }}
             >
-              <Typography >{business.name}</Typography>
+              <Typography>{business.businessName}</Typography>
             </Box>
 
             <Box
@@ -322,7 +298,7 @@ export default function ManageBusinesses() {
                 pr: 2,
               }}
             >
-              <Typography >{business.regNum}</Typography>
+               <Typography>{business.regNumber}</Typography>
             </Box>
 
             <Box
@@ -332,7 +308,7 @@ export default function ManageBusinesses() {
                 pr: 2,
               }}
             >
-              <Typography >{business.bizType}</Typography>
+              <Typography>{business.businessType}</Typography>
             </Box>
 
             <Box
@@ -342,7 +318,7 @@ export default function ManageBusinesses() {
                 pr: 2,
               }}
             >
-              <Typography >{business.Industry}</Typography>
+              <Typography>{business.industry}</Typography>
             </Box>
 
             <Box
@@ -355,10 +331,9 @@ export default function ManageBusinesses() {
               <Button
                 onClick={handleActions}
                 variant="text"
-                //fullWidth
                 sx={{ textDecoration: "none", color: "#1890ff" }}
               >
-                {business.actions}
+                View Details
               </Button>
             </Box>
           </Box>
