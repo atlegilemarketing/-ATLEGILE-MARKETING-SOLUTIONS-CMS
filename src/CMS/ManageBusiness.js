@@ -14,51 +14,50 @@ export default function ManageBusinesses() {
     {
       id: "00",
       name: "Tech Logistics",
-      surname: "N/A",
-      phone: "Township",
-      email: "Technology",
-      location: "View Details",
-      action:["Block User","View Details"]
+      regNum: "N/A",
+      bizType: "Township",
+      Industry: "Technology",
+      actions: "View Details",
     },
- 
     {
       id: "01",
       name: "Tech Logistics",
-      surname: "N/A",
-      phone: "Township",
-      email: "Technology",
-      location: "View Details",
-      action:["Block User","View Details"]
+      regNum: "N/A",
+      bizType: "Township",
+      Industry: "Technology",
+      actions: "View Details",
     },
- 
     {
       id: "02",
       name: "Tech Logistics",
-      surname: "N/A",
-      phone: "Township",
-      email: "Technology",
-      location: "View Details",
-      action:["Block User","View Details"]
+      regNum: "N/A",
+      bizType: "Township",
+      Industry: "Technology",
+      actions: "View Details",
     },
- 
     {
       id: "03",
       name: "Tech Logistics",
-      surname: "N/A",
-      phone: "Township",
-      email: "Technology",
-      location: "View Details",
-      action:["Block User","View Details"]
+      regNum: "N/A",
+      bizType: "Township",
+      Industry: "Technology",
+      actions: "View Details",
     },
- 
     {
       id: "04",
       name: "Tech Logistics",
-      surname: "N/A",
-      phone: "Township",
-      email: "Technology",
-      location: "View Details",
-      action:["Block User","View Details"]
+      regNum: "N/A",
+      bizType: "Township",
+      Industry: "Technology",
+      actions: "View Details",
+    },
+    {
+      id: "05",
+      name: "Tech Logistics",
+      regNum: "N/A",
+      bizType: "Township",
+      Industry: "Technology",
+      actions: "View Details",
     },
   ];
 
@@ -293,6 +292,7 @@ export default function ManageBusinesses() {
             <Typography sx={{ fontWeight: 600 }}>Actions</Typography>
           </Box>
         </Box>
+
         {fakeBusinessesList.map((business) => (
           <Box
             key={business.id}

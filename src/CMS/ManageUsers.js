@@ -9,7 +9,7 @@ export default function ManageBusinesses() {
     alert("Actions clicked");
   };
 
-  const fakeBusinessesList = [
+  const fakeUsersList = [
     {
       id: "00",
       name: "Jane",
@@ -193,7 +193,7 @@ export default function ManageBusinesses() {
         >
           <Box
             sx={{
-              width: "16%",
+              width: "16.66%",
               pl: 2,
               pr: 2,
               display: "flex",
@@ -217,7 +217,7 @@ export default function ManageBusinesses() {
 
           <Box
             sx={{
-              width: "16%",
+              width: "16.66%",
               pl: 2,
               pr: 2,
               display: "flex",
@@ -240,7 +240,7 @@ export default function ManageBusinesses() {
 
           <Box
             sx={{
-              width: "17%",
+              width: "16.66%",
               pl: 2,
               pr: 2,
               display: "flex",
@@ -263,7 +263,7 @@ export default function ManageBusinesses() {
 
           <Box
             sx={{
-              width: "17%",
+              width: "16.66%",
               pl: 2,
               pr: 2,
               display: "flex",
@@ -286,7 +286,7 @@ export default function ManageBusinesses() {
 
           <Box
             sx={{
-              width: "17%",
+              width: "16.66%",
               pl: 2,
               pr: 2,
               display: "flex",
@@ -309,7 +309,7 @@ export default function ManageBusinesses() {
 
           <Box
             sx={{
-              width: "17%",
+              width: "16.66%",
               pl: 2,
               pr: 2,
               display: "flex",
@@ -320,7 +320,8 @@ export default function ManageBusinesses() {
             <Typography sx={{ fontWeight: 600 }}>Actions</Typography>
           </Box>
         </Box>
-        {fakeBusinessesList.map((business) => (
+
+        {fakeUsersList.map((business) => (
           <Box
             key={business.id}
             sx={{
@@ -330,53 +331,75 @@ export default function ManageBusinesses() {
               borderBottom: "1px lightgray solid",
               ml: 2,
               mt: 2,
+              // pt: 2,
+              // pb: 2,
             }}
           >
             <Box
               sx={{
-                width: "16%",
+                width: "16.66%",
                 pl: 2,
                 pr: 2,
+                //border: "1px red solid",
+                display: "flex",
+                alignItems: "center",
+
               }}
             >
-              <Typography>{business.name}</Typography>
+              <Typography noWrap>{business.name}</Typography>
             </Box>
 
             <Box
               sx={{
-                width: "16%",
+                width: "16.66%",
                 pl: 2,
                 pr: 2,
+                //border: "1px red solid",
+                display: "flex",
+                alignItems: "center",
+
               }}
             >
-              <Typography>{business.surname}</Typography>
+              <Typography noWrap>{business.surname}</Typography>
             </Box>
 
             <Box
               sx={{
-                width: "17%",
+                width: "16.66%",
                 pl: 2,
                 pr: 2,
+                //border: "1px red solid",
+                display: "flex",
+                alignItems: "center",
+
               }}
             >
-              <Typography>{business.phone}</Typography>
+              <Typography noWrap>{business.phone}</Typography>
             </Box>
 
             <Box
               sx={{
-                width: "17%",
+                width: "16.66%",
                 pl: 2,
-                pr: 2,
+                //pr: 2,
+                //border: "1px red solid",
+                display: "flex",
+                alignItems: "center",
+
               }}
             >
-              <Typography>{business.email}</Typography>
+              <Typography noWrap>{business.email}</Typography>
             </Box>
 
             <Box
               sx={{
-                width: "17%",
-                pl: 2,
-                pr: 2,
+                width: "16.66%",
+                pl: 1,
+                //pr: 1,
+                //border: "1px red solid",
+                display: "flex",
+                alignItems: "center",
+
               }}
             >
               <Typography noWrap>{business.location}</Typography>
@@ -384,23 +407,43 @@ export default function ManageBusinesses() {
 
             <Box
               sx={{
-                width: "17%",
+                width: "16.66%",
                 pl: 1,
                 pr: 1,
+                display: "flex",
+                alignItems: "center",
+                //justifyContent: "center",
+                //border: "1px red solid",
               }}
             >
               <Button
                 onClick={handleActions}
                 variant="text"
                 //fullWidth
-                sx={{ textDecoration: "none", color: "#1890ff" }}
+                sx={{
+                  textDecoration: "none",
+                  color: "#1890ff",
+                  display: "flex",
+                  alignItems: "center",
+                  //justifyContent: "center",
+                }}
               >
                 <Box
-                  sx={{ pr: 1,border: "none", borderRight: "1px lightgray solid" }}
+                  sx={{
+                    pr: 1,
+                    border: "none",
+                    borderRight: "1px lightgray solid",
+                  }}
                 >
-                  {business.actions[0]}
+                  <Typography sx={{ fontSize: 12 }}>
+                    {business.actions[0]}
+                  </Typography>
                 </Box>
-                <Box sx={{pl: 1,}}>{business.actions[1]}</Box>
+                <Box sx={{ pl: 1 }}>
+                  <Typography sx={{ fontSize: 12 }}>
+                    {business.actions[1]}
+                  </Typography>
+                </Box>
               </Button>
             </Box>
           </Box>

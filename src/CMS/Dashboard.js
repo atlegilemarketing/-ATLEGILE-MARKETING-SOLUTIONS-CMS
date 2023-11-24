@@ -1,139 +1,719 @@
 import React from "react";
-import {Typography} from "@mui/material";
-import "../App.css";
+import { Box, Typography, Button } from "@mui/material";
+import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
+import SearchIcon from "@mui/icons-material/Search";
+import clipArt from "../images/clipArtWelcome.png";
 
-function Dashboard() {
+export default function ManageBusinesses() {
+  const handleActions = () => {
+    alert("Actions clicked");
+  };
+
+  const fakeUsersList = [
+    {
+      id: "00",
+      name: "Jane",
+      surname: "Doe",
+      email: "example@mail.com",
+      phone: "0123456789",
+      location:
+        " 1235 Vilakazi Street, Orlando West, Soweto, 1804, South Africa",
+      actions: ["Block User", "View Details"],
+    },
+
+    {
+      id: "01",
+      name: "Jane",
+      surname: "Doe",
+      email: "example@mail.com",
+      phone: "0123456789",
+      location:
+        " 1235 Vilakazi Street, Orlando West, Soweto, 1804, South Africa",
+      actions: ["Block User", "View Details"],
+    },
+
+    {
+      id: "02",
+      name: "Jane",
+      surname: "Doe",
+      email: "example@mail.com",
+      phone: "0123456789",
+      location:
+        " 1235 Vilakazi Street, Orlando West, Soweto, 1804, South Africa",
+      actions: ["Block User", "View Details"],
+    },
+
+    {
+      id: "03",
+      name: "Jane",
+      surname: "Doe",
+      email: "example@mail.com",
+      phone: "0123456789",
+      location:
+        " 1235 Vilakazi Street, Orlando West, Soweto, 1804, South Africa",
+      actions: ["Block User", "View Details"],
+    },
+
+    {
+      id: "04",
+      name: "Jane",
+      surname: "Doe",
+      email: "example@mail.com",
+      phone: "0123456789",
+      location:
+        " 1235 Vilakazi Street, Orlando West, Soweto, 1804, South Africa",
+      actions: ["Block User", "View Details"],
+    },
+  ];
+
+  const fakeBusinessesList = [
+    {
+      id: "00",
+      name: "Tech Logistics",
+      regNum: "N/A",
+      bizType: "Township",
+      Industry: "Technology",
+      actions: "View Details",
+    },
+    {
+      id: "01",
+      name: "Tech Logistics",
+      regNum: "N/A",
+      bizType: "Township",
+      Industry: "Technology",
+      actions: "View Details",
+    },
+    {
+      id: "02",
+      name: "Tech Logistics",
+      regNum: "N/A",
+      bizType: "Township",
+      Industry: "Technology",
+      actions: "View Details",
+    },
+    {
+      id: "03",
+      name: "Tech Logistics",
+      regNum: "N/A",
+      bizType: "Township",
+      Industry: "Technology",
+      actions: "View Details",
+    },
+    {
+      id: "04",
+      name: "Tech Logistics",
+      regNum: "N/A",
+      bizType: "Township",
+      Industry: "Technology",
+      actions: "View Details",
+    },
+    {
+      id: "05",
+      name: "Tech Logistics",
+      regNum: "N/A",
+      bizType: "Township",
+      Industry: "Technology",
+      actions: "View Details",
+    },
+  ];
+
   return (
-    <div className="mainContainer">
-      <div className="ribbonContaier"></div>
-      <div className="dashboardContainer">
-      <Typography variant="h5"><strong>DASHBOARD</strong></Typography>
-        <div className="statsContainer">
-          <div style={{ display: "flex", flexDirection: "column", width: 122 }}>
-            <p className="statsName">Sales</p>
-            <p className="statsNumber">300</p>
-          </div>
-          <div style={{ display: "flex", flexDirection: "column", width: 122 }}>
-            <p className="statsName">Sales</p>
-            <p className="statsNumber">300</p>
-          </div>
-          <div style={{ display: "flex", flexDirection: "column", width: 122 }}>
-            <p className="statsName">Sales</p>
-            <p className="statsNumber">300</p>
-          </div>
-        </div>
-        <div className="tableContainer">
-          <div className="tableBoxContainer" style={{ marginRight: 8 }}>
-          <Typography variant="h5"><strong>NEW USERS</strong></Typography>
-            <div style={{ width: "100%", height: 500 }}>
-              <table style={{ width: "100%", height: 340}}>
-                <thead style={{ height: "55px", width: "154px" }}>
-                  <tr style={{ backgroundColor: "#FAFAFA" }}>
-                    <th>Name</th>
-                    <th>Surname</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                    <th>Location</th>
-                  </tr>
-                </thead>
-                <tbody style={{ height: "55px", width: "770px" }}>
-                  <tr>
-                    <td>Jane</td>
-                    <td>Doe</td>
-                    <td>0123456789</td>
-                    <td>example@mail.com</td>
-                    <td>1235 Vilakazi</td>
-                  </tr>
-                  <tr>
-                    <td>Jane</td>
-                    <td>Doe</td>
-                    <td>0123456789</td>
-                    <td>example@mail.com</td>
-                    <td>1235 Vilakazi</td>
-                  </tr>
-                  <tr>
-                    <td>Jane</td>
-                    <td>Doe</td>
-                    <td>0123456789</td>
-                    <td>example@mail.com</td>
-                    <td>1235 Vilakazi</td>
-                  </tr>
-                  <tr>
-                    <td>Jane</td>
-                    <td>Doe</td>
-                    <td>0123456789</td>
-                    <td>example@mail.com</td>
-                    <td>1235 Vilakazi</td>
-                  </tr>
-                  <tr>
-                    <td>Jane</td>
-                    <td>Doe</td>
-                    <td>0123456789</td>
-                    <td>example@mail.com</td>
-                    <td>1235 Vilakazi,</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div className="vLine"></div>
-          <div className="tableBoxContainer" style={{ marginLeft: 8 }}>
-          <Typography variant="h5"><strong>NEW BUSINESSES</strong></Typography>
-            <div style={{ width: "100%", height: 500 }}>
-              <table style={{ width: "100%", height: 340 }}>
-                <thead
-                  style={{
-                    height: "55px",
-                    width: "770px",
-                    fontWeight: 800,
-                    fontSize: "16",
+    <Box
+      sx={{
+        height: "100vh",
+        overflow: "hidden",
+        overflowY: "auto",
+      }}
+    >
+      <Box
+        sx={{
+          height: "20vh",
+          backgroundColor: "#072840",
+          display: "flex",
+        }}
+      >
+        <Box
+          sx={{
+            backgroundImage: `url(${clipArt})`,
+            width: "100%",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "120% 50%",
+            backgroundSize: "50%",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <Typography
+            sx={{
+              color: "white",
+              fontSize: 30,
+              fontWeight: 600,
+              paddingLeft: 2,
+            }}
+          >
+            WELCOME TO AMS
+          </Typography>
+        </Box>
+      </Box>
+
+      <Box
+        sx={{
+          height: "80vh",
+        }}
+      >
+        <Box
+          sx={{
+            ml: 4,
+            mt: 4,
+            border: "none",
+            borderBottom: "1px lightgray solid",
+          }}
+        >
+          <Typography sx={{ fontWeight: 700 }}>DASHBOARD</Typography>
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            ml: 4,
+            mt: 8,
+          }}
+        >
+          <Box
+            sx={{
+              width: "100px",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <Typography sx={{ color: "gray", fontSize: 12 }}>Sales</Typography>
+            <Typography sx={{ fontWeight: 400, fontSize: 20 }}>300</Typography>
+          </Box>
+
+          <Box
+            sx={{
+              width: "100px",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <Typography sx={{ color: "gray", fontSize: 12 }}>
+              New Businesses
+            </Typography>
+            <Typography sx={{ fontWeight: 400, fontSize: 20 }}>300</Typography>
+          </Box>
+
+          <Box
+            sx={{
+              width: "100px",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <Typography sx={{ color: "gray", fontSize: 12 }}>
+              New Users
+            </Typography>
+            <Typography sx={{ fontWeight: 400, fontSize: 20 }}>300</Typography>
+          </Box>
+        </Box>
+
+        <Box sx={{ display: "flex", flexDirection: "row", width: "100%" }}>
+          <Box
+            sx={{
+              width: "50%",
+              border: "none",
+              borderRight
+              : "1px lightgray solid",
+            }}
+          >
+            <Box
+              sx={{
+                //paddingBottom: 10,
+                border: "none",
+                borderBottom: "1px lightgray solid",
+                ml: 4,
+                mt: 4,
+              }}
+            >
+              <Typography sx={{ fontWeight: 700 }}>NEW USERS</Typography>
+            </Box>
+
+            <Box
+              sx={{
+                backgroundColor: "#fafafa",
+                display: "flex",
+                flexDirection: "row",
+                ml: 2,
+                mt: 2,
+                pt: 2,
+                pb: 2,
+                border: "none",
+                borderBottom: "1px lightgray solid",
+              }}
+            >
+              <Box
+                sx={{
+                  width: "16.66%",
+                  pl: 2,
+                  pr: 2,
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  border: "none",
+                  borderRight: "1px lightgray solid",
+                }}
+              >
+                <Typography sx={{ fontWeight: 600 }}>Name</Typography>
+                <Typography
+                  sx={{
+                    color: "gray",
                   }}
                 >
-                  <tr style={{ backgroundColor: "#FAFAFA" }}>
-                    <th>Business Name</th>
-                    <th>Reg Number</th>
-                    <th>Type of Business</th>
-                    <th>Industry</th>
-                  </tr>
-                </thead>
-                <tbody style={{ height: "55px", width: "770px" }}>
-                  <tr style={{ height: "44px", width: "770px" }}>
-                    <td>Tech Logistics</td>
-                    <td>N/A</td>
-                    <td>Township</td>
-                    <td>Technology</td>
-                  </tr>
-                  <tr>
-                    <td>Tech Logistics</td>
-                    <td>N/A</td>
-                    <td>Township</td>
-                    <td>Technology</td>
-                  </tr>
-                  <tr>
-                    <td>Tech Logistics</td>
-                    <td>N/A</td>
-                    <td>Township</td>
-                    <td>Technology</td>
-                  </tr>
-                  <tr>
-                    <td>Tech Logistics</td>
-                    <td>N/A</td>
-                    <td>Township</td>
-                    <td>Technology</td>
-                  </tr>
-                  <tr>
-                    <td>Tech Logistics</td>
-                    <td>Doe</td>
-                    <td>Township</td>
-                    <td>Technology</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+                  <UnfoldMoreIcon />
+                  <SearchIcon />
+                </Typography>
+              </Box>
+
+              <Box
+                sx={{
+                  width: "16.66%",
+                  pl: 2,
+                  pr: 2,
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  border: "none",
+                  borderRight: "1px lightgray solid",
+                }}
+              >
+                <Typography sx={{ fontWeight: 600 }}>Surname</Typography>
+                <Typography
+                  sx={{
+                    color: "gray",
+                  }}
+                >
+                  <UnfoldMoreIcon />
+                </Typography>
+              </Box>
+
+              <Box
+                sx={{
+                  width: "16.66%",
+                  pl: 2,
+                  pr: 2,
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  border: "none",
+                  borderRight: "1px lightgray solid",
+                }}
+              >
+                <Typography sx={{ fontWeight: 600 }}>Phone</Typography>
+                <Typography
+                  sx={{
+                    color: "gray",
+                  }}
+                >
+                  <UnfoldMoreIcon />
+                </Typography>
+              </Box>
+
+              <Box
+                sx={{
+                  width: "16.66%",
+                  pl: 2,
+                  pr: 2,
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  border: "none",
+                  borderRight: "1px lightgray solid",
+                }}
+              >
+                <Typography sx={{ fontWeight: 600 }}>Email</Typography>
+                <Typography
+                  sx={{
+                    color: "gray",
+                  }}
+                >
+                  <UnfoldMoreIcon />
+                </Typography>
+              </Box>
+
+              <Box
+                sx={{
+                  width: "16.66%",
+                  pl: 2,
+                  pr: 2,
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  border: "none",
+                  borderRight: "1px lightgray solid",
+                }}
+              >
+                <Typography sx={{ fontWeight: 600 }}>Location</Typography>
+                <Typography
+                  sx={{
+                    color: "gray",
+                  }}
+                >
+                  <UnfoldMoreIcon />
+                </Typography>
+              </Box>
+
+              <Box
+                sx={{
+                  width: "16.66%",
+                  pl: 2,
+                  pr: 2,
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <Typography sx={{ fontWeight: 600 }}>Actions</Typography>
+              </Box>
+            </Box>
+
+            {fakeUsersList.map((business) => (
+              <Box
+                key={business.id}
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  border: "none",
+                  borderBottom: "1px lightgray solid",
+                  ml: 2,
+                  mt: 2,
+                  // pt: 2,
+                  // pb: 2,
+                }}
+              >
+                <Box
+                  sx={{
+                    width: "16.66%",
+                    pl: 2,
+                    pr: 2,
+                    //border: "1px red solid",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <Typography noWrap>{business.name}</Typography>
+                </Box>
+
+                <Box
+                  sx={{
+                    width: "16.66%",
+                    pl: 2,
+                    pr: 2,
+                    //border: "1px red solid",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <Typography noWrap>{business.surname}</Typography>
+                </Box>
+
+                <Box
+                  sx={{
+                    width: "16.66%",
+                    pl: 2,
+                    pr: 2,
+                    //border: "1px red solid",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <Typography noWrap>{business.phone}</Typography>
+                </Box>
+
+                <Box
+                  sx={{
+                    width: "16.66%",
+                    pl: 2,
+                    //pr: 2,
+                    //border: "1px red solid",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <Typography noWrap>{business.email}</Typography>
+                </Box>
+
+                <Box
+                  sx={{
+                    width: "16.66%",
+                    pl: 1,
+                    //pr: 1,
+                    //border: "1px red solid",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <Typography noWrap>{business.location}</Typography>
+                </Box>
+
+                <Box
+                  sx={{
+                    width: "16.66%",
+                    pl: 1,
+                    pr: 1,
+                    display: "flex",
+                    alignItems: "center",
+                    //justifyContent: "center",
+                    //border: "1px red solid",
+                  }}
+                >
+                  <Button
+                    onClick={handleActions}
+                    variant="text"
+                    //fullWidth
+                    sx={{
+                      textDecoration: "none",
+                      color: "#1890ff",
+                      display: "flex",
+                      alignItems: "center",
+                      //justifyContent: "center",
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        pr: 1,
+                        border: "none",
+                        borderRight: "1px lightgray solid",
+                      }}
+                    >
+                      <Typography sx={{ fontSize: 12 }}>
+                        {business.actions[0]}
+                      </Typography>
+                    </Box>
+                    <Box sx={{ pl: 1 }}>
+                      <Typography sx={{ fontSize: 12 }}>
+                        {business.actions[1]}
+                      </Typography>
+                    </Box>
+                  </Button>
+                </Box>
+              </Box>
+            ))}
+          </Box>
+
+          <Box sx={{ width: "50%" }}>
+            <Box
+              sx={{
+                //paddingBottom: 10,
+                border: "none",
+                borderBottom: "1px lightgray solid",
+                ml: 4,
+                mt: 4,
+              }}
+            >
+              <Typography sx={{ fontWeight: 700 }}>NEW BUSINESSES</Typography>
+            </Box>
+
+            <Box
+              sx={{
+                backgroundColor: "#fafafa",
+                display: "flex",
+                flexDirection: "row",
+                ml: 2,
+                mt: 2,
+                pt: 2,
+                pb: 2,
+                border: "none",
+                borderBottom: "1px lightgray solid",
+              }}
+            >
+              <Box
+                sx={{
+                  width: "20%",
+                  pl: 2,
+                  pr: 2,
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  border: "none",
+                  borderRight: "1px lightgray solid",
+                }}
+              >
+                <Typography sx={{ fontWeight: 600 }}>Business Name</Typography>
+                <Typography
+                  sx={{
+                    color: "gray",
+                  }}
+                >
+                  <UnfoldMoreIcon />
+                  <SearchIcon />
+                </Typography>
+              </Box>
+
+              <Box
+                sx={{
+                  width: "20%",
+                  pl: 2,
+                  pr: 2,
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  border: "none",
+                  borderRight: "1px lightgray solid",
+                }}
+              >
+                <Typography sx={{ fontWeight: 600 }}>Reg Number</Typography>
+                <Typography
+                  sx={{
+                    color: "gray",
+                  }}
+                >
+                  <UnfoldMoreIcon />
+                </Typography>
+              </Box>
+
+              <Box
+                sx={{
+                  width: "20%",
+                  pl: 2,
+                  pr: 2,
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  border: "none",
+                  borderRight: "1px lightgray solid",
+                }}
+              >
+                <Typography sx={{ fontWeight: 600 }}>
+                  Type of Business
+                </Typography>
+                <Typography
+                  sx={{
+                    color: "gray",
+                  }}
+                >
+                  <UnfoldMoreIcon />
+                </Typography>
+              </Box>
+
+              <Box
+                sx={{
+                  width: "20%",
+                  pl: 2,
+                  pr: 2,
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  border: "none",
+                  borderRight: "1px lightgray solid",
+                }}
+              >
+                <Typography sx={{ fontWeight: 600 }}>Industry</Typography>
+                <Typography
+                  sx={{
+                    color: "gray",
+                  }}
+                >
+                  <UnfoldMoreIcon />
+                </Typography>
+              </Box>
+
+              <Box
+                sx={{
+                  width: "20%",
+                  pl: 2,
+                  pr: 2,
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <Typography sx={{ fontWeight: 600 }}>Actions</Typography>
+              </Box>
+            </Box>
+
+            {fakeBusinessesList.map((business) => (
+              <Box
+                key={business.id}
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  border: "none",
+                  borderBottom: "1px lightgray solid",
+                  ml: 2,
+                  mt: 2,
+                }}
+              >
+                <Box
+                  sx={{
+                    width: "20%",
+                    pl: 2,
+                    pr: 2,
+                  }}
+                >
+                  <Typography>{business.name}</Typography>
+                </Box>
+
+                <Box
+                  sx={{
+                    width: "20%",
+                    pl: 2,
+                    pr: 2,
+                  }}
+                >
+                  <Typography>{business.regNum}</Typography>
+                </Box>
+
+                <Box
+                  sx={{
+                    width: "20%",
+                    pl: 2,
+                    pr: 2,
+                  }}
+                >
+                  <Typography>{business.bizType}</Typography>
+                </Box>
+
+                <Box
+                  sx={{
+                    width: "20%",
+                    pl: 2,
+                    pr: 2,
+                  }}
+                >
+                  <Typography>{business.Industry}</Typography>
+                </Box>
+
+                <Box
+                  sx={{
+                    width: "20%",
+                    pl: 1,
+                    pr: 1,
+                  }}
+                >
+                  <Button
+                    onClick={handleActions}
+                    variant="text"
+                    //fullWidth
+                    sx={{ textDecoration: "none", color: "#1890ff" }}
+                  >
+                    {business.actions}
+                  </Button>
+                </Box>
+              </Box>
+            ))}
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   );
 }
-export default Dashboard;
