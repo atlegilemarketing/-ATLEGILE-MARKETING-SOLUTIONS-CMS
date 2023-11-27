@@ -1,7 +1,15 @@
 import React, { useState } from "react";
-import GoogleIcon from '@mui/icons-material/Google';
+import GoogleIcon from "@mui/icons-material/Google";
+import {
+  Box,
+  Typography,
+  Button,
+  Modal,
+  Container,
+  TextField,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import {firebase} from "../config";
+import { firebase } from "../config";
 
 const logo = require("../images/cropped-AMS-Shadow-Queen-Logo_BNY-1320x772 1.png");
 
@@ -10,7 +18,7 @@ export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isEmailValid, setIsEmailValid] = useState(true);
-
+  const [open, setOpen] = useState(false);
   let validRegex = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}");
 
   const handleEmailChange = (e) => {
@@ -20,6 +28,7 @@ export default function SignIn() {
   };
 
   const handleSignIn = () => {
+    console.log("password: ", password);
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
@@ -34,7 +43,7 @@ export default function SignIn() {
         console.error("Error signing in:", error.code, error.message);
       });
   };
-
+  // eslint-disable-next-line
   const handleGuestSignIn = () => {
     // Implement logic for guest sign-in here
     alert("Signed in as a guest!");
@@ -42,55 +51,79 @@ export default function SignIn() {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        flexDirection: "column",
-        height: "100%",
-        width: "100%",
-
-      }}
-    >
-      <div
-        style={{
-          height: "100%",
-          padding: 20,
-        }}
-        className="maximumWidth"
-        id="signInContainer"
+    <>
+      <Modal
+        open={open}
+        onClose={() => setOpen(true)}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
       >
-        <div
-          style={{
-            height: "40%",
+        <Box sx={{}}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Text in a modal
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </Typography>
+        </Box>
+      </Modal>
+      <Container
+        maxWidth="sm"
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "column",
+          height: "100%",
+          width: "100%",
+          //border: "1px green solid",
+        }}
+      >
+        <Box
+          sx={{
+            height: "45vh",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            width: "100%",
+            //border: "1px green solid",
           }}
         >
           <img src={logo} alt="cropped AMS Shadow Queen Logo BNY-1320x772" />
-        </div>
+        </Box>
 
-        <div
-          style={{
-            height: "50%",
+        <Box
+          sx={{
+            width: "100%",
+            height: "45vh",
+            //border: "1px green solid",
           }}
         >
-          <div
-            style={{
+          <Box
+            sx={{
               display: "flex",
               alignItems: "center",
               flexDirection: "column",
             }}
           >
-            <span style={{ fontSize: 30, fontWeight: 600 }}>Sign In</span>
-            <span style={{ fontSize: 15, fontWeight: 500 }}>
+            <Typography sx={{ fontSize: 40, fontWeight: 700 }}>
+              Sign In
+            </Typography>
+            <Typography sx={{ fontSize: 20, fontWeight: 600 }}>
               Content Management System
-            </span>
-          </div>
+            </Typography>
+          </Box>
 
-          <div style={{ paddingTop: 20 }}>
-            <label htmlFor="email" style={{ fontSize: 12, color: "gray" }}>
+          <Box sx={{ pt: 2 }}>
+            <TextField
+              fullWidth
+              id="email"
+              label="email"
+              variant="standard"
+              value={email}
+              onChange={handleEmailChange}
+              sx={{ mb: 1 }}
+            />
+            {/* <label htmlFor="email" sx={{ fontSize: 12, color: "gray" }}>
               Email
             </label>
             <br />
@@ -98,26 +131,26 @@ export default function SignIn() {
               type="text"
               id="email"
               placeholder="Enter email address"
-              style={{
+              sx={{
                 border: "none",
                 borderBottom: isEmailValid
                   ? "1px solid black"
                   : "1px solid red",
-                paddingTop: 10,
-                paddingBottom: 10,
+                pt: 1,
+                pb: 1,
                 width: "100%",
                 color: isEmailValid ? "black" : "red",
               }}
               value={email}
               onChange={handleEmailChange}
-            />
+            /> */}
             {!isEmailValid && (
-              <div style={{ color: "red", fontSize: 12 }}>
+              <Box sx={{ color: "red", fontSize: 12 }}>
                 Invalid email address.
-              </div>
+              </Box>
             )}
             <br />
-            <label htmlFor="password" style={{ fontSize: 12, color: "gray" }}>
+            {/* <label htmlFor="password" sx={{ fontSize: 12, color: "gray" }}>
               Password
             </label>
             <br />
@@ -125,99 +158,92 @@ export default function SignIn() {
               type="password"
               id="password"
               placeholder="Enter password"
-              style={{
+              sx={{
                 border: "none",
                 borderBottom: "1px solid black",
-                paddingTop: 10,
-                paddingBottom: 10,
+                pt: 10,
+                pb: 10,
                 width: "100%",
               }}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+            /> */}
+            <TextField
+              fullWidth
+              id="password"
+              label="password"
+              variant="standard"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
-          </div>
+          </Box>
 
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              paddingTop: 25,
-              paddingBottom: 25,
+          <Box
+            sx={{
+              pt: 3,
+              pb: 3,
             }}
           >
-            <a
-              href="http://localhost:3000/"
-              style={{ fontSize: 15, color: "white", textDecoration: "none" }}
-            >
-              No Text
-            </a>
-            <a
-              href="http://localhost:3000/"
-              style={{
-                textDecoration: "none",
-                color: "#072840",
-                fontWeight: "500",
-                fontSize: 15,
+            <Button
+              onClick={() => navigate("/main/dashboard")}
+              variant="text"
+              fullWidth
+              sx={{
+                display: "flex",
+                justifyContent: "flex-end",
+                alignItems: "flex-end",
               }}
             >
-              FORGOT PASSWORD?
-            </a>
-          </div>
+              <Typography
+                variant="inherit"
+                sx={{ fontWeight: "600", fontSize: 12, color: "#072840" }}
+              >
+                FORGOT PASSWORD?
+              </Typography>
+            </Button>
+          </Box>
 
-          <div>
-            <button
-              style={{
-                borderRadius: 20,
+          <Box>
+            <Button
+              fullWidth
+              sx={{
                 textDecoration: "none",
                 border: "none",
-                cursor: "pointer",
                 backgroundColor: "#072840",
                 fontWeight: "500",
                 color: "white",
                 width: "100%",
-                paddingTop: 15,
-                paddingBottom: 15,
+                borderRadius:20,
                 fontSize: 15,
+                p:1
               }}
               onClick={handleSignIn}
+              variant="filled"
             >
               SIGN IN
-            </button>
-          </div>
+            </Button>
+          </Box>
 
-          <div
-            style={{
+          <Box
+            sx={{
               textDecoration: "none",
               border: "none",
               cursor: "pointer",
               fontWeight: "500",
               width: "100%",
-              paddingTop: 15,
-              paddingBottom: 15,
+              mt:2,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              color:"#d32f2f"
+              color: "#d32f2f",
             }}
           >
             <GoogleIcon color="#d32f2f" size={20} />
-            <a
-              className="button google"
-              href="http://localhost:3000/"
-              style={{
-                color: "#d32f2f",
-                marginLeft: 5,
-                fontSize: 15,
-                textDecoration: "none",
-                paddingTop: 15,
-                paddingBottom: 15,
-              }}
-            >
-              SIGN IN WITH GOOGLE
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+            <Typography sx={{ml:1,fontSize:13,fontWeight:600}}>SIGN IN WITH GOOGLE</Typography>
+          </Box>
+        </Box>
+      </Container>
+    </>
   );
 }

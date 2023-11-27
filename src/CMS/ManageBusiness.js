@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Typography, Button, Grid } from '@mui/material';
 import UnfoldMoreIcon from '@mui/icons-material/UnfoldMore';
 import SearchIcon from '@mui/icons-material/Search';
 import { firebase } from '../config';
@@ -39,7 +39,7 @@ export default function ManageBusinesses() {
     alert("Actions clicked");
   };
 
-  return (
+  return (<>
     <Box
       sx={{
         height: "100vh",
@@ -340,5 +340,5 @@ export default function ManageBusinesses() {
         ))}
       </Box>
     </Box>
-  );
+    </>);
 }
