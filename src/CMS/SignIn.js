@@ -30,13 +30,13 @@ export default function SignIn() {
         navigate("/main/dashboard");
       })
       .catch((error) => {
-        // Log more details about the error
+        
         console.error("Error signing in:", error.code, error.message);
       });
   };
 
   const handleGuestSignIn = () => {
-    // Implement logic for guest sign-in here
+    
     alert("Signed in as a guest!");
     navigate("/main/dashboard");
   };
