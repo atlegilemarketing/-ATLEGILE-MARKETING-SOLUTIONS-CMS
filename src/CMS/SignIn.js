@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { firebase } from "../config";
+import CircularProgress from '@mui/material/CircularProgress';
 
 const logo = require("../images/cropped-AMS-Shadow-Queen-Logo_BNY-1320x772 1.png");
 
@@ -28,7 +29,10 @@ export default function SignIn() {
   };
 
   const handleSignIn = () => {
-    console.log("password: ", password);
+    //console.log("EMAIL: ", email);
+    //console.log("password: ", password);
+
+    setOpen(true);
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
@@ -57,15 +61,11 @@ export default function SignIn() {
         onClose={() => setOpen(true)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        sx={{display: "flex",
+        alignItems: "center",justifyContent:"center",backdropFilter: "blur(2px) contrast(80%)"}}
+        hideBackdrop
       >
-        <Box sx={{}}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
-        </Box>
+        <CircularProgress />
       </Modal>
       <Container
         maxWidth="sm"
@@ -214,9 +214,9 @@ export default function SignIn() {
                 fontWeight: "500",
                 color: "white",
                 width: "100%",
-                borderRadius:20,
+                borderRadius: 20,
                 fontSize: 15,
-                p:1
+                p: 1,
               }}
               onClick={handleSignIn}
               variant="filled"
@@ -232,7 +232,7 @@ export default function SignIn() {
               cursor: "pointer",
               fontWeight: "500",
               width: "100%",
-              mt:2,
+              mt: 2,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -240,7 +240,9 @@ export default function SignIn() {
             }}
           >
             <GoogleIcon color="#d32f2f" size={20} />
-            <Typography sx={{ml:1,fontSize:13,fontWeight:600}}>SIGN IN WITH GOOGLE</Typography>
+            <Typography sx={{ ml: 1, fontSize: 13, fontWeight: 600 }}>
+              SIGN IN WITH GOOGLE
+            </Typography>
           </Box>
         </Box>
       </Container>
