@@ -50,15 +50,11 @@ export default function SignIn() {
         navigate("/main/dashboard");
       })
       .catch((error) => {
-<<<<<<< HEAD
-        
-=======
         // Log more details about the error
         setTitle("Error: " + error.code);
         setMessage(error.message);
         setOpenAlert(true);
         console.log(title, " ", message);
->>>>>>> 369f14fc0d7445093c3db08caa6aaba8e8c4d272
         console.error("Error signing in:", error.code, error.message);
         setOpen(false);
       });
