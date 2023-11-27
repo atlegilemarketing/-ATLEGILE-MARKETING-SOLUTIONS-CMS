@@ -10,7 +10,8 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { firebase } from "../config";
-import CircularProgress from '@mui/material/CircularProgress';
+import CircularProgress from "@mui/material/CircularProgress";
+import AlertDialog from "./AlertDialog";
 
 const logo = require("../images/cropped-AMS-Shadow-Queen-Logo_BNY-1320x772 1.png");
 
@@ -19,6 +20,10 @@ export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isEmailValid, setIsEmailValid] = useState(true);
+  const [openAlert, setOpenAlert] = useState(false);
+
+  const [title, setTitle] = useState("");
+  const [message, setMessage] = useState("");
   const [open, setOpen] = useState(false);
   let validRegex = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}");
 
@@ -39,12 +44,19 @@ export default function SignIn() {
       .then((userCredential) => {
         const user = userCredential.user;
         console.log("User signed in:", user);
-        alert("Logged in successfully!");
+        setTitle("Successful");
+        setMessage("You have been logged in successfully!");
+        setOpenAlert(true);
         navigate("/main/dashboard");
       })
       .catch((error) => {
         // Log more details about the error
+        setTitle("Error: " + error.code);
+        setMessage(error.message);
+        setOpenAlert(true);
+        console.log(title, " ", message);
         console.error("Error signing in:", error.code, error.message);
+        setOpen(false);
       });
   };
   // eslint-disable-next-line
@@ -56,13 +68,23 @@ export default function SignIn() {
 
   return (
     <>
+      <AlertDialog
+        openAlert={openAlert}
+        setOpenAlert={setOpenAlert}
+        title={title}
+        message={message}
+      />
       <Modal
         open={open}
         onClose={() => setOpen(true)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-        sx={{display: "flex",
-        alignItems: "center",justifyContent:"center",backdropFilter: "blur(2px) contrast(80%)"}}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          backdropFilter: "blur(2px) contrast(80%)",
+        }}
         hideBackdrop
       >
         <CircularProgress />
