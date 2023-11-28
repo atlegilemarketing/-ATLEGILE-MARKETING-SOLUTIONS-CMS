@@ -187,14 +187,14 @@ export default function ManageBusinesses() {
                 borderRight: "1px lightgray solid",
               }}
             >
-              <Typography sx={{ fontWeight: 600 }}>Business Name</Typography>
+              <Typography sx={{ fontWeight: 550, fontSize: 14 }}>Business Name</Typography>
               <Typography
                 sx={{
                   color: "gray",
                 }}
               >
-                <UnfoldMoreIcon />
-                <SearchIcon />
+                <UnfoldMoreIcon sx={{fontSize:17}}/>
+                <SearchIcon sx={{fontSize:17}}/>
               </Typography>
             </Grid>
 
@@ -212,13 +212,13 @@ export default function ManageBusinesses() {
                 borderRight: "1px lightgray solid",
               }}
             >
-              <Typography sx={{ fontWeight: 600 }}>Reg Number</Typography>
+              <Typography sx={{ fontWeight: 550, fontSize: 14 }}>Reg Number</Typography>
               <Typography
                 sx={{
                   color: "gray",
                 }}
               >
-                <UnfoldMoreIcon />
+                <UnfoldMoreIcon sx={{fontSize:17}}/>
               </Typography>
             </Grid>
 
@@ -236,13 +236,13 @@ export default function ManageBusinesses() {
                 borderRight: "1px lightgray solid",
               }}
             >
-              <Typography sx={{ fontWeight: 600 }}>Type of Business</Typography>
+              <Typography sx={{ fontWeight: 550, fontSize: 14 }}>Type of Business</Typography>
               <Typography
                 sx={{
                   color: "gray",
                 }}
               >
-                <UnfoldMoreIcon />
+                <UnfoldMoreIcon sx={{fontSize:17}}/>
               </Typography>
             </Grid>
 
@@ -260,13 +260,13 @@ export default function ManageBusinesses() {
                 borderRight: "1px lightgray solid",
               }}
             >
-              <Typography sx={{ fontWeight: 600 }}>Industry</Typography>
+              <Typography sx={{ fontWeight: 550, fontSize: 14 }}>Industry</Typography>
               <Typography
                 sx={{
                   color: "gray",
                 }}
               >
-                <UnfoldMoreIcon />
+                <UnfoldMoreIcon sx={{fontSize:17}}/>
               </Typography>
             </Grid>
 
@@ -281,7 +281,7 @@ export default function ManageBusinesses() {
                 alignItems: "center",
               }}
             >
-              <Typography sx={{ fontWeight: 600 }}>Actions</Typography>
+              <Typography sx={{ fontWeight: 550, fontSize: 14 }}>Actions</Typography>
             </Grid>
           </Grid>
 

@@ -180,14 +180,14 @@ export default function ManageUsers() {
               borderRight: "1px lightgray solid",
             }}
           >
-            <Typography sx={{ fontWeight: 600 }}>Name</Typography>
+            <Typography sx={{ fontWeight: 600,fontSize: 14 }}>Name</Typography>
             <Typography
               sx={{
                 color: "gray",
               }}
             >
-              <UnfoldMoreIcon />
-              <SearchIcon />
+              <UnfoldMoreIcon sx={{fontSize:17}}/>
+              <SearchIcon sx={{fontSize:17}}/>
             </Typography>
           </Grid>
 
@@ -205,13 +205,13 @@ export default function ManageUsers() {
               borderRight: "1px lightgray solid",
             }}
           >
-            <Typography sx={{ fontWeight: 600 }}>Surname</Typography>
+            <Typography sx={{ fontWeight: 600,fontSize: 14 }}>Surname</Typography>
             <Typography
               sx={{
                 color: "gray",
               }}
             >
-              <UnfoldMoreIcon />
+              <UnfoldMoreIcon sx={{fontSize:17}}/>
             </Typography>
           </Grid>
 
@@ -229,13 +229,13 @@ export default function ManageUsers() {
               borderRight: "1px lightgray solid",
             }}
           >
-            <Typography sx={{ fontWeight: 600 }}>Phone</Typography>
+            <Typography sx={{ fontWeight: 600,fontSize: 14 }}>Phone</Typography>
             <Typography
               sx={{
                 color: "gray",
               }}
             >
-              <UnfoldMoreIcon />
+              <UnfoldMoreIcon sx={{fontSize:17}}/>
             </Typography>
           </Grid>
 
@@ -253,13 +253,13 @@ export default function ManageUsers() {
               borderRight: "1px lightgray solid",
             }}
           >
-            <Typography sx={{ fontWeight: 600 }}>Email</Typography>
+            <Typography sx={{ fontWeight: 600,fontSize: 14 }}>Email</Typography>
             <Typography
               sx={{
                 color: "gray",
               }}
             >
-              <UnfoldMoreIcon />
+              <UnfoldMoreIcon sx={{fontSize:17}}/>
             </Typography>
           </Grid>
 
@@ -277,13 +277,13 @@ export default function ManageUsers() {
               borderRight: "1px lightgray solid",
             }}
           >
-            <Typography sx={{ fontWeight: 600 }}>Location</Typography>
+            <Typography sx={{ fontWeight: 600,fontSize: 14 }}>Location</Typography>
             <Typography
               sx={{
                 color: "gray",
               }}
             >
-              <UnfoldMoreIcon />
+              <UnfoldMoreIcon sx={{fontSize:17}}/>
             </Typography>
           </Grid>
 
@@ -298,7 +298,7 @@ export default function ManageUsers() {
               alignItems: "center",
             }}
           >
-            <Typography sx={{ fontWeight: 600 }}>Actions</Typography>
+            <Typography sx={{ fontWeight: 600,fontSize: 14 }}>Actions</Typography>
           </Grid>
         </Grid>
 

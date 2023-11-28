@@ -82,7 +82,7 @@ const blockToggleUser=()=>{
             alignItems: "center",
           }}
         >
-          <Typography noWrap>{user.name}</Typography>
+          <Typography sx={{ fontSize: 14 }}  noWrap>{user.name}</Typography>
         </Grid>
 
         <Grid
@@ -95,7 +95,7 @@ const blockToggleUser=()=>{
             alignItems: "center",
           }}
         >
-          <Typography noWrap>{user.surname}</Typography>
+          <Typography sx={{ fontSize: 14 }}  noWrap>{user.surname}</Typography>
         </Grid>
 
         <Grid
@@ -108,7 +108,7 @@ const blockToggleUser=()=>{
             alignItems: "center",
           }}
         >
-          <Typography noWrap>{user.phone}</Typography>
+          <Typography sx={{ fontSize: 14 }}  noWrap>{user.phone}</Typography>
         </Grid>
 
         <Grid
@@ -120,7 +120,7 @@ const blockToggleUser=()=>{
             alignItems: "center",
           }}
         >
-          <Typography noWrap>{user.email}</Typography>
+          <Typography sx={{ fontSize: 14 }}  noWrap>{user.email}</Typography>
         </Grid>
 
         <Grid
@@ -132,7 +132,7 @@ const blockToggleUser=()=>{
             alignItems: "center",
           }}
         >
-          <Typography noWrap>{user.location}</Typography>
+          <Typography sx={{ fontSize: 14 }}  noWrap>{user.location}</Typography>
         </Grid>
 
         <Grid
@@ -153,7 +153,7 @@ const blockToggleUser=()=>{
                 color: "#1890ff",
                 display: "flex",
                 alignItems: "center",
-                fontSize: 12,
+                fontSize: 14,
                 border: "none",
                 borderRight: "1px lightgray solid",
               }}
@@ -169,7 +169,7 @@ const blockToggleUser=()=>{
                 color: "#1890ff",
                 display: "flex",
                 alignItems: "center",
-                fontSize: 12,
+                fontSize: 14,
               }}
             >
               {user.actions[1]}

@@ -156,7 +156,7 @@ export default function ManageProducts() {
               mt: 4,
             }}
           >
-            <Typography sx={{ fontWeight: 700 }}>NEW BUSINESSES</Typography>
+            <Typography sx={{ fontWeight: 700 }}>NEW PRODUCTS</Typography>
           </Box>
 
           <Grid
@@ -187,14 +187,14 @@ export default function ManageProducts() {
                 borderRight: "1px lightgray solid",
               }}
             >
-              <Typography sx={{ fontWeight: 600 }}>Invoice</Typography>
+              <Typography sx={{ fontWeight: 600,fontSize: 14 }}>Invoice</Typography>
               <Typography
                 sx={{
                   color: "gray",
                 }}
               >
-                <UnfoldMoreIcon />
-                <SearchIcon />
+                <UnfoldMoreIcon sx={{fontSize:17}}/>
+                <SearchIcon sx={{fontSize:17}}/>
               </Typography>
             </Grid>
 
@@ -212,13 +212,13 @@ export default function ManageProducts() {
                 borderRight: "1px lightgray solid",
               }}
             >
-              <Typography sx={{ fontWeight: 600 }}>Date</Typography>
+              <Typography sx={{ fontWeight: 600,fontSize: 14 }}>Date</Typography>
               <Typography
                 sx={{
                   color: "gray",
                 }}
               >
-                <UnfoldMoreIcon />
+                <UnfoldMoreIcon sx={{fontSize:17}}/>
               </Typography>
             </Grid>
 
@@ -236,13 +236,13 @@ export default function ManageProducts() {
                 borderRight: "1px lightgray solid",
               }}
             >
-              <Typography sx={{ fontWeight: 600 }}>Product Name</Typography>
+              <Typography sx={{ fontWeight: 600,fontSize: 14 }}>Product Name</Typography>
               <Typography
                 sx={{
                   color: "gray",
                 }}
               >
-                <UnfoldMoreIcon />
+                <UnfoldMoreIcon sx={{fontSize:17}}/>
               </Typography>
             </Grid>
 
@@ -260,13 +260,13 @@ export default function ManageProducts() {
                 borderRight: "1px lightgray solid",
               }}
             >
-              <Typography sx={{ fontWeight: 600 }}>Company</Typography>
+              <Typography sx={{ fontWeight: 600,fontSize: 14 }}>Company</Typography>
               <Typography
                 sx={{
                   color: "gray",
                 }}
               >
-                <UnfoldMoreIcon />
+                <UnfoldMoreIcon sx={{fontSize:17}}/>
               </Typography>
             </Grid>
 
@@ -284,13 +284,13 @@ export default function ManageProducts() {
                 borderRight: "1px lightgray solid",
               }}
             >
-              <Typography sx={{ fontWeight: 600 }}>Total</Typography>
+              <Typography sx={{ fontWeight: 600,fontSize: 14 }}>Total</Typography>
               <Typography
                 sx={{
                   color: "gray",
                 }}
               >
-                <UnfoldMoreIcon />
+                <UnfoldMoreIcon sx={{fontSize:17}}/>
               </Typography>
             </Grid>
             <Grid
@@ -304,7 +304,7 @@ export default function ManageProducts() {
                 alignItems: "center",
               }}
             >
-              <Typography sx={{ fontWeight: 600 }}>Actions</Typography>
+              <Typography sx={{ fontWeight: 600,fontSize: 14 }}>Actions</Typography>
             </Grid>
           </Grid>
 

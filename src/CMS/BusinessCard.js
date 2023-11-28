@@ -73,10 +73,11 @@ function BusinessCard({
           xs={12 / 5}
           sx={{
             pl: 2,
-            pr: 2,
+            pr: 2,display: "flex",
+            alignItems: "center",
           }}
         >
-          <Typography>{business.businessName}</Typography>
+          <Typography sx={{ fontSize: 14 }} >{business.businessName}</Typography>
         </Grid>
 
         <Grid
@@ -84,10 +85,11 @@ function BusinessCard({
           xs={12 / 5}
           sx={{
             pl: 2,
-            pr: 2,
+            pr: 2,display: "flex",
+            alignItems: "center",
           }}
         >
-          <Typography>{business.regNumber}</Typography>
+          <Typography sx={{ fontSize: 14 }} >{business.regNumber}</Typography>
         </Grid>
 
         <Grid
@@ -95,10 +97,11 @@ function BusinessCard({
           xs={12 / 5}
           sx={{
             pl: 2,
-            pr: 2,
+            pr: 2,display: "flex",
+            alignItems: "center",
           }}
         >
-          <Typography>{business.businessType}</Typography>
+          <Typography sx={{ fontSize: 14 }} >{business.businessType}</Typography>
         </Grid>
 
         <Grid
@@ -106,10 +109,11 @@ function BusinessCard({
           xs={12 / 5}
           sx={{
             pl: 2,
-            pr: 2,
+            pr: 2,display: "flex",
+            alignItems: "center",
           }}
         >
-          <Typography>{business.industry}</Typography>
+          <Typography sx={{ fontSize: 14 }} >{business.industry}</Typography>
         </Grid>
 
         <Grid
@@ -117,13 +121,13 @@ function BusinessCard({
           xs={12 / 5}
           sx={{
             pl: 1,
-            pr: 1,
+            pr: 1, 
           }}
         >
           <Button
             onClick={() => setOpen(true)}
             variant="text"
-            sx={{ textDecoration: "none", color: "#1890ff" }}
+            sx={{ textDecoration: "none", color: "#1890ff",fontSize: 14  }}
           >
             View Details
           </Button>

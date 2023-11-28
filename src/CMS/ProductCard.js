@@ -68,7 +68,7 @@ function ProductCard({ openProductDetails, setOpenProductDetails, product }) {
             pr: 2,
           }}
         >
-          <Typography>{product.productName}</Typography>
+          <Typography sx={{ fontSize: 14 }} >{product.productName}</Typography>
         </Grid>
 
         <Grid
@@ -79,7 +79,7 @@ function ProductCard({ openProductDetails, setOpenProductDetails, product }) {
             pr: 2,
           }}
         >
-          <Typography>{product.regNumber}</Typography>
+          <Typography sx={{ fontSize: 14 }} >{product.regNumber}</Typography>
         </Grid>
 
         <Grid
@@ -90,7 +90,7 @@ function ProductCard({ openProductDetails, setOpenProductDetails, product }) {
             pr: 2,
           }}
         >
-          <Typography>{product.productType}</Typography>
+          <Typography sx={{ fontSize: 14 }} >{product.productType}</Typography>
         </Grid>
 
         <Grid
@@ -101,7 +101,7 @@ function ProductCard({ openProductDetails, setOpenProductDetails, product }) {
             pr: 2,
           }}
         >
-          <Typography>{product.industry}</Typography>
+          <Typography sx={{ fontSize: 14 }} >{product.industry}</Typography>
         </Grid>
 
         <Grid
@@ -112,7 +112,7 @@ function ProductCard({ openProductDetails, setOpenProductDetails, product }) {
             pr: 2,
           }}
         >
-          <Typography>{product.industry}</Typography>
+          <Typography sx={{ fontSize: 14 }} >{product.industry}</Typography>
         </Grid>
 
         <Grid
@@ -126,7 +126,7 @@ function ProductCard({ openProductDetails, setOpenProductDetails, product }) {
           <Button
             onClick={() => setOpenProductDetails(true)}
             variant="text"
-            sx={{ textDecoration: "none", color: "#1890ff" }}
+            sx={{ textDecoration: "none", color: "#1890ff",fontSize: 14 }}
           >
             View Details
           </Button>

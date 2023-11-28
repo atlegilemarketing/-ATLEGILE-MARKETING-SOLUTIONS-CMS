@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography, Button, Grid } from "@mui/material";
 import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
 import SearchIcon from "@mui/icons-material/Search";
 import clipArt from "../images/clipArtWelcome.png";
-import { firebase } from '../config';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { firebase } from "../config";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
+import { useAuthState } from "react-firebase-hooks/auth";
+import UserCard from "./UserCard";
+import BusinessCard from "./BusinessCard";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function ManageBusinesses() {
   const [usersList, setUsersList] = useState([]);
@@ -16,34 +19,36 @@ export default function ManageBusinesses() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        
-        const usersRef = firebase.firestore().collection('Users');
-        const usersSnapshot = await usersRef.get();
-        const usersData = usersSnapshot.docs.map((doc) => ({
+        const usersRef = firebase.firestore().collection("Users");
+        const snapshot = await usersRef.get();
+
+        const usersData = snapshot.docs.map((doc) => ({
           id: doc.id,
           name: doc.data().name,
           surname: doc.data().surname,
           email: doc.data().email,
           phone: doc.data().phone,
           location: doc.data().location,
-          actions: ['Block User', 'View Details'],
+          actions: ["Block User", "View Details"],
         }));
         setUsersList(usersData);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
 
-      
-        const businessesRef = firebase.firestore().collection('Business');
-        const businessesSnapshot = await businessesRef.get();
-        const businessesData = businessesSnapshot.docs.map((doc) => ({
+      try {
+        const businessesRef = firebase.firestore().collection("Business");
+        const snapshot = await businessesRef.get();
+        const businessesData = snapshot.docs.map((doc) => ({
           id: doc.id,
           businessName: doc.data().businessName,
           regNumber: doc.data().regNumber,
           businessType: doc.data().businessType,
           industry: doc.data().industry,
-          actions: ['Some Action'],
         }));
         setBusinessesList(businessesData);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching businesses:", error);
       }
     };
 
@@ -52,9 +57,6 @@ export default function ManageBusinesses() {
     }
   }, [user]);
 
-  const handleActions = () => {
-    alert('Actions clicked');
-  };
   return (
     <Box
       sx={{
@@ -154,35 +156,45 @@ export default function ManageBusinesses() {
             </Typography>
             <Typography sx={{ fontWeight: 400, fontSize: 20 }}>300</Typography>
           </Box>
-        </Box>
 
-        <Box sx={{ display: "flex", flexDirection: "row", width: "100%" }}>
           <Box
             sx={{
-              width: "50%",
-              border: "none",
-              borderRight
-              : "1px lightgray solid",
+              width: "100px",
+              display: "flex",
+              flexDirection: "column",
             }}
+          >
+            <Typography sx={{ color: "gray", fontSize: 12 }}>
+              New Products
+            </Typography>
+            <Typography sx={{ fontWeight: 400, fontSize: 20 }}>300</Typography>
+          </Box>
+        </Box>
+
+        <Grid container sx={{ mt: 2 }}>
+          <Grid
+            item
+            xs={6}
+            sx={{ p: 2, border: "none", borderRight: "1px lightgray solid" }}
           >
             <Box
               sx={{
-                //paddingBottom: 10,
                 border: "none",
                 borderBottom: "1px lightgray solid",
-                ml: 4,
-                mt: 4,
+                ml: 2,
+                //mt: 4,
               }}
             >
               <Typography sx={{ fontWeight: 700 }}>NEW USERS</Typography>
             </Box>
 
-            <Box
+            <Grid
+              container
               sx={{
                 backgroundColor: "#fafafa",
                 display: "flex",
                 flexDirection: "row",
-                ml: 2,
+                //ml: 1,
                 mt: 2,
                 pt: 2,
                 pb: 2,
@@ -190,9 +202,10 @@ export default function ManageBusinesses() {
                 borderBottom: "1px lightgray solid",
               }}
             >
-              <Box
+              <Grid
+                item
+                xs={12 / 5}
                 sx={{
-                  width: "16.66%",
                   pl: 2,
                   pr: 2,
                   display: "flex",
@@ -203,20 +216,26 @@ export default function ManageBusinesses() {
                   borderRight: "1px lightgray solid",
                 }}
               >
-                <Typography sx={{ fontWeight: 600 }}>Name</Typography>
+                <Typography sx={{ fontWeight: 550, fontSize: 14 }}>
+                  Name
+                </Typography>
                 <Typography
                   sx={{
                     color: "gray",
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
                   }}
                 >
-                  <UnfoldMoreIcon />
-                  <SearchIcon />
+                  <UnfoldMoreIcon sx={{ fontSize: 17 }} />
+                  <SearchIcon sx={{ fontSize: 17 }} />
                 </Typography>
-              </Box>
+              </Grid>
 
-              <Box
+              <Grid
+                item
+                xs={12 / 5}
                 sx={{
-                  width: "16.66%",
                   pl: 2,
                   pr: 2,
                   display: "flex",
@@ -227,19 +246,22 @@ export default function ManageBusinesses() {
                   borderRight: "1px lightgray solid",
                 }}
               >
-                <Typography sx={{ fontWeight: 600 }}>Surname</Typography>
+                <Typography sx={{ fontWeight: 550, fontSize: 14 }}>
+                  Surname
+                </Typography>
                 <Typography
                   sx={{
                     color: "gray",
                   }}
                 >
-                  <UnfoldMoreIcon />
+                  <UnfoldMoreIcon sx={{ fontSize: 17 }} />
                 </Typography>
-              </Box>
+              </Grid>
 
-              <Box
+              <Grid
+                item
+                xs={12 / 5}
                 sx={{
-                  width: "16.66%",
                   pl: 2,
                   pr: 2,
                   display: "flex",
@@ -250,19 +272,22 @@ export default function ManageBusinesses() {
                   borderRight: "1px lightgray solid",
                 }}
               >
-                <Typography sx={{ fontWeight: 600 }}>Phone</Typography>
+                <Typography sx={{ fontWeight: 550, fontSize: 14 }}>
+                  Phone
+                </Typography>
                 <Typography
                   sx={{
                     color: "gray",
                   }}
                 >
-                  <UnfoldMoreIcon />
+                  <UnfoldMoreIcon sx={{ fontSize: 17 }} />
                 </Typography>
-              </Box>
+              </Grid>
 
-              <Box
+              <Grid
+                item
+                xs={12 / 5}
                 sx={{
-                  width: "16.66%",
                   pl: 2,
                   pr: 2,
                   display: "flex",
@@ -273,196 +298,165 @@ export default function ManageBusinesses() {
                   borderRight: "1px lightgray solid",
                 }}
               >
-                <Typography sx={{ fontWeight: 600 }}>Email</Typography>
+                <Typography sx={{ fontWeight: 550, fontSize: 14 }}>
+                  Email
+                </Typography>
                 <Typography
                   sx={{
                     color: "gray",
                   }}
                 >
-                  <UnfoldMoreIcon />
+                  <UnfoldMoreIcon sx={{ fontSize: 17 }} />
                 </Typography>
-              </Box>
+              </Grid>
 
-              <Box
+              <Grid
+                item
+                xs={12 / 5}
                 sx={{
-                  width: "16.66%",
                   pl: 2,
                   pr: 2,
                   display: "flex",
                   flexDirection: "row",
                   alignItems: "center",
                   justifyContent: "space-between",
-                  border: "none",
-                  borderRight: "1px lightgray solid",
                 }}
               >
-                <Typography sx={{ fontWeight: 600 }}>Location</Typography>
+                <Typography sx={{ fontWeight: 550, fontSize: 14 }}>
+                  Location
+                </Typography>
                 <Typography
                   sx={{
                     color: "gray",
                   }}
                 >
-                  <UnfoldMoreIcon />
+                  <UnfoldMoreIcon sx={{ fontSize: 17 }} />
                 </Typography>
-              </Box>
+              </Grid>
+            </Grid>
 
+            {usersList.length === 0 ? (
               <Box
                 sx={{
-                  width: "16.66%",
-                  pl: 2,
-                  pr: 2,
                   display: "flex",
-                  flexDirection: "row",
                   alignItems: "center",
+                  justifyContent: "center",
+                  width: "100%",
+                  height: "20vh",
                 }}
               >
-                <Typography sx={{ fontWeight: 600 }}>Actions</Typography>
+                <CircularProgress />
               </Box>
-            </Box>
-
-            {usersList.map((business) => (
-              <Box
-                key={business.id}
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  border: "none",
-                  borderBottom: "1px lightgray solid",
-                  ml: 2,
-                  mt: 2,
-                  // pt: 2,
-                  // pb: 2,
-                }}
-              >
-                <Box
+            ) : (
+              usersList.map((user) => (
+                <Grid
+                  container
+                  key={user.id}
                   sx={{
-                    width: "16.66%",
-                    pl: 2,
-                    pr: 2,
-                    //border: "1px red solid",
                     display: "flex",
-                    alignItems: "center",
+                    flexDirection: "row",
+                    border: "none",
+                    borderBottom: "1px lightgray solid",
+                    //ml: 1,
+                    mt: 4,
                   }}
                 >
-                  <Typography noWrap>{business.name}</Typography>
-                </Box>
-
-                <Box
-                  sx={{
-                    width: "16.66%",
-                    pl: 2,
-                    pr: 2,
-                    //border: "1px red solid",
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  <Typography noWrap>{business.surname}</Typography>
-                </Box>
-
-                <Box
-                  sx={{
-                    width: "16.66%",
-                    pl: 2,
-                    pr: 2,
-                    //border: "1px red solid",
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  <Typography noWrap>{business.phone}</Typography>
-                </Box>
-
-                <Box
-                  sx={{
-                    width: "16.66%",
-                    pl: 2,
-                    //pr: 2,
-                    //border: "1px red solid",
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  <Typography noWrap>{business.email}</Typography>
-                </Box>
-
-                <Box
-                  sx={{
-                    width: "16.66%",
-                    pl: 1,
-                    //pr: 1,
-                    //border: "1px red solid",
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  <Typography noWrap>{business.location}</Typography>
-                </Box>
-
-                <Box
-                  sx={{
-                    width: "16.66%",
-                    pl: 1,
-                    pr: 1,
-                    display: "flex",
-                    alignItems: "center",
-                    //justifyContent: "center",
-                    //border: "1px red solid",
-                  }}
-                >
-                  <Button
-                    onClick={handleActions}
-                    variant="text"
-                    //fullWidth
+                  <Grid
+                    item
+                    xs={12 / 5}
                     sx={{
-                      textDecoration: "none",
-                      color: "#1890ff",
-                      display: "flex",
-                      alignItems: "center",
-                      //justifyContent: "center",
+                      pl: 2,
+                      pr: 2
                     }}
                   >
-                    <Box
-                      sx={{
-                        pr: 1,
-                        border: "none",
-                        borderRight: "1px lightgray solid",
-                      }}
-                    >
-                      <Typography sx={{ fontSize: 12 }}>
-                        {business.actions[0]}
-                      </Typography>
-                    </Box>
-                    <Box sx={{ pl: 1 }}>
-                      <Typography sx={{ fontSize: 12 }}>
-                        {business.actions[1]}
-                      </Typography>
-                    </Box>
-                  </Button>
-                </Box>
-              </Box>
-            ))}
-          </Box>
+                    <Typography sx={{ fontSize: 14,
+                      display: "flex",
+                      alignItems: "center", }} noWrap>
+                      {user.name}
+                    </Typography>
+                  </Grid>
 
-          <Box sx={{ width: "50%" }}>
+                  <Grid
+                    item
+                    xs={12 / 5}
+                    sx={{
+                      pl: 2,
+                      pr: 2,
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Typography sx={{ fontSize: 14 }} noWrap>
+                      {user.surname}
+                    </Typography>
+                  </Grid>
+
+                  <Grid
+                    item
+                    xs={12 / 5}
+                    sx={{
+                      pl: 2,
+                      pr: 2,
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Typography sx={{ fontSize: 14 }} noWrap>
+                      {user.phone}
+                    </Typography>
+                  </Grid>
+
+                  <Grid
+                    item
+                    xs={12 / 5}
+                    sx={{
+                      pl: 2,
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Typography sx={{ fontSize: 14 }} noWrap>
+                      {user.email}
+                    </Typography>
+                  </Grid>
+
+                  <Grid
+                    item
+                    xs={12 / 5}
+                    sx={{
+                      pl: 1,
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Typography sx={{ fontSize: 14 }} noWrap>
+                      {user.location}
+                    </Typography>
+                  </Grid>
+                </Grid>
+              ))
+            )}
+          </Grid>
+
+          <Grid item xs={6} sx={{ p: 2 }}>
             <Box
               sx={{
-                //paddingBottom: 10,
                 border: "none",
                 borderBottom: "1px lightgray solid",
-                ml: 4,
-                mt: 4,
+                ml: 2,
+                //mt: 4,
               }}
             >
               <Typography sx={{ fontWeight: 700 }}>NEW BUSINESSES</Typography>
             </Box>
 
-            <Box
+            <Grid
+              container
               sx={{
-                backgroundColor: "#fafafa",
+                backgroundColor: "#FAFAFA",
                 display: "flex",
                 flexDirection: "row",
-                ml: 2,
+                ml: 0,
                 mt: 2,
                 pt: 2,
                 pb: 2,
@@ -470,9 +464,10 @@ export default function ManageBusinesses() {
                 borderBottom: "1px lightgray solid",
               }}
             >
-              <Box
+              <Grid
+                item
+                xs={3}
                 sx={{
-                  width: "20%",
                   pl: 2,
                   pr: 2,
                   display: "flex",
@@ -483,20 +478,21 @@ export default function ManageBusinesses() {
                   borderRight: "1px lightgray solid",
                 }}
               >
-                <Typography sx={{ fontWeight: 600 }}>Business Name</Typography>
+                <Typography sx={{ fontWeight: 550, fontSize: 14 }}>Business Name</Typography>
                 <Typography
                   sx={{
                     color: "gray",
                   }}
                 >
-                  <UnfoldMoreIcon />
-                  <SearchIcon />
+                  <UnfoldMoreIcon sx={{ fontSize: 17 }} />
+                  <SearchIcon sx={{ fontSize: 17 }} />
                 </Typography>
-              </Box>
+              </Grid>
 
-              <Box
+              <Grid
+                item
+                xs={3}
                 sx={{
-                  width: "20%",
                   pl: 2,
                   pr: 2,
                   display: "flex",
@@ -507,19 +503,20 @@ export default function ManageBusinesses() {
                   borderRight: "1px lightgray solid",
                 }}
               >
-                <Typography sx={{ fontWeight: 600 }}>Reg Number</Typography>
+                <Typography sx={{ fontWeight: 550, fontSize: 14 }}>Reg Number</Typography>
                 <Typography
                   sx={{
                     color: "gray",
                   }}
                 >
-                  <UnfoldMoreIcon />
+                  <UnfoldMoreIcon sx={{ fontSize: 17 }} />
                 </Typography>
-              </Box>
+              </Grid>
 
-              <Box
+              <Grid
+                item
+                xs={3}
                 sx={{
-                  width: "20%",
                   pl: 2,
                   pr: 2,
                   display: "flex",
@@ -530,7 +527,7 @@ export default function ManageBusinesses() {
                   borderRight: "1px lightgray solid",
                 }}
               >
-                <Typography sx={{ fontWeight: 600 }}>
+                <Typography sx={{ fontWeight: 550, fontSize: 14 }}>
                   Type of Business
                 </Typography>
                 <Typography
@@ -538,119 +535,107 @@ export default function ManageBusinesses() {
                     color: "gray",
                   }}
                 >
-                  <UnfoldMoreIcon />
+                  <UnfoldMoreIcon sx={{ fontSize: 17 }} />
                 </Typography>
-              </Box>
+              </Grid>
 
-              <Box
+              <Grid
+                item
+                xs={3}
                 sx={{
-                  width: "20%",
                   pl: 2,
                   pr: 2,
                   display: "flex",
                   flexDirection: "row",
                   alignItems: "center",
                   justifyContent: "space-between",
-                  border: "none",
-                  borderRight: "1px lightgray solid",
                 }}
               >
-                <Typography sx={{ fontWeight: 600 }}>Industry</Typography>
+                <Typography sx={{ fontWeight: 550, fontSize: 14 }}>Industry</Typography>
                 <Typography
                   sx={{
                     color: "gray",
                   }}
                 >
-                  <UnfoldMoreIcon />
+                  <UnfoldMoreIcon sx={{ fontSize: 17 }} />
                 </Typography>
-              </Box>
+              </Grid>
+            </Grid>
 
+            {businessesList.length === 0 ? (
               <Box
                 sx={{
-                  width: "20%",
-                  pl: 2,
-                  pr: 2,
                   display: "flex",
-                  flexDirection: "row",
                   alignItems: "center",
+                  justifyContent: "center",
+                  width: "100%",
+                  height: "20vh",
                 }}
               >
-                <Typography sx={{ fontWeight: 600 }}>Actions</Typography>
+                <CircularProgress />
               </Box>
-            </Box>
-
-            {businessesList.map((business) => (
-              <Box
-                key={business.id}
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  border: "none",
-                  borderBottom: "1px lightgray solid",
-                  ml: 2,
-                  mt: 2,
-                }}
-              >
-                <Box
+            ) : (
+              businessesList.map((business) => (
+                <Grid
+                  container
+                  key={business.id}
                   sx={{
-                    width: "20%",
-                    pl: 2,
-                    pr: 2,
+                    display: "flex",
+                    flexDirection: "row",
+                    border: "none",
+                    borderBottom: "1px lightgray solid",
+                    ml: 0,
+                    mt: 2,
                   }}
                 >
-                  <Typography>{business.businessName}</Typography>
-                </Box>
-
-                <Box
-                  sx={{
-                    width: "20%",
-                    pl: 2,
-                    pr: 2,
-                  }}
-                >
-                  <Typography>{business.regNumber}</Typography>
-                </Box>
-
-                <Box
-                  sx={{
-                    width: "20%",
-                    pl: 2,
-                    pr: 2,
-                  }}
-                >
-                  <Typography>{business.businessType}</Typography>
-                </Box>
-
-                <Box
-                  sx={{
-                    width: "20%",
-                    pl: 2,
-                    pr: 2,
-                  }}
-                >
-                  <Typography>{business.industry}</Typography>
-                </Box>
-
-                <Box
-                  sx={{
-                    width: "20%",
-                    pl: 1,
-                    pr: 1,
-                  }}
-                >
-                  <Button
-                    onClick={handleActions}
-                    variant="text"
-                    //fullWidth
-                    sx={{ textDecoration: "none", color: "#1890ff" }}
+                  <Grid
+                    item
+                    xs={3}
+                    sx={{
+                      pl: 2,
+                      pr: 2,
+                    }}
                   >
-                    {business.actions}
-                  </Button>
-                </Box>
-              </Box>
-            ))}
-          </Box>
-        </Box>
+                    <Typography sx={{ fontSize: 14 }} >{business.businessName}</Typography>
+                  </Grid>
+
+                  <Grid
+                    item
+                    xs={3}
+                    sx={{
+                      pl: 2,
+                      pr: 2,
+                    }}
+                  >
+                    <Typography sx={{ fontSize: 14 }} >{business.regNumber}</Typography>
+                  </Grid>
+
+                  <Grid
+                    item
+                    xs={3}
+                    sx={{
+                      pl: 2,
+                      pr: 2,
+                    }}
+                  >
+                    <Typography sx={{ fontSize: 14 }} >{business.businessType}</Typography>
+                  </Grid>
+
+                  <Grid
+                    item
+                    xs={3}
+                    sx={{
+                      pl: 2,
+                      pr: 2,
+                    }}
+                  >
+                    <Typography sx={{ fontSize: 14 }} >{business.industry}</Typography>
+                  </Grid>
+                </Grid>
+              ))
+            )}
+          </Grid>
+        </Grid>
       </Box>
     </Box>
   );
