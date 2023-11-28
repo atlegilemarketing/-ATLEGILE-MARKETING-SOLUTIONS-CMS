@@ -6,29 +6,29 @@ import { firebase } from "../config";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
-import clipArt from "../images/clipArtBusinesses.png";
-import BusinessCard from "./BusinessCard";
+import clipArt from "../images/clipArtProducts.png";
+import ProductCard from "./ProductCard";
 
 export default function ManageProducts() {
-  const [businessesList, setBusinessesList] = useState([]);
+  const [productsList, setProductsList] = useState([]);
   const [user] = useAuthState(firebase.auth());
-  const [openBusinessDetails, setOpenBusinessDetails] = useState(false);
+  const [openProductDetails, setOpenProductDetails] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const businessesRef = firebase.firestore().collection("Business");
-        const snapshot = await businessesRef.get();
-        const businessesData = snapshot.docs.map((doc) => ({
+        const productsRef = firebase.firestore().collection("Business");
+        const snapshot = await productsRef.get();
+        const productsData = snapshot.docs.map((doc) => ({
           id: doc.id,
           businessName: doc.data().businessName,
           regNumber: doc.data().regNumber,
           businessType: doc.data().businessType,
           industry: doc.data().industry,
         }));
-        setBusinessesList(businessesData);
+        setProductsList(productsData);
       } catch (error) {
-        console.error("Error fetching businesses:", error);
+        console.error("Error fetching products:", error);
       }
     };
 
@@ -125,7 +125,7 @@ export default function ManageProducts() {
               }}
             >
               <Typography sx={{ color: "gray", fontSize: 12 }}>
-                New Businesses
+                New Products
               </Typography>
               <Typography sx={{ fontWeight: 400, fontSize: 20 }}>
                 300
@@ -172,7 +172,7 @@ export default function ManageProducts() {
               borderBottom: "1px lightgray solid",
             }}
           >
-            <Grid item xs={12/5}
+            <Grid item xs={2}
               sx={{
                 pl: 2,
                 pr: 2,
@@ -184,7 +184,7 @@ export default function ManageProducts() {
                 borderRight: "1px lightgray solid",
               }}
             >
-              <Typography sx={{ fontWeight: 600 }}>Business Name</Typography>
+              <Typography sx={{ fontWeight: 600 }}>Invoice</Typography>
               <Typography
                 sx={{
                   color: "gray",
@@ -195,7 +195,7 @@ export default function ManageProducts() {
               </Typography>
             </Grid>
 
-            <Grid item xs={12/5}
+            <Grid item xs={2}
               sx={{
                 pl: 2,
                 pr: 2,
@@ -207,7 +207,7 @@ export default function ManageProducts() {
                 borderRight: "1px lightgray solid",
               }}
             >
-              <Typography sx={{ fontWeight: 600 }}>Reg Number</Typography>
+              <Typography sx={{ fontWeight: 600 }}>Date</Typography>
               <Typography
                 sx={{
                   color: "gray",
@@ -217,7 +217,7 @@ export default function ManageProducts() {
               </Typography>
             </Grid>
 
-            <Grid item xs={12/5}
+            <Grid item xs={2}
               sx={{
                 pl: 2,
                 pr: 2,
@@ -229,7 +229,7 @@ export default function ManageProducts() {
                 borderRight: "1px lightgray solid",
               }}
             >
-              <Typography sx={{ fontWeight: 600 }}>Type of Business</Typography>
+              <Typography sx={{ fontWeight: 600 }}>Product Name</Typography>
               <Typography
                 sx={{
                   color: "gray",
@@ -239,7 +239,7 @@ export default function ManageProducts() {
               </Typography>
             </Grid>
 
-            <Grid item xs={12/5}
+            <Grid item xs={2}
               sx={{
                 pl: 2,
                 pr: 2,
@@ -251,7 +251,7 @@ export default function ManageProducts() {
                 borderRight: "1px lightgray solid",
               }}
             >
-              <Typography sx={{ fontWeight: 600 }}>Industry</Typography>
+              <Typography sx={{ fontWeight: 600 }}>Brand</Typography>
               <Typography
                 sx={{
                   color: "gray",
@@ -261,7 +261,28 @@ export default function ManageProducts() {
               </Typography>
               </Grid>
 
-            <Grid item xs={12/5}
+              <Grid item xs={2}
+              sx={{
+                pl: 2,
+                pr: 2,
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+                border: "none",
+                borderRight: "1px lightgray solid",
+              }}
+            >
+              <Typography sx={{ fontWeight: 600 }}>Total</Typography>
+              <Typography
+                sx={{
+                  color: "gray",
+                }}
+              >
+                <UnfoldMoreIcon />
+              </Typography>
+              </Grid>
+            <Grid item xs={2}
               sx={{
                 pl: 2,
                 pr: 2,
@@ -274,8 +295,8 @@ export default function ManageProducts() {
             </Grid>
           </Grid>
 
-          {businessesList.map((business) => (
-            <BusinessCard openBusinessDetails={openBusinessDetails} setOpenBusinessDetails={setOpenBusinessDetails} business={business}/>
+          {productsList.map((product) => (
+            <ProductCard openProductDetails={openProductDetails} setOpenProductDetails={setOpenProductDetails} product={product}/>
           ))}
         </Box>
       </Box>
