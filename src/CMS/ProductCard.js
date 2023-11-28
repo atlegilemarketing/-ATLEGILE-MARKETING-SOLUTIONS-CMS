@@ -85,7 +85,7 @@ function ProductCard({ openProductDetails, setOpenProductDetails, product }) {
             pr: 2,
           }}
         >
-          <Typography>{product.industry}</Typography>
+          <Typography>{product.industr}</Typography>
         </Grid>
 
         <Grid
