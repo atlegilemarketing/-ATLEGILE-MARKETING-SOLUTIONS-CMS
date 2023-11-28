@@ -1,5 +1,6 @@
 import React from "react";
 import { Grid, Typography, Button, Modal, Box } from "@mui/material";
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 
 function ProductCard({ openProductDetails, setOpenProductDetails, product }) {
@@ -8,11 +9,36 @@ function ProductCard({ openProductDetails, setOpenProductDetails, product }) {
       <Modal
         open={openProductDetails}
         onClose={() => setOpenProductDetails(false)}
-        sx={{ "& .MuiBackdrop-root": { backgroundColor: "transparent" } }}
+        sx={{ "& .MuiBackdrop-root": { backgroundColor: "rgb(0,0,0,0.1)" },display:"flex",alignItems:"center",justifyContent:"center" }}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={{}}>
+        <Box sx={{backgroundColor:"white"}}>
+        <Box
+            sx={{
+              border: "none",
+              borderBottom: "1px lightgray solid",
+             p:2,
+             display:"flex",alignItems:"center",justifyContent:"space-between" 
+            }}
+          >
+            <Typography sx={{ fontWeight: 700 }}>Product Details</Typography>
+            
+            <Button
+              onClick={() => setOpenProductDetails(false)}
+              variant="text"
+              fullWidth
+              sx={{
+                display: "flex",
+                justifyContent: "flex-end",
+                alignItems: "flex-end",
+                color:"black"
+              }}
+            >
+              <HighlightOffIcon/>
+            </Button>
+            
+          </Box>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Text in a modal
           </Typography>
@@ -21,6 +47,7 @@ function ProductCard({ openProductDetails, setOpenProductDetails, product }) {
           </Typography>
         </Box>
       </Modal>
+
       <Grid
         container
         key={product.id}

@@ -1,31 +1,61 @@
-import React from "react";
-import { Grid, Typography, Button, Modal } from "@mui/material";
-import { Container } from "@mui/system";
+import React, { useState } from "react";
+import { Grid, Typography, Button, Modal, Box } from "@mui/material";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 function BusinessCard({
-  openBusinessDetails,
-  setOpenBusinessDetails,
   business,
 }) {
+  const [open, setOpen] = useState(false);
+  console.log("Industry: ",business.industry)
   return (
     <>
       <Modal
-        open={openBusinessDetails}
-        onClose={() => setOpenBusinessDetails(false)}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+        open={open}
+        onClose={() => setOpen(false)}
         sx={{
+          "& .MuiBackdrop-root": { backgroundColor: "rgb(0,0,0,0.1)" },
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          backdropFilter: "blur(2px) contrast(80%)",
         }}
-        hideBackdrop
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
       >
-        <Container sx={{backgroundColor:"white"}}>
+        <Box>
+          <Box
+            sx={{
+              backgroundColor: "#072840",
+              p: 2,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              color: "white",
+            }}
+          >
+            <Typography sx={{ fontWeight: 700 }}>Business Details</Typography>
 
-        </Container>
+            <Button
+              onClick={() => setOpen(false)}
+              variant="text"
+              sx={{
+                display: "flex",
+                justifyContent: "flex-end",
+                alignItems: "flex-end",
+                color: "white",
+              }}
+            >
+              <HighlightOffIcon />
+            </Button>
+          </Box>
+          <Box sx={{ backgroundColor: "white",p:3 }}>
+            <Typography>Business Name: {business.businessName}</Typography>
+            <Typography>Reg Number: {business.regNumber}</Typography>
+            <Typography>Business Type: {business.businessType}</Typography>
+            <Typography>Industry: {business.industry}</Typography>
+          </Box>
+        </Box>
       </Modal>
+
       <Grid
         container
         key={business.id}
@@ -39,9 +69,9 @@ function BusinessCard({
         }}
       >
         <Grid
-          item xs={12/5}
+          item
+          xs={12 / 5}
           sx={{
-            width: "20%",
             pl: 2,
             pr: 2,
           }}
@@ -50,9 +80,9 @@ function BusinessCard({
         </Grid>
 
         <Grid
-          item xs={12/5}
+          item
+          xs={12 / 5}
           sx={{
-            width: "20%",
             pl: 2,
             pr: 2,
           }}
@@ -61,9 +91,9 @@ function BusinessCard({
         </Grid>
 
         <Grid
-          item xs={12/5}
+          item
+          xs={12 / 5}
           sx={{
-            width: "20%",
             pl: 2,
             pr: 2,
           }}
@@ -72,9 +102,9 @@ function BusinessCard({
         </Grid>
 
         <Grid
-          item xs={12/5}
+          item
+          xs={12 / 5}
           sx={{
-            width: "20%",
             pl: 2,
             pr: 2,
           }}
@@ -83,15 +113,15 @@ function BusinessCard({
         </Grid>
 
         <Grid
-          item xs={12/5}
+          item
+          xs={12 / 5}
           sx={{
-            width: "20%",
             pl: 1,
             pr: 1,
           }}
         >
           <Button
-            onClick={() => setOpenBusinessDetails(true)}
+            onClick={() => setOpen(true)}
             variant="text"
             sx={{ textDecoration: "none", color: "#1890ff" }}
           >

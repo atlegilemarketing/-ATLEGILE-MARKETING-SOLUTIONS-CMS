@@ -13,7 +13,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 export default function ManageBusinesses() {
   const [businessesList, setBusinessesList] = useState([]);
   const [user] = useAuthState(firebase.auth());
-  const [openBusinessDetails, setOpenBusinessDetails] = useState(false);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -299,9 +299,7 @@ export default function ManageBusinesses() {
             </Box>
           ) : (
             businessesList.map((business) => (
-              <BusinessCard
-                openBusinessDetails={openBusinessDetails}
-                setOpenBusinessDetails={setOpenBusinessDetails}
+              <BusinessCard key={business.id}
                 business={business}
               />
             ))
