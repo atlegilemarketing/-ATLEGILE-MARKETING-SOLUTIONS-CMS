@@ -4,7 +4,12 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 function UserCard({ user }) {
   const [open, setOpen] = useState(false);
-  console.log("Industry: ", user.industry);
+  //console.log("Industry: ", user.industry);
+const blockToggleUser=()=>{
+  //Check is user.block is true or false
+  //if true, update the block field in the user's data to false
+  //if false, update the block field in the user's data to true
+}
   return (
     <>
       <Modal
@@ -46,10 +51,11 @@ function UserCard({ user }) {
             </Button>
           </Box>
           <Box sx={{ backgroundColor: "white", p: 3 }}>
-            <Typography>User Name: {user.userName}</Typography>
-            <Typography>Reg Number: {user.regNumber}</Typography>
-            <Typography>User Type: {user.userType}</Typography>
-            <Typography>Industry: {user.industry}</Typography>
+            <Typography>Name: {user.name}</Typography>
+            <Typography>Surname: {user.surname}</Typography>
+            <Typography>Phone: {user.phone}</Typography>
+            <Typography>Email: {user.email}</Typography>
+            <Typography>Location: {user.location}</Typography>
           </Box>
         </Box>
       </Modal>
@@ -140,6 +146,7 @@ function UserCard({ user }) {
           }}
         >
             <Button
+            onClick={blockToggleUser}
               variant="text"
               sx={{
                 textDecoration: "none",
@@ -155,6 +162,7 @@ function UserCard({ user }) {
             </Button>
 
             <Button
+            onClick={()=>setOpen(true)}
               variant="text"
               sx={{
                 textDecoration: "none",
