@@ -2,12 +2,13 @@ import React from "react";
 import { Grid, Typography, Button, Modal, Box } from "@mui/material";
 import { Container } from "@mui/system";
 
-function productCard({ openProductDetails, setOpenProductDetails, product }) {
+function ProductCard({ openProductDetails, setOpenProductDetails, product }) {
   return (
     <>
       <Modal
         open={openProductDetails}
         onClose={() => setOpenProductDetails(false)}
+        sx={{ "& .MuiBackdrop-root": { backgroundColor: "transparent" } }}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -108,4 +109,4 @@ function productCard({ openProductDetails, setOpenProductDetails, product }) {
   );
 }
 
-export default productCard;
+export default ProductCard;

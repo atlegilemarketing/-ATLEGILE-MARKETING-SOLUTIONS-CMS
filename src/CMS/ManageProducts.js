@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography,  Grid } from "@mui/material";
+import { Box, Typography, Grid } from "@mui/material";
 import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
 import SearchIcon from "@mui/icons-material/Search";
 import { firebase } from "../config";
@@ -8,6 +8,7 @@ import "firebase/compat/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import clipArt from "../images/clipArtProducts.png";
 import ProductCard from "./ProductCard";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function ManageProducts() {
   const [productsList, setProductsList] = useState([]);
@@ -39,7 +40,6 @@ export default function ManageProducts() {
 
   return (
     <>
-      
       <Box
         sx={{
           height: "100vh",
@@ -159,7 +159,8 @@ export default function ManageProducts() {
             <Typography sx={{ fontWeight: 700 }}>NEW BUSINESSES</Typography>
           </Box>
 
-          <Grid container
+          <Grid
+            container
             sx={{
               backgroundColor: "#FAFAFA",
               display: "flex",
@@ -172,7 +173,9 @@ export default function ManageProducts() {
               borderBottom: "1px lightgray solid",
             }}
           >
-            <Grid item xs={2}
+            <Grid
+              item
+              xs={2}
               sx={{
                 pl: 2,
                 pr: 2,
@@ -195,7 +198,9 @@ export default function ManageProducts() {
               </Typography>
             </Grid>
 
-            <Grid item xs={2}
+            <Grid
+              item
+              xs={2}
               sx={{
                 pl: 2,
                 pr: 2,
@@ -217,7 +222,9 @@ export default function ManageProducts() {
               </Typography>
             </Grid>
 
-            <Grid item xs={2}
+            <Grid
+              item
+              xs={2}
               sx={{
                 pl: 2,
                 pr: 2,
@@ -239,7 +246,9 @@ export default function ManageProducts() {
               </Typography>
             </Grid>
 
-            <Grid item xs={2}
+            <Grid
+              item
+              xs={2}
               sx={{
                 pl: 2,
                 pr: 2,
@@ -259,9 +268,11 @@ export default function ManageProducts() {
               >
                 <UnfoldMoreIcon />
               </Typography>
-              </Grid>
+            </Grid>
 
-              <Grid item xs={2}
+            <Grid
+              item
+              xs={2}
               sx={{
                 pl: 2,
                 pr: 2,
@@ -281,8 +292,10 @@ export default function ManageProducts() {
               >
                 <UnfoldMoreIcon />
               </Typography>
-              </Grid>
-            <Grid item xs={2}
+            </Grid>
+            <Grid
+              item
+              xs={2}
               sx={{
                 pl: 2,
                 pr: 2,
@@ -295,9 +308,19 @@ export default function ManageProducts() {
             </Grid>
           </Grid>
 
-          {productsList.map((product) => (
-            <ProductCard openProductDetails={openProductDetails} setOpenProductDetails={setOpenProductDetails} product={product}/>
-          ))}
+          {productsList.length === 0 ? (
+            <Box sx={{display:"flex",alignItems:"center",justifyContent:"center",width:"100%",height:"20vh"}}>
+            <CircularProgress />
+            </Box>
+          ) : (
+            productsList.map((product) => (
+              <ProductCard
+                openProductDetails={openProductDetails}
+                setOpenProductDetails={setOpenProductDetails}
+                product={product}
+              />
+            ))
+          )}
         </Box>
       </Box>
     </>
