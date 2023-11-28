@@ -43,8 +43,9 @@ export default function ManageBusinesses() {
           id: doc.id,
           businessName: doc.data().businessName,
           regNumber: doc.data().regNumber,
-          businessType: doc.data().businessType,
-          industry: doc.data().industry,
+          businessType: doc.data().selectedBusinessType,
+          industry: doc.data().selectedIndustry,
+          actions: ['Some Action'],
         }));
         setBusinessesList(businessesData);
       } catch (error) {
