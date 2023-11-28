@@ -18,7 +18,7 @@ export default function ManageProducts() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const productsRef = firebase.firestore().collection("Business");
+        const productsRef = firebase.firestore().collection("Products");
         const snapshot = await productsRef.get();
         const productsData = snapshot.docs.map((doc) => ({
           id: doc.id,
