@@ -1,100 +1,76 @@
-import React from "react";
-import { Box, Typography, Button } from "@mui/material";
-import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
-import SearchIcon from "@mui/icons-material/Search";
+import React, { useState, useEffect } from 'react';
+import { Box, Typography, Button } from '@mui/material';
+import UnfoldMoreIcon from '@mui/icons-material/UnfoldMore';
+import SearchIcon from '@mui/icons-material/Search';
 import clipArt from "../images/clipArtUsers.png";
 
+import { firebase } from '../config';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+import { useAuthState } from 'react-firebase-hooks/auth';
+
 export default function ManageBusinesses() {
+  const [usersList, setUsersList] = useState([]);
+  const [user] = useAuthState(firebase.auth());
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const usersRef = firebase.firestore().collection('Users');
+        const snapshot = await usersRef.get();
+        const usersData = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          name: doc.data().name,
+          surname: doc.data().surname,
+          email: doc.data().email,
+          phone: doc.data().phone,
+          location: doc.data().location,
+          actions: ['Block User', 'View Details'],
+        }));
+        setUsersList(usersData);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
+    };
+
+    if (user) {
+      fetchData();
+    }
+  }, [user]);
+
   const handleActions = () => {
-    alert("Actions clicked");
+    alert('Actions clicked');
   };
-
-  const fakeUsersList = [
-    {
-      id: "00",
-      name: "Jane",
-      surname: "Doe",
-      email: "example@mail.com",
-      phone: "0123456789",
-      location:
-        " 1235 Vilakazi Street, Orlando West, Soweto, 1804, South Africa",
-      actions: ["Block User", "View Details"],
-    },
-
-    {
-      id: "01",
-      name: "Jane",
-      surname: "Doe",
-      email: "example@mail.com",
-      phone: "0123456789",
-      location:
-        " 1235 Vilakazi Street, Orlando West, Soweto, 1804, South Africa",
-      actions: ["Block User", "View Details"],
-    },
-
-    {
-      id: "02",
-      name: "Jane",
-      surname: "Doe",
-      email: "example@mail.com",
-      phone: "0123456789",
-      location:
-        " 1235 Vilakazi Street, Orlando West, Soweto, 1804, South Africa",
-      actions: ["Block User", "View Details"],
-    },
-
-    {
-      id: "03",
-      name: "Jane",
-      surname: "Doe",
-      email: "example@mail.com",
-      phone: "0123456789",
-      location:
-        " 1235 Vilakazi Street, Orlando West, Soweto, 1804, South Africa",
-      actions: ["Block User", "View Details"],
-    },
-
-    {
-      id: "04",
-      name: "Jane",
-      surname: "Doe",
-      email: "example@mail.com",
-      phone: "0123456789",
-      location:
-        " 1235 Vilakazi Street, Orlando West, Soweto, 1804, South Africa",
-      actions: ["Block User", "View Details"],
-    },
-  ];
 
   return (
     <Box
       sx={{
-        height: "100vh",
-        overflow: "hidden",
-        overflowY: "auto",
+        height: '100vh',
+        overflow: 'hidden',
+        overflowY: 'auto',
       }}
     >
       <Box
         sx={{
-          height: "20vh",
-          backgroundColor: "#072840",
-          display: "flex",
+          height: '20vh',
+          backgroundColor: '#072840',
+          display: 'flex',
         }}
       >
         <Box
           sx={{
             backgroundImage: `url(${clipArt})`,
-            width: "100%",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "120% 50%",
-            backgroundSize: "50%",
-            display: "flex",
-            alignItems: "center",
+            width: '100%',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: '120% 50%',
+            backgroundSize: '50%',
+            display: 'flex',
+            alignItems: 'center',
           }}
         >
           <Typography
             sx={{
-              color: "white",
+              color: 'white',
               fontSize: 30,
               fontWeight: 600,
               paddingLeft: 2,
@@ -107,15 +83,15 @@ export default function ManageBusinesses() {
 
       <Box
         sx={{
-          height: "80vh",
+          height: '80vh',
         }}
       >
         <Box
           sx={{
             ml: 4,
             mt: 4,
-            border: "none",
-            borderBottom: "1px lightgray solid",
+            border: 'none',
+            borderBottom: '1px lightgray solid',
           }}
         >
           <Typography sx={{ fontWeight: 700 }}>USERS</Typography>
@@ -123,31 +99,31 @@ export default function ManageBusinesses() {
 
         <Box
           sx={{
-            display: "flex",
-            flexDirection: "row",
+            display: 'flex',
+            flexDirection: 'row',
             ml: 4,
             mt: 8,
           }}
         >
           <Box
             sx={{
-              width: "100px",
-              display: "flex",
-              flexDirection: "column",
+              width: '100px',
+              display: 'flex',
+              flexDirection: 'column',
             }}
           >
-            <Typography sx={{ color: "gray", fontSize: 12 }}>Sales</Typography>
+            <Typography sx={{ color: 'gray', fontSize: 12 }}>Sales</Typography>
             <Typography sx={{ fontWeight: 400, fontSize: 20 }}>300</Typography>
           </Box>
 
           <Box
             sx={{
-              width: "100px",
-              display: "flex",
-              flexDirection: "column",
+              width: '100px',
+              display: 'flex',
+              flexDirection: 'column',
             }}
           >
-            <Typography sx={{ color: "gray", fontSize: 12 }}>
+            <Typography sx={{ color: 'gray', fontSize: 12 }}>
               New Businesses
             </Typography>
             <Typography sx={{ fontWeight: 400, fontSize: 20 }}>300</Typography>
@@ -155,22 +131,22 @@ export default function ManageBusinesses() {
 
           <Box
             sx={{
-              width: "100px",
-              display: "flex",
-              flexDirection: "column",
+              width: '100px',
+              display: 'flex',
+              flexDirection: 'column',
             }}
           >
-            <Typography sx={{ color: "gray", fontSize: 12 }}>
+            <Typography sx={{ color: 'gray', fontSize: 12 }}>
               New Users
             </Typography>
             <Typography sx={{ fontWeight: 400, fontSize: 20 }}>300</Typography>
           </Box>
         </Box>
+
         <Box
           sx={{
-            //paddingBottom: 10,
-            border: "none",
-            borderBottom: "1px lightgray solid",
+            border: 'none',
+            borderBottom: '1px lightgray solid',
             ml: 4,
             mt: 4,
           }}
@@ -180,34 +156,34 @@ export default function ManageBusinesses() {
 
         <Box
           sx={{
-            backgroundColor: "#fafafa",
-            display: "flex",
-            flexDirection: "row",
+            backgroundColor: '#fafafa',
+            display: 'flex',
+            flexDirection: 'row',
             ml: 2,
             mt: 2,
             pt: 2,
             pb: 2,
-            border: "none",
-            borderBottom: "1px lightgray solid",
+            border: 'none',
+            borderBottom: '1px lightgray solid',
           }}
         >
           <Box
             sx={{
-              width: "16.66%",
+              width: '16.66%',
               pl: 2,
               pr: 2,
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
-              border: "none",
-              borderRight: "1px lightgray solid",
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              border: 'none',
+              borderRight: '1px lightgray solid',
             }}
           >
             <Typography sx={{ fontWeight: 600 }}>Name</Typography>
             <Typography
               sx={{
-                color: "gray",
+                color: 'gray',
               }}
             >
               <UnfoldMoreIcon />
@@ -217,21 +193,21 @@ export default function ManageBusinesses() {
 
           <Box
             sx={{
-              width: "16.66%",
+              width: '16.66%',
               pl: 2,
               pr: 2,
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
-              border: "none",
-              borderRight: "1px lightgray solid",
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              border: 'none',
+              borderRight: '1px lightgray solid',
             }}
           >
             <Typography sx={{ fontWeight: 600 }}>Surname</Typography>
             <Typography
               sx={{
-                color: "gray",
+                color: 'gray',
               }}
             >
               <UnfoldMoreIcon />
@@ -240,21 +216,21 @@ export default function ManageBusinesses() {
 
           <Box
             sx={{
-              width: "16.66%",
+              width: '16.66%',
               pl: 2,
               pr: 2,
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
-              border: "none",
-              borderRight: "1px lightgray solid",
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              border: 'none',
+              borderRight: '1px lightgray solid',
             }}
           >
             <Typography sx={{ fontWeight: 600 }}>Phone</Typography>
             <Typography
               sx={{
-                color: "gray",
+                color: 'gray',
               }}
             >
               <UnfoldMoreIcon />
@@ -263,21 +239,21 @@ export default function ManageBusinesses() {
 
           <Box
             sx={{
-              width: "16.66%",
+              width: '16.66%',
               pl: 2,
               pr: 2,
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
-              border: "none",
-              borderRight: "1px lightgray solid",
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              border: 'none',
+              borderRight: '1px lightgray solid',
             }}
           >
             <Typography sx={{ fontWeight: 600 }}>Email</Typography>
             <Typography
               sx={{
-                color: "gray",
+                color: 'gray',
               }}
             >
               <UnfoldMoreIcon />
@@ -286,21 +262,21 @@ export default function ManageBusinesses() {
 
           <Box
             sx={{
-              width: "16.66%",
+              width: '16.66%',
               pl: 2,
               pr: 2,
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
-              border: "none",
-              borderRight: "1px lightgray solid",
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              border: 'none',
+              borderRight: '1px lightgray solid',
             }}
           >
             <Typography sx={{ fontWeight: 600 }}>Location</Typography>
             <Typography
               sx={{
-                color: "gray",
+                color: 'gray',
               }}
             >
               <UnfoldMoreIcon />
@@ -309,139 +285,121 @@ export default function ManageBusinesses() {
 
           <Box
             sx={{
-              width: "16.66%",
+              width: '16.66%',
               pl: 2,
               pr: 2,
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
             }}
           >
             <Typography sx={{ fontWeight: 600 }}>Actions</Typography>
           </Box>
         </Box>
 
-        {fakeUsersList.map((business) => (
+        {usersList.map((user) => (
           <Box
-            key={business.id}
+            key={user.id}
             sx={{
-              display: "flex",
-              flexDirection: "row",
-              border: "none",
-              borderBottom: "1px lightgray solid",
+              display: 'flex',
+              flexDirection: 'row',
+              border: 'none',
+              borderBottom: '1px lightgray solid',
               ml: 2,
               mt: 2,
-              // pt: 2,
-              // pb: 2,
             }}
           >
             <Box
               sx={{
-                width: "16.66%",
+                width: '16.66%',
                 pl: 2,
                 pr: 2,
-                //border: "1px red solid",
-                display: "flex",
-                alignItems: "center",
-
+                display: 'flex',
+                alignItems: 'center',
               }}
             >
-              <Typography noWrap>{business.name}</Typography>
+              <Typography noWrap>{user.name}</Typography>
             </Box>
 
             <Box
               sx={{
-                width: "16.66%",
+                width: '16.66%',
                 pl: 2,
                 pr: 2,
-                //border: "1px red solid",
-                display: "flex",
-                alignItems: "center",
-
+                display: 'flex',
+                alignItems: 'center',
               }}
             >
-              <Typography noWrap>{business.surname}</Typography>
+              <Typography noWrap>{user.surname}</Typography>
             </Box>
 
             <Box
               sx={{
-                width: "16.66%",
+                width: '16.66%',
                 pl: 2,
                 pr: 2,
-                //border: "1px red solid",
-                display: "flex",
-                alignItems: "center",
-
+                display: 'flex',
+                alignItems: 'center',
               }}
             >
-              <Typography noWrap>{business.phone}</Typography>
+              <Typography noWrap>{user.phone}</Typography>
             </Box>
 
             <Box
               sx={{
-                width: "16.66%",
+                width: '16.66%',
                 pl: 2,
-                //pr: 2,
-                //border: "1px red solid",
-                display: "flex",
-                alignItems: "center",
-
+                display: 'flex',
+                alignItems: 'center',
               }}
             >
-              <Typography noWrap>{business.email}</Typography>
+              <Typography noWrap>{user.email}</Typography>
             </Box>
 
             <Box
               sx={{
-                width: "16.66%",
+                width: '16.66%',
                 pl: 1,
-                //pr: 1,
-                //border: "1px red solid",
-                display: "flex",
-                alignItems: "center",
-
+                display: 'flex',
+                alignItems: 'center',
               }}
             >
-              <Typography noWrap>{business.location}</Typography>
+              <Typography noWrap>{user.location}</Typography>
             </Box>
 
             <Box
               sx={{
-                width: "16.66%",
+                width: '16.66%',
                 pl: 1,
                 pr: 1,
-                display: "flex",
-                alignItems: "center",
-                //justifyContent: "center",
-                //border: "1px red solid",
+                display: 'flex',
+                alignItems: 'center',
               }}
             >
               <Button
                 onClick={handleActions}
                 variant="text"
-                //fullWidth
                 sx={{
-                  textDecoration: "none",
-                  color: "#1890ff",
-                  display: "flex",
-                  alignItems: "center",
-                  //justifyContent: "center",
+                  textDecoration: 'none',
+                  color: '#1890ff',
+                  display: 'flex',
+                  alignItems: 'center',
                 }}
               >
                 <Box
                   sx={{
                     pr: 1,
-                    border: "none",
-                    borderRight: "1px lightgray solid",
+                    border: 'none',
+                    borderRight: '1px lightgray solid',
                   }}
                 >
                   <Typography sx={{ fontSize: 12 }}>
-                    {business.actions[0]}
+                    {user.actions[0]}
                   </Typography>
                 </Box>
                 <Box sx={{ pl: 1 }}>
                   <Typography sx={{ fontSize: 12 }}>
-                    {business.actions[1]}
+                    {user.actions[1]}
                   </Typography>
                 </Box>
               </Button>

@@ -1,122 +1,60 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Typography, Button } from "@mui/material";
 import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
 import SearchIcon from "@mui/icons-material/Search";
 import clipArt from "../images/clipArtWelcome.png";
+import { firebase } from '../config';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 export default function ManageBusinesses() {
+  const [usersList, setUsersList] = useState([]);
+  const [businessesList, setBusinessesList] = useState([]);
+  const [user] = useAuthState(firebase.auth());
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        
+        const usersRef = firebase.firestore().collection('Users');
+        const usersSnapshot = await usersRef.get();
+        const usersData = usersSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          name: doc.data().name,
+          surname: doc.data().surname,
+          email: doc.data().email,
+          phone: doc.data().phone,
+          location: doc.data().location,
+          actions: ['Block User', 'View Details'],
+        }));
+        setUsersList(usersData);
+
+      
+        const businessesRef = firebase.firestore().collection('Business');
+        const businessesSnapshot = await businessesRef.get();
+        const businessesData = businessesSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          businessName: doc.data().businessName,
+          regNumber: doc.data().regNumber,
+          businessType: doc.data().businessType,
+          industry: doc.data().industry,
+          actions: ['Some Action'],
+        }));
+        setBusinessesList(businessesData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    if (user) {
+      fetchData();
+    }
+  }, [user]);
+
   const handleActions = () => {
-    alert("Actions clicked");
+    alert('Actions clicked');
   };
-
-  const fakeUsersList = [
-    {
-      id: "00",
-      name: "Jane",
-      surname: "Doe",
-      email: "example@mail.com",
-      phone: "0123456789",
-      location:
-        " 1235 Vilakazi Street, Orlando West, Soweto, 1804, South Africa",
-      actions: ["Block User", "View Details"],
-    },
-
-    {
-      id: "01",
-      name: "Jane",
-      surname: "Doe",
-      email: "example@mail.com",
-      phone: "0123456789",
-      location:
-        " 1235 Vilakazi Street, Orlando West, Soweto, 1804, South Africa",
-      actions: ["Block User", "View Details"],
-    },
-
-    {
-      id: "02",
-      name: "Jane",
-      surname: "Doe",
-      email: "example@mail.com",
-      phone: "0123456789",
-      location:
-        " 1235 Vilakazi Street, Orlando West, Soweto, 1804, South Africa",
-      actions: ["Block User", "View Details"],
-    },
-
-    {
-      id: "03",
-      name: "Jane",
-      surname: "Doe",
-      email: "example@mail.com",
-      phone: "0123456789",
-      location:
-        " 1235 Vilakazi Street, Orlando West, Soweto, 1804, South Africa",
-      actions: ["Block User", "View Details"],
-    },
-
-    {
-      id: "04",
-      name: "Jane",
-      surname: "Doe",
-      email: "example@mail.com",
-      phone: "0123456789",
-      location:
-        " 1235 Vilakazi Street, Orlando West, Soweto, 1804, South Africa",
-      actions: ["Block User", "View Details"],
-    },
-  ];
-
-  const fakeBusinessesList = [
-    {
-      id: "00",
-      name: "Tech Logistics",
-      regNum: "N/A",
-      bizType: "Township",
-      Industry: "Technology",
-      actions: "View Details",
-    },
-    {
-      id: "01",
-      name: "Tech Logistics",
-      regNum: "N/A",
-      bizType: "Township",
-      Industry: "Technology",
-      actions: "View Details",
-    },
-    {
-      id: "02",
-      name: "Tech Logistics",
-      regNum: "N/A",
-      bizType: "Township",
-      Industry: "Technology",
-      actions: "View Details",
-    },
-    {
-      id: "03",
-      name: "Tech Logistics",
-      regNum: "N/A",
-      bizType: "Township",
-      Industry: "Technology",
-      actions: "View Details",
-    },
-    {
-      id: "04",
-      name: "Tech Logistics",
-      regNum: "N/A",
-      bizType: "Township",
-      Industry: "Technology",
-      actions: "View Details",
-    },
-    {
-      id: "05",
-      name: "Tech Logistics",
-      regNum: "N/A",
-      bizType: "Township",
-      Industry: "Technology",
-      actions: "View Details",
-    },
-  ];
-
   return (
     <Box
       sx={{
@@ -382,7 +320,7 @@ export default function ManageBusinesses() {
               </Box>
             </Box>
 
-            {fakeUsersList.map((business) => (
+            {usersList.map((business) => (
               <Box
                 key={business.id}
                 sx={{
@@ -641,7 +579,7 @@ export default function ManageBusinesses() {
               </Box>
             </Box>
 
-            {fakeBusinessesList.map((business) => (
+            {businessesList.map((business) => (
               <Box
                 key={business.id}
                 sx={{
@@ -660,7 +598,7 @@ export default function ManageBusinesses() {
                     pr: 2,
                   }}
                 >
-                  <Typography>{business.name}</Typography>
+                  <Typography>{business.businessName}</Typography>
                 </Box>
 
                 <Box
@@ -670,7 +608,7 @@ export default function ManageBusinesses() {
                     pr: 2,
                   }}
                 >
-                  <Typography>{business.regNum}</Typography>
+                  <Typography>{business.regNumber}</Typography>
                 </Box>
 
                 <Box
@@ -680,7 +618,7 @@ export default function ManageBusinesses() {
                     pr: 2,
                   }}
                 >
-                  <Typography>{business.bizType}</Typography>
+                  <Typography>{business.businessType}</Typography>
                 </Box>
 
                 <Box
@@ -690,7 +628,7 @@ export default function ManageBusinesses() {
                     pr: 2,
                   }}
                 >
-                  <Typography>{business.Industry}</Typography>
+                  <Typography>{business.industry}</Typography>
                 </Box>
 
                 <Box

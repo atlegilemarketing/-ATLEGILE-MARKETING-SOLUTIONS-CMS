@@ -61,7 +61,7 @@ export default function SignIn() {
   };
   // eslint-disable-next-line
   const handleGuestSignIn = () => {
-    // Implement logic for guest sign-in here
+    
     alert("Signed in as a guest!");
     navigate("/main/dashboard");
   };
