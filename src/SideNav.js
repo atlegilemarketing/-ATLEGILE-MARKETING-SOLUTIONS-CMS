@@ -13,6 +13,9 @@ function SideNav() {
   const handleNavigateToUsers = () => {
     navigate("users");
   };
+  const handleNavigateToProducts = () => {
+    navigate("products");
+  };
   return (
     <Box
       sx={{
@@ -48,8 +51,12 @@ function SideNav() {
         <Typography variant="h4" sx={{ fontWeight: 700, color: "black" }}>
           Sarah
         </Typography>
-        <Typography sx={{ fontWeight: 600, color: "black" }}>0123456789</Typography>
-        <Typography sx={{ fontWeight: 600, color: "black" }}>example@mail.com</Typography>
+        <Typography sx={{ fontWeight: 600, color: "black" }}>
+          0123456789
+        </Typography>
+        <Typography sx={{ fontWeight: 600, color: "black" }}>
+          example@mail.com
+        </Typography>
       </Box>
       <Box sx={{ mt: 2 }}>
         <Button
@@ -63,10 +70,11 @@ function SideNav() {
           }}
         >
           <StarIcon sx={{ color: "gray", mr: 4 }} />
-          <Typography variant="inherit" sx={{color: "black" }}>
+          <Typography variant="inherit" sx={{ color: "black" }}>
             Dashboard
           </Typography>
         </Button>
+
         <Button
           onClick={handleNavigateToUsers}
           variant="text"
@@ -83,6 +91,24 @@ function SideNav() {
             Users
           </Typography>
         </Button>
+
+        <Button
+          onClick={handleNavigateToProducts}
+          variant="text"
+          fullWidth
+          id="users-link"
+          sx={{
+            borderBottom: "1px lightgray solid",
+            justifyContent: "flex-start",
+            textTransform: "none",
+          }}
+        >
+          <StarIcon sx={{ color: "gray", mr: 4 }} />
+          <Typography variant="inherit" sx={{ color: "black" }}>
+            Products
+          </Typography>
+        </Button>
+
         <Button
           onClick={handleNavigateToBusinesses}
           variant="text"

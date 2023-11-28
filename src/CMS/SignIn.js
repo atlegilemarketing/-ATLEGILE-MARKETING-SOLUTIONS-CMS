@@ -74,6 +74,7 @@ export default function SignIn() {
         title={title}
         message={message}
       />
+      
       <Modal
         open={open}
         onClose={() => setOpen(true)}
@@ -89,6 +90,7 @@ export default function SignIn() {
       >
         <CircularProgress />
       </Modal>
+
       <Container
         maxWidth="sm"
         sx={{

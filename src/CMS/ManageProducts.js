@@ -9,7 +9,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import clipArt from "../images/clipArtBusinesses.png";
 import BusinessCard from "./BusinessCard";
 
-export default function ManageBusinesses() {
+export default function ManageProducts() {
   const [businessesList, setBusinessesList] = useState([]);
   const [user] = useAuthState(firebase.auth());
   const [openBusinessDetails, setOpenBusinessDetails] = useState(false);
@@ -73,7 +73,7 @@ export default function ManageBusinesses() {
                 paddingLeft: 2,
               }}
             >
-              MANAGE BUSINESSES
+              MANAGE PRODUCTS
             </Typography>
           </Box>
         </Box>
