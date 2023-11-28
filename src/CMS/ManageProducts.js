@@ -260,7 +260,7 @@ export default function ManageProducts() {
                 borderRight: "1px lightgray solid",
               }}
             >
-              <Typography sx={{ fontWeight: 600 }}>Brand</Typography>
+              <Typography sx={{ fontWeight: 600 }}>Company</Typography>
               <Typography
                 sx={{
                   color: "gray",
