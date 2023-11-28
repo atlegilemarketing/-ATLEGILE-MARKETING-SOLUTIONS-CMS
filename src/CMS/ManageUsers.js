@@ -1,23 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import { Box, Typography, Button } from '@mui/material';
-import UnfoldMoreIcon from '@mui/icons-material/UnfoldMore';
-import SearchIcon from '@mui/icons-material/Search';
+import React, { useState, useEffect } from "react";
+import { Box, Typography, Grid } from "@mui/material";
+import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
+import SearchIcon from "@mui/icons-material/Search";
 import clipArt from "../images/clipArtUsers.png";
+import CircularProgress from "@mui/material/CircularProgress";
+import { firebase } from "../config";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
+import { useAuthState } from "react-firebase-hooks/auth";
+import UserCard from "./UserCard";
 
-import { firebase } from '../config';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
-import { useAuthState } from 'react-firebase-hooks/auth';
-
-export default function ManageBusinesses() {
+export default function ManageUsers() {
   const [usersList, setUsersList] = useState([]);
   const [user] = useAuthState(firebase.auth());
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const usersRef = firebase.firestore().collection('Users');
+        const usersRef = firebase.firestore().collection("Users");
         const snapshot = await usersRef.get();
+
         const usersData = snapshot.docs.map((doc) => ({
           id: doc.id,
           name: doc.data().name,
@@ -25,11 +27,11 @@ export default function ManageBusinesses() {
           email: doc.data().email,
           phone: doc.data().phone,
           location: doc.data().location,
-          actions: ['Block User', 'View Details'],
+          actions: ["Block User", "View Details"],
         }));
         setUsersList(usersData);
       } catch (error) {
-        console.error('Error fetching users:', error);
+        console.error("Error fetching users:", error);
       }
     };
 
@@ -38,39 +40,35 @@ export default function ManageBusinesses() {
     }
   }, [user]);
 
-  const handleActions = () => {
-    alert('Actions clicked');
-  };
-
   return (
     <Box
       sx={{
-        height: '100vh',
-        overflow: 'hidden',
-        overflowY: 'auto',
+        height: "100vh",
+        overflow: "hidden",
+        overflowY: "auto",
       }}
     >
       <Box
         sx={{
-          height: '20vh',
-          backgroundColor: '#072840',
-          display: 'flex',
+          height: "20vh",
+          backgroundColor: "#072840",
+          display: "flex",
         }}
       >
         <Box
           sx={{
             backgroundImage: `url(${clipArt})`,
-            width: '100%',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: '120% 50%',
-            backgroundSize: '50%',
-            display: 'flex',
-            alignItems: 'center',
+            width: "100%",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "120% 50%",
+            backgroundSize: "50%",
+            display: "flex",
+            alignItems: "center",
           }}
         >
           <Typography
             sx={{
-              color: 'white',
+              color: "white",
               fontSize: 30,
               fontWeight: 600,
               paddingLeft: 2,
@@ -83,15 +81,15 @@ export default function ManageBusinesses() {
 
       <Box
         sx={{
-          height: '80vh',
+          height: "80vh",
         }}
       >
         <Box
           sx={{
             ml: 4,
             mt: 4,
-            border: 'none',
-            borderBottom: '1px lightgray solid',
+            border: "none",
+            borderBottom: "1px lightgray solid",
           }}
         >
           <Typography sx={{ fontWeight: 700 }}>USERS</Typography>
@@ -99,44 +97,44 @@ export default function ManageBusinesses() {
 
         <Box
           sx={{
-            display: 'flex',
-            flexDirection: 'row',
+            display: "flex",
+            flexDirection: "row",
             ml: 4,
             mt: 8,
           }}
         >
           <Box
             sx={{
-              width: '100px',
-              display: 'flex',
-              flexDirection: 'column',
+              width: "100px",
+              display: "flex",
+              flexDirection: "column",
             }}
           >
-            <Typography sx={{ color: 'gray', fontSize: 12 }}>Sales</Typography>
+            <Typography sx={{ color: "gray", fontSize: 12 }}>Sales</Typography>
             <Typography sx={{ fontWeight: 400, fontSize: 20 }}>300</Typography>
           </Box>
 
           <Box
             sx={{
-              width: '100px',
-              display: 'flex',
-              flexDirection: 'column',
+              width: "100px",
+              display: "flex",
+              flexDirection: "column",
             }}
           >
-            <Typography sx={{ color: 'gray', fontSize: 12 }}>
-              New Businesses
+            <Typography sx={{ color: "gray", fontSize: 12 }}>
+              New Users
             </Typography>
             <Typography sx={{ fontWeight: 400, fontSize: 20 }}>300</Typography>
           </Box>
 
           <Box
             sx={{
-              width: '100px',
-              display: 'flex',
-              flexDirection: 'column',
+              width: "100px",
+              display: "flex",
+              flexDirection: "column",
             }}
           >
-            <Typography sx={{ color: 'gray', fontSize: 12 }}>
+            <Typography sx={{ color: "gray", fontSize: 12 }}>
               New Users
             </Typography>
             <Typography sx={{ fontWeight: 400, fontSize: 20 }}>300</Typography>
@@ -145,8 +143,8 @@ export default function ManageBusinesses() {
 
         <Box
           sx={{
-            border: 'none',
-            borderBottom: '1px lightgray solid',
+            border: "none",
+            borderBottom: "1px lightgray solid",
             ml: 4,
             mt: 4,
           }}
@@ -154,258 +152,171 @@ export default function ManageBusinesses() {
           <Typography sx={{ fontWeight: 700 }}>NEW USERS</Typography>
         </Box>
 
-        <Box
+        <Grid
+          container
           sx={{
-            backgroundColor: '#fafafa',
-            display: 'flex',
-            flexDirection: 'row',
+            backgroundColor: "#fafafa",
+            display: "flex",
+            flexDirection: "row",
             ml: 2,
             mt: 2,
             pt: 2,
             pb: 2,
-            border: 'none',
-            borderBottom: '1px lightgray solid',
+            border: "none",
+            borderBottom: "1px lightgray solid",
           }}
         >
-          <Box
+          <Grid
+            item
+            xs={2}
             sx={{
-              width: '16.66%',
               pl: 2,
               pr: 2,
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              border: 'none',
-              borderRight: '1px lightgray solid',
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+              border: "none",
+              borderRight: "1px lightgray solid",
             }}
           >
             <Typography sx={{ fontWeight: 600 }}>Name</Typography>
             <Typography
               sx={{
-                color: 'gray',
+                color: "gray",
               }}
             >
               <UnfoldMoreIcon />
               <SearchIcon />
             </Typography>
-          </Box>
+          </Grid>
 
-          <Box
+          <Grid
+            item
+            xs={2}
             sx={{
-              width: '16.66%',
               pl: 2,
               pr: 2,
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              border: 'none',
-              borderRight: '1px lightgray solid',
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+              border: "none",
+              borderRight: "1px lightgray solid",
             }}
           >
             <Typography sx={{ fontWeight: 600 }}>Surname</Typography>
             <Typography
               sx={{
-                color: 'gray',
+                color: "gray",
               }}
             >
               <UnfoldMoreIcon />
             </Typography>
-          </Box>
+          </Grid>
 
-          <Box
+          <Grid
+            item
+            xs={2}
             sx={{
-              width: '16.66%',
               pl: 2,
               pr: 2,
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              border: 'none',
-              borderRight: '1px lightgray solid',
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+              border: "none",
+              borderRight: "1px lightgray solid",
             }}
           >
             <Typography sx={{ fontWeight: 600 }}>Phone</Typography>
             <Typography
               sx={{
-                color: 'gray',
+                color: "gray",
               }}
             >
               <UnfoldMoreIcon />
             </Typography>
-          </Box>
+          </Grid>
 
-          <Box
+          <Grid
+            item
+            xs={2}
             sx={{
-              width: '16.66%',
               pl: 2,
               pr: 2,
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              border: 'none',
-              borderRight: '1px lightgray solid',
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+              border: "none",
+              borderRight: "1px lightgray solid",
             }}
           >
             <Typography sx={{ fontWeight: 600 }}>Email</Typography>
             <Typography
               sx={{
-                color: 'gray',
+                color: "gray",
               }}
             >
               <UnfoldMoreIcon />
             </Typography>
-          </Box>
+          </Grid>
 
-          <Box
+          <Grid
+            item
+            xs={2}
             sx={{
-              width: '16.66%',
               pl: 2,
               pr: 2,
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              border: 'none',
-              borderRight: '1px lightgray solid',
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+              border: "none",
+              borderRight: "1px lightgray solid",
             }}
           >
             <Typography sx={{ fontWeight: 600 }}>Location</Typography>
             <Typography
               sx={{
-                color: 'gray',
+                color: "gray",
               }}
             >
               <UnfoldMoreIcon />
             </Typography>
-          </Box>
+          </Grid>
 
-          <Box
+          <Grid
+            item
+            xs={2}
             sx={{
-              width: '16.66%',
               pl: 2,
               pr: 2,
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
             }}
           >
             <Typography sx={{ fontWeight: 600 }}>Actions</Typography>
-          </Box>
-        </Box>
+          </Grid>
+        </Grid>
 
-        {usersList.map((user) => (
+        {usersList.length === 0 ? (
           <Box
-            key={user.id}
             sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              border: 'none',
-              borderBottom: '1px lightgray solid',
-              ml: 2,
-              mt: 2,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "100%",
+              height: "20vh",
             }}
           >
-            <Box
-              sx={{
-                width: '16.66%',
-                pl: 2,
-                pr: 2,
-                display: 'flex',
-                alignItems: 'center',
-              }}
-            >
-              <Typography noWrap>{user.name}</Typography>
-            </Box>
-
-            <Box
-              sx={{
-                width: '16.66%',
-                pl: 2,
-                pr: 2,
-                display: 'flex',
-                alignItems: 'center',
-              }}
-            >
-              <Typography noWrap>{user.surname}</Typography>
-            </Box>
-
-            <Box
-              sx={{
-                width: '16.66%',
-                pl: 2,
-                pr: 2,
-                display: 'flex',
-                alignItems: 'center',
-              }}
-            >
-              <Typography noWrap>{user.phone}</Typography>
-            </Box>
-
-            <Box
-              sx={{
-                width: '16.66%',
-                pl: 2,
-                display: 'flex',
-                alignItems: 'center',
-              }}
-            >
-              <Typography noWrap>{user.email}</Typography>
-            </Box>
-
-            <Box
-              sx={{
-                width: '16.66%',
-                pl: 1,
-                display: 'flex',
-                alignItems: 'center',
-              }}
-            >
-              <Typography noWrap>{user.location}</Typography>
-            </Box>
-
-            <Box
-              sx={{
-                width: '16.66%',
-                pl: 1,
-                pr: 1,
-                display: 'flex',
-                alignItems: 'center',
-              }}
-            >
-              <Button
-                onClick={handleActions}
-                variant="text"
-                sx={{
-                  textDecoration: 'none',
-                  color: '#1890ff',
-                  display: 'flex',
-                  alignItems: 'center',
-                }}
-              >
-                <Box
-                  sx={{
-                    pr: 1,
-                    border: 'none',
-                    borderRight: '1px lightgray solid',
-                  }}
-                >
-                  <Typography sx={{ fontSize: 12 }}>
-                    {user.actions[0]}
-                  </Typography>
-                </Box>
-                <Box sx={{ pl: 1 }}>
-                  <Typography sx={{ fontSize: 12 }}>
-                    {user.actions[1]}
-                  </Typography>
-                </Box>
-              </Button>
-            </Box>
+            <CircularProgress />
           </Box>
-        ))}
+        ) : (
+          usersList.map((user) => <UserCard key={user.id} user={user} />)
+        )}
       </Box>
     </Box>
   );
