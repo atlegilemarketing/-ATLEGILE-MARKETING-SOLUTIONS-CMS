@@ -2,11 +2,11 @@ import React, { useState, useRef } from "react";
 import { Box, Typography, Avatar, Button } from "@mui/material";
 import { Star as StarIcon } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import { firebase,storageBucket } from "./config";
+import { firebase } from "./config";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { getDownloadURL, ref, uploadBytes,getStorage } from "firebase/storage";
 
 export default function SideNav() {
   const navigate = useNavigate();
