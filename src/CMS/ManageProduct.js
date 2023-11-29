@@ -25,9 +25,13 @@ export default function ManageProducts() {
         const productsData = snapshot.docs.map((doc) => ({
           id: doc.id,
           businessName: doc.data().businessName,
-          regNumber: doc.data().regNumber,
-          businessType: doc.data().businessType,
-          industry: doc.data().industry,
+          description: doc.data().description,
+          image: doc.data().image,
+          price: doc.data().price,
+          productName: doc.data().productName,
+          quantity: doc.data().quantity,
+          sales: doc.data().sales,
+          selectedProductCategory: doc.data().selectedProductCategory,
         }));
         setProductsList(productsData);
         setProductsCount(snapshot.size);
@@ -42,10 +46,9 @@ export default function ManageProducts() {
           id: doc.id,
           usersName: doc.data().usersName,
         }));
-        setProductsList(usersData);  
-        setUsersCount(usersSnapshot.size);  
+        setUsersCount(usersSnapshot.size);
       } catch (error) {
-        console.error("Error fetching users:", error);  
+        console.error("Error fetching users:", error);
       }
     };
 
@@ -354,6 +357,7 @@ export default function ManageProducts() {
                 openProductDetails={openProductDetails}
                 setOpenProductDetails={setOpenProductDetails}
                 product={product}
+                key={product.id}
               />
             ))
           )}
