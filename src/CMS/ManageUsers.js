@@ -11,7 +11,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import UserCard from "./UserCard";
 
 export default function ManageUsers() {
-  // State variables
   const [usersList, setUsersList] = useState([]);
   const [usersCount, setUsersCount] = useState(0);
   const [businessesCount, setBusinessesCount] = useState(0);
@@ -34,9 +33,6 @@ export default function ManageUsers() {
           actions: ["Block User", "View Details"],
         }));
         setUsersList(usersData);
-
-        // const usersRef = firebase.firestore().collection("Users");
-        // const usersSnapshot = await  usersRef.get();
         setUsersCount( usersSnapshot.size);
 
         const businessesRef = firebase.firestore().collection("Business");
