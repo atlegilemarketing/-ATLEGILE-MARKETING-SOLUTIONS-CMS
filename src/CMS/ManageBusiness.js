@@ -163,7 +163,7 @@ setUsersCount( usersSnapshot.size);
               mt: 4,
             }}
           >
-            <Typography sx={{ fontWeight: 700 }}> {businessesCount}</Typography>
+            <Typography sx={{ fontWeight: 700 }}> NEW BUSINESSES</Typography>
           </Box>
 
           <Grid

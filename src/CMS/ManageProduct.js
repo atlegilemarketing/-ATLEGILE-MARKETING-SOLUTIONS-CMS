@@ -49,7 +49,7 @@ export default function ManageProducts() {
       >
         <Box
           sx={{
-            height: "20vh",
+            height: "20%",
             backgroundColor: "#072840",
             display: "flex",
           }}
@@ -80,7 +80,7 @@ export default function ManageProducts() {
 
         <Box
           sx={{
-            height: "80vh",
+            height: "80%",
           }}
         >
           <Box
@@ -150,8 +150,8 @@ export default function ManageProducts() {
 
           <Box
             sx={{
-              bproduct: "none",
-              bproductBottom: "1px lightgray solid",
+              border: "none",
+              borderBottom: "1px lightgray solid",
               ml: 4,
               mt: 4,
             }}
@@ -169,8 +169,8 @@ export default function ManageProducts() {
               mt: 2,
               pt: 2,
               pb: 2,
-              bproduct: "none",
-              bproductBottom: "1px lightgray solid",
+              border: "none",
+              borderBottom: "1px lightgray solid",
             }}
           >
             <Grid
@@ -183,12 +183,11 @@ export default function ManageProducts() {
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-between",
-                bproduct: "none",
-                bproductRight: "1px lightgray solid",
+       
               }}
             >
               <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
-              Product Name
+                Product Name
               </Typography>
               <Typography
                 sx={{
@@ -210,8 +209,7 @@ export default function ManageProducts() {
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-between",
-                bproduct: "none",
-                bproductRight: "1px lightgray solid",
+
               }}
             >
               <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
@@ -236,8 +234,7 @@ export default function ManageProducts() {
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-between",
-                bproduct: "none",
-                bproductRight: "1px lightgray solid",
+
               }}
             >
               <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
@@ -262,8 +259,7 @@ export default function ManageProducts() {
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-between",
-                bproduct: "none",
-                bproductRight: "1px lightgray solid",
+
               }}
             >
               <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
@@ -327,7 +323,7 @@ export default function ManageProducts() {
                 alignItems: "center",
                 justifyContent: "center",
                 width: "100%",
-                height: "20vh",
+                height: "20%",
               }}
             >
               <CircularProgress />

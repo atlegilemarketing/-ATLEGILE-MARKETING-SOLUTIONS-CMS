@@ -67,7 +67,7 @@ function OrderCard({ openOrderDetails, setOpenOrderDetails, order }) {
       >
         <Grid
           item
-          xs={2}
+          xs={12/7}
           sx={{
             pl: 2,
             pr: 2,
@@ -82,7 +82,22 @@ function OrderCard({ openOrderDetails, setOpenOrderDetails, order }) {
 
         <Grid
           item
-          xs={2}
+          xs={12/7}
+          sx={{
+            pl: 2,
+            pr: 2,
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <Typography sx={{ fontSize: 14 }} noWrap>
+            {order.orderName}
+          </Typography>
+        </Grid>
+
+        <Grid
+          item
+          xs={12/7}
           sx={{
             pl: 2,
             pr: 2,
@@ -97,7 +112,7 @@ function OrderCard({ openOrderDetails, setOpenOrderDetails, order }) {
 
         <Grid
           item
-          xs={2}
+          xs={12/7}
           sx={{
             pl: 2,
             pr: 2,
@@ -112,7 +127,7 @@ function OrderCard({ openOrderDetails, setOpenOrderDetails, order }) {
 
         <Grid
           item
-          xs={2}
+          xs={12/7}
           sx={{
             pl: 2,
             pr: 2,
@@ -127,7 +142,7 @@ function OrderCard({ openOrderDetails, setOpenOrderDetails, order }) {
 
         <Grid
           item
-          xs={2}
+          xs={12/7}
           sx={{
             pl: 2,
             pr: 2,
@@ -142,7 +157,7 @@ function OrderCard({ openOrderDetails, setOpenOrderDetails, order }) {
 
         <Grid
           item
-          xs={2}
+          xs={12/7}
           sx={{
             pl: 1,
             pr: 1,

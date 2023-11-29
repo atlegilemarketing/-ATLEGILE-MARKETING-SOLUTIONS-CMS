@@ -1,11 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Box, Typography, Avatar, Button } from "@mui/material";
 import { Star as StarIcon } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-function SideNav() {
+import { firebase,storageBucket } from "./config";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+
+export default function SideNav() {
   const navigate = useNavigate();
   const [activePage, setActivePage] = useState("");
-
+  const [image, setImage] = useState(null);
+  const [imageURL, setImageURL] = useState(null);
+  const fileInputRef = useRef(null);
+  const [user] = useAuthState(firebase.auth());
+console.log("",user)
   const handleNavigateToDashboard = () => {
     setActivePage("dashboard");
     navigate("dashboard");
@@ -32,11 +42,40 @@ function SideNav() {
   };
 
   const handleSignOut = () => {};
+
+  const handleFileChange = (e) => {
+    const selectedImage = e.target.files[0];
+    //console.log("selectedImage: ", selectedImage);
+    if (selectedImage) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setImage(e.target.result);
+      };
+      reader.readAsDataURL(selectedImage);
+    }
+  };
+
+  const openFileInput = () => {
+    fileInputRef.current.click();
+  };
+
+  //{
+  //   image !==null?()=>{
+  //      const imgRef =  ref(storageBucket, `images/${Date.now()}`)
+  //      uploadBytes(imgRef,image).then(value=>{
+  //          console.log(value)
+  //          getDownloadURL(value.ref).then(url=>{
+  //              setImageURL(data=>[...data,url])
+  //          })
+  //      })
+  //   }:()=>null
+  //  }
+
   return (
     <Box
       sx={{
         width: "318px",
-        height: "97vh",
+        //height: "110%",
         border: "none",
         borderRight: "1px lightgray solid",
         padding: 2,
@@ -45,17 +84,25 @@ function SideNav() {
         alignItems: "center",
       }}
     >
-      <Avatar
+      <input
+        type="file"
+        onChange={handleFileChange}
+        style={{ display: "none" }}
+        ref={fileInputRef}
+      />{user.name?
+        <Avatar alt={user.name} src={user.imageURL} sx={{cursor:"pointer"}} onClick={openFileInput}/>:<Avatar
         sx={{
           color: "gray",
           width: 275,
           height: 275,
           mt: 8,
           mb: 4,
+          cursor:"pointer"
         }}
+        onClick={openFileInput}
       >
         S
-      </Avatar>
+      </Avatar>}
       <Box
         sx={{
           display: "flex",
@@ -65,7 +112,7 @@ function SideNav() {
         }}
       >
         <Typography variant="h4" sx={{ fontWeight: 700, color: "black" }}>
-          Sarah
+          James
         </Typography>
         <Typography sx={{ fontWeight: 600, color: "black" }}>
           0123456789
@@ -83,7 +130,8 @@ function SideNav() {
             borderBottom: "1px lightgray solid",
             justifyContent: "flex-start",
             textTransform: "none",
-            backgroundColor:activePage==="dashboard"?"#b8d9f7":"transparent"
+            backgroundColor:
+              activePage === "dashboard" ? "#b8d9f7" : "transparent",
           }}
         >
           <StarIcon sx={{ color: "gray", mr: 4 }} />
@@ -101,7 +149,7 @@ function SideNav() {
             borderBottom: "1px lightgray solid",
             justifyContent: "flex-start",
             textTransform: "none",
-            backgroundColor:activePage==="users"?"#b8d9f7":"transparent"
+            backgroundColor: activePage === "users" ? "#b8d9f7" : "transparent",
           }}
         >
           <StarIcon sx={{ color: "gray", mr: 4 }} />
@@ -119,7 +167,8 @@ function SideNav() {
             borderBottom: "1px lightgray solid",
             justifyContent: "flex-start",
             textTransform: "none",
-            backgroundColor:activePage==="orders"?"#b8d9f7":"transparent"
+            backgroundColor:
+              activePage === "orders" ? "#b8d9f7" : "transparent",
           }}
         >
           <StarIcon sx={{ color: "gray", mr: 4 }} />
@@ -137,7 +186,8 @@ function SideNav() {
             borderBottom: "1px lightgray solid",
             justifyContent: "flex-start",
             textTransform: "none",
-            backgroundColor:activePage==="products"?"#b8d9f7":"transparent"
+            backgroundColor:
+              activePage === "products" ? "#b8d9f7" : "transparent",
           }}
         >
           <StarIcon sx={{ color: "gray", mr: 4 }} />
@@ -155,7 +205,8 @@ function SideNav() {
             borderBottom: "1px lightgray solid",
             justifyContent: "flex-start",
             textTransform: "none",
-            backgroundColor:activePage==="businesses"?"#b8d9f7":"transparent"
+            backgroundColor:
+              activePage === "businesses" ? "#b8d9f7" : "transparent",
           }}
         >
           <StarIcon sx={{ color: "gray", mr: 4 }} />
@@ -179,4 +230,3 @@ function SideNav() {
     </Box>
   );
 }
-export default SideNav;

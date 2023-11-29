@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Grid, Typography, Button, Modal, Box } from "@mui/material";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
-function ProductCard({ openProductDetails, setOpenProductDetails, product }) {
-  console.log(product)
+function ProductCard({ product }) {
+  const [open, setOpen] = useState(false);
+  console.log(product);
   return (
     <>
       <Modal
-        open={openProductDetails}
-        onClose={() => setOpenProductDetails(false)}
+        open={open}
+        onClose={() => setOpen(false)}
         sx={{
           "& .MuiBackdrop-root": { backgroundColor: "rgb(0,0,0,0.1)" },
           display: "flex",
@@ -18,39 +19,38 @@ function ProductCard({ openProductDetails, setOpenProductDetails, product }) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={{ backgroundColor: "white" }}>
+        <Box>
           <Box
             sx={{
-              bproduct: "none",
-              bproductBottom: "1px lightgray solid",
+              backgroundColor: "#072840",
               p: 2,
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
+              color: "white",
             }}
           >
             <Typography sx={{ fontWeight: 700 }}>Product Details</Typography>
 
             <Button
-              onClick={() => setOpenProductDetails(false)}
+              onClick={() => setOpen(false)}
               variant="text"
-              fullWidth
               sx={{
                 display: "flex",
                 justifyContent: "flex-end",
                 alignItems: "flex-end",
-                color: "black",
+                color: "white",
               }}
             >
               <HighlightOffIcon />
             </Button>
           </Box>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
+          <Box sx={{ backgroundColor: "white", p: 3 }}>
+            <Typography>Business Name: {product.productName}</Typography>
+            <Typography>Reg Number: {product.regNumber}</Typography>
+            <Typography>Business Type: {product.productType}</Typography>
+            <Typography>Industry: {product.industry}</Typography>
+          </Box>
         </Box>
       </Modal>
 
@@ -60,8 +60,8 @@ function ProductCard({ openProductDetails, setOpenProductDetails, product }) {
         sx={{
           display: "flex",
           flexDirection: "row",
-          bproduct: "none",
-          bproductBottom: "1px lightgray solid",
+          border: "none",
+          borderBottom: "1px lightgray solid",
           ml: 2,
           mt: 2,
         }}
@@ -152,7 +152,7 @@ function ProductCard({ openProductDetails, setOpenProductDetails, product }) {
           }}
         >
           <Button
-            onClick={() => setOpenProductDetails(true)}
+            onClick={() => setOpen(true)}
             variant="text"
             sx={{ textDecoration: "none", color: "#1890ff", fontSize: 14 }}
           >

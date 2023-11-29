@@ -175,7 +175,7 @@ export default function ManageOrders() {
           >
             <Grid
               item
-              xs={2}
+              xs={12/7}
               sx={{
                 pl: 2,
                 pr: 2,
@@ -188,7 +188,7 @@ export default function ManageOrders() {
               }}
             >
               <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
-                Invoice
+                Invoice number
               </Typography>
               <Typography
                 sx={{
@@ -202,7 +202,7 @@ export default function ManageOrders() {
 
             <Grid
               item
-              xs={2}
+              xs={12/7}
               sx={{
                 pl: 2,
                 pr: 2,
@@ -215,7 +215,7 @@ export default function ManageOrders() {
               }}
             >
               <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
-                Date
+                User name
               </Typography>
               <Typography
                 sx={{
@@ -228,7 +228,7 @@ export default function ManageOrders() {
 
             <Grid
               item
-              xs={2}
+              xs={12/7}
               sx={{
                 pl: 2,
                 pr: 2,
@@ -241,7 +241,7 @@ export default function ManageOrders() {
               }}
             >
               <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
-                Order Name
+                Purchase Date
               </Typography>
               <Typography
                 sx={{
@@ -254,7 +254,7 @@ export default function ManageOrders() {
 
             <Grid
               item
-              xs={2}
+              xs={12/7}
               sx={{
                 pl: 2,
                 pr: 2,
@@ -267,7 +267,7 @@ export default function ManageOrders() {
               }}
             >
               <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
-                Company
+                Delivery Date
               </Typography>
               <Typography
                 sx={{
@@ -280,7 +280,7 @@ export default function ManageOrders() {
 
             <Grid
               item
-              xs={2}
+              xs={12/7}
               sx={{
                 pl: 2,
                 pr: 2,
@@ -293,7 +293,7 @@ export default function ManageOrders() {
               }}
             >
               <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
-                Total
+                Delivery Status
               </Typography>
               <Typography
                 sx={{
@@ -303,9 +303,36 @@ export default function ManageOrders() {
                 <UnfoldMoreIcon sx={{ fontSize: 17 }} />
               </Typography>
             </Grid>
+
             <Grid
               item
-              xs={2}
+              xs={12/7}
+              sx={{
+                pl: 2,
+                pr: 2,
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+                border: "none",
+                borderRight: "1px lightgray solid",
+              }}
+            >
+              <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
+                Delivery Address
+              </Typography>
+              <Typography
+                sx={{
+                  color: "gray",
+                }}
+              >
+                <UnfoldMoreIcon sx={{ fontSize: 17 }} />
+              </Typography>
+            </Grid>
+
+            <Grid
+              item
+              xs={12/7}
               sx={{
                 pl: 2,
                 pr: 2,
