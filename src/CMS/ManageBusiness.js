@@ -16,7 +16,6 @@ export default function ManageBusinesses() {
   const [businessesCount, setBusinessesCount] = useState(0);
   const [user] = useAuthState(firebase.auth());
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -30,11 +29,11 @@ export default function ManageBusinesses() {
           industry: doc.data().selectedIndustry,
         }));
         setBusinessesList(businessesData);
-        // setBusinessesCount(businessesSnapshot.size);
+        setBusinessesCount(snapshot.size); 
 
         const usersRef = firebase.firestore().collection("Users");
         const usersSnapshot = await usersRef.get();
-setUsersCount( usersSnapshot.size);
+        setUsersCount(usersSnapshot.size);
       } catch (error) {
         console.error("Error fetching businesses:", error);
       }

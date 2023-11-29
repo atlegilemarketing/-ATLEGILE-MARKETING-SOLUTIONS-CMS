@@ -92,7 +92,7 @@ function ProductCard({ product }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-            {product.regNumber}
+          {product.businessName}
           </Typography>
         </Grid>
 
@@ -107,7 +107,7 @@ function ProductCard({ product }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-            {product.productType}
+          {product.price}
           </Typography>
         </Grid>
 
@@ -122,7 +122,7 @@ function ProductCard({ product }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-            {product.industry}
+          {product.quantity}
           </Typography>
         </Grid>
 
@@ -137,7 +137,7 @@ function ProductCard({ product }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-            {product.industry}
+          {product.selectedProductCategory}
           </Typography>
         </Grid>
 

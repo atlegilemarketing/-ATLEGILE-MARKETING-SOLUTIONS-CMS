@@ -12,6 +12,8 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 export default function ManageProducts() {
   const [productsList, setProductsList] = useState([]);
+  const [productsCount, setProductsCount] = useState(0);
+  const [usersCount, setUsersCount] = useState(0);
   const [user] = useAuthState(firebase.auth());
   const [openProductDetails, setOpenProductDetails] = useState(false);
 
@@ -23,13 +25,30 @@ export default function ManageProducts() {
         const productsData = snapshot.docs.map((doc) => ({
           id: doc.id,
           businessName: doc.data().businessName,
-          regNumber: doc.data().regNumber,
-          businessType: doc.data().businessType,
-          industry: doc.data().industry,
+          description: doc.data().description,
+          image: doc.data().image,
+          price: doc.data().price,
+          productName: doc.data().productName,
+          quantity: doc.data().quantity,
+          sales: doc.data().sales,
+          selectedProductCategory: doc.data().selectedProductCategory,
         }));
         setProductsList(productsData);
+        setProductsCount(snapshot.size);
       } catch (error) {
         console.error("Error fetching products:", error);
+      }
+
+      try {
+        const usersRef = firebase.firestore().collection("Users");
+        const usersSnapshot = await usersRef.get();
+        const usersData = usersSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          usersName: doc.data().usersName,
+        }));
+        setUsersCount(usersSnapshot.size);
+      } catch (error) {
+        console.error("Error fetching users:", error);
       }
     };
 
@@ -128,7 +147,7 @@ export default function ManageProducts() {
                 New Products
               </Typography>
               <Typography sx={{ fontWeight: 400, fontSize: 20 }}>
-                300
+              {productsCount}
               </Typography>
             </Box>
 
@@ -143,7 +162,7 @@ export default function ManageProducts() {
                 New Users
               </Typography>
               <Typography sx={{ fontWeight: 400, fontSize: 20 }}>
-                300
+              {usersCount}
               </Typography>
             </Box>
           </Box>
@@ -213,7 +232,7 @@ export default function ManageProducts() {
               }}
             >
               <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
-                Company
+                Business
               </Typography>
               <Typography
                 sx={{
@@ -334,6 +353,7 @@ export default function ManageProducts() {
                 openProductDetails={openProductDetails}
                 setOpenProductDetails={setOpenProductDetails}
                 product={product}
+                key={product.id}
               />
             ))
           )}

@@ -39,7 +39,6 @@ export default function ManageBusinesses() {
       }
 
       try {
-        // Fetch businesses
         const businessesRef = firebase.firestore().collection("Business");
         const businessesSnapshot = await businessesRef.get();
         const businessesData = businessesSnapshot.docs.map((doc) => ({
@@ -57,15 +56,8 @@ export default function ManageBusinesses() {
       }
   
       try {
-        
         const productsRef = firebase.firestore().collection("Products");
         const productsSnapshot = await productsRef.get();
-        const productsData = productsSnapshot.docs.map((doc) => ({
-        
-          id: doc.id,
-          productName: doc.data().productName,
-          
-        }));
         setProductsCount(productsSnapshot.size);
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -161,7 +153,7 @@ export default function ManageBusinesses() {
             <Typography sx={{ color: "gray", fontSize: 12 }}>
               New Businesses
             </Typography>
-            <Typography sx={{ fontWeight: 400, fontSize: 20 }}>{usersCount}</Typography>
+            <Typography sx={{ fontWeight: 400, fontSize: 20 }}>{businessesCount}</Typography>
           </Box>
 
           <Box
@@ -174,7 +166,7 @@ export default function ManageBusinesses() {
             <Typography sx={{ color: "gray", fontSize: 12 }}>
               New Users
             </Typography>
-            <Typography sx={{ fontWeight: 400, fontSize: 20 }}> {businessesCount}</Typography>
+            <Typography sx={{ fontWeight: 400, fontSize: 20 }}> {usersCount}</Typography>
           </Box>
 
           <Box
