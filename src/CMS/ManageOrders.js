@@ -11,25 +11,25 @@ import OrderCard from "./OrderCard";
 import CircularProgress from "@mui/material/CircularProgress";
 
 export default function ManageOrders() {
-  const [productsList, setOrdersList] = useState([]);
+  const [ordersList, setOrdersList] = useState([]);
   const [user] = useAuthState(firebase.auth());
   const [openOrderDetails, setOpenOrderDetails] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const productsRef = firebase.firestore().collection("Orders");
-        const snapshot = await productsRef.get();
-        const productsData = snapshot.docs.map((doc) => ({
+        const ordersRef = firebase.firestore().collection("Orders");
+        const snapshot = await ordersRef.get();
+        const ordersData = snapshot.docs.map((doc) => ({
           id: doc.id,
           businessName: doc.data().businessName,
           regNumber: doc.data().regNumber,
           businessType: doc.data().businessType,
           industry: doc.data().industry,
         }));
-        setOrdersList(productsData);
+        setOrdersList(ordersData);
       } catch (error) {
-        console.error("Error fetching products:", error);
+        console.error("Error fetching orders:", error);
       }
     };
 
@@ -320,7 +320,7 @@ export default function ManageOrders() {
             </Grid>
           </Grid>
 
-          {productsList.length === 0 ? (
+          {ordersList.length === 0 ? (
             <Box
               sx={{
                 display: "flex",
@@ -333,7 +333,7 @@ export default function ManageOrders() {
               <CircularProgress />
             </Box>
           ) : (
-            productsList.map((product) => (
+            ordersList.map((product) => (
               <OrderCard
                 openOrderDetails={openOrderDetails}
                 setOpenOrderDetails={setOpenOrderDetails}

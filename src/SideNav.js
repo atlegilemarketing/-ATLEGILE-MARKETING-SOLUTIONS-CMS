@@ -10,14 +10,17 @@ function SideNav() {
     setActivePage("dashboard");
     navigate("dashboard");
   };
+
   const handleNavigateToBusinesses = () => {
     setActivePage("businesses");
     navigate("businesses");
   };
+
   const handleNavigateToUsers = () => {
     setActivePage("users");
     navigate("users");
   };
+
   const handleNavigateToOrders = () => {
     setActivePage("orders");
     navigate("orders");
@@ -80,7 +83,7 @@ function SideNav() {
             borderBottom: "1px lightgray solid",
             justifyContent: "flex-start",
             textTransform: "none",
-            backgroundColor:"#b8d9f7"
+            backgroundColor:activePage==="dashboard"?"#b8d9f7":"transparent"
           }}
         >
           <StarIcon sx={{ color: "gray", mr: 4 }} />
@@ -98,6 +101,7 @@ function SideNav() {
             borderBottom: "1px lightgray solid",
             justifyContent: "flex-start",
             textTransform: "none",
+            backgroundColor:activePage==="users"?"#b8d9f7":"transparent"
           }}
         >
           <StarIcon sx={{ color: "gray", mr: 4 }} />
@@ -115,6 +119,7 @@ function SideNav() {
             borderBottom: "1px lightgray solid",
             justifyContent: "flex-start",
             textTransform: "none",
+            backgroundColor:activePage==="orders"?"#b8d9f7":"transparent"
           }}
         >
           <StarIcon sx={{ color: "gray", mr: 4 }} />
@@ -132,6 +137,7 @@ function SideNav() {
             borderBottom: "1px lightgray solid",
             justifyContent: "flex-start",
             textTransform: "none",
+            backgroundColor:activePage==="products"?"#b8d9f7":"transparent"
           }}
         >
           <StarIcon sx={{ color: "gray", mr: 4 }} />
@@ -149,6 +155,7 @@ function SideNav() {
             borderBottom: "1px lightgray solid",
             justifyContent: "flex-start",
             textTransform: "none",
+            backgroundColor:activePage==="businesses"?"#b8d9f7":"transparent"
           }}
         >
           <StarIcon sx={{ color: "gray", mr: 4 }} />

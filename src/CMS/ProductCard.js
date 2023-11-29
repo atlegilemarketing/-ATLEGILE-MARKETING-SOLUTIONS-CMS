@@ -2,12 +2,13 @@ import React from "react";
 import { Grid, Typography, Button, Modal, Box } from "@mui/material";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
-function OrderCard({ openOrderDetails, setOpenOrderDetails, order }) {
+function ProductCard({ openProductDetails, setOpenProductDetails, product }) {
+  console.log(product)
   return (
     <>
       <Modal
-        open={openOrderDetails}
-        onClose={() => setOpenOrderDetails(false)}
+        open={openProductDetails}
+        onClose={() => setOpenProductDetails(false)}
         sx={{
           "& .MuiBackdrop-root": { backgroundColor: "rgb(0,0,0,0.1)" },
           display: "flex",
@@ -20,18 +21,18 @@ function OrderCard({ openOrderDetails, setOpenOrderDetails, order }) {
         <Box sx={{ backgroundColor: "white" }}>
           <Box
             sx={{
-              border: "none",
-              borderBottom: "1px lightgray solid",
+              bproduct: "none",
+              bproductBottom: "1px lightgray solid",
               p: 2,
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
             }}
           >
-            <Typography sx={{ fontWeight: 700 }}>Order Details</Typography>
+            <Typography sx={{ fontWeight: 700 }}>Product Details</Typography>
 
             <Button
-              onClick={() => setOpenOrderDetails(false)}
+              onClick={() => setOpenProductDetails(false)}
               variant="text"
               fullWidth
               sx={{
@@ -55,12 +56,12 @@ function OrderCard({ openOrderDetails, setOpenOrderDetails, order }) {
 
       <Grid
         container
-        key={order.id}
+        key={product.id}
         sx={{
           display: "flex",
           flexDirection: "row",
-          border: "none",
-          borderBottom: "1px lightgray solid",
+          bproduct: "none",
+          bproductBottom: "1px lightgray solid",
           ml: 2,
           mt: 2,
         }}
@@ -76,7 +77,7 @@ function OrderCard({ openOrderDetails, setOpenOrderDetails, order }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-            {order.orderName}
+            {product.productName}
           </Typography>
         </Grid>
 
@@ -91,7 +92,7 @@ function OrderCard({ openOrderDetails, setOpenOrderDetails, order }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-            {order.regNumber}
+            {product.regNumber}
           </Typography>
         </Grid>
 
@@ -106,7 +107,7 @@ function OrderCard({ openOrderDetails, setOpenOrderDetails, order }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-            {order.orderType}
+            {product.productType}
           </Typography>
         </Grid>
 
@@ -121,7 +122,7 @@ function OrderCard({ openOrderDetails, setOpenOrderDetails, order }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-            {order.industry}
+            {product.industry}
           </Typography>
         </Grid>
 
@@ -136,7 +137,7 @@ function OrderCard({ openOrderDetails, setOpenOrderDetails, order }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-            {order.industry}
+            {product.industry}
           </Typography>
         </Grid>
 
@@ -151,7 +152,7 @@ function OrderCard({ openOrderDetails, setOpenOrderDetails, order }) {
           }}
         >
           <Button
-            onClick={() => setOpenOrderDetails(true)}
+            onClick={() => setOpenProductDetails(true)}
             variant="text"
             sx={{ textDecoration: "none", color: "#1890ff", fontSize: 14 }}
           >
@@ -163,4 +164,4 @@ function OrderCard({ openOrderDetails, setOpenOrderDetails, order }) {
   );
 }
 
-export default OrderCard;
+export default ProductCard;
