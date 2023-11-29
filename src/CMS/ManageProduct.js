@@ -234,7 +234,7 @@ export default function ManageProducts() {
               }}
             >
               <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
-                Company
+                Business
               </Typography>
               <Typography
                 sx={{
