@@ -24,14 +24,14 @@ export default function TestInoviceUpload() {
         "orderSummary": 3000.00,
         "price": 4500.00,
         "products": [
-            {"name":"Sneakers","business":"Nike","price":856.23,"quantity":2,"total":(856.23*2)},
-            {"name":"Sneakers","business":"Nike","price":856.23,"quantity":2,"total":(856.23*2)},
-            {"name":"Sneakers","business":"Nike","price":856.23,"quantity":2,"total":(856.23*2)},
+            {"productName":"Sneakers","businessName":"Nike","price":856.23,"quantity":2,"total":(856.23*2)},
+            {"productName":"Sneakers","businessName":"Nike","price":856.23,"quantity":2,"total":(856.23*2)},
+            {"productName":"Sneakers","businessName":"Nike","price":856.23,"quantity":2,"total":(856.23*2)},
         ],
         "purchaseDate": "24 November 2023",
         "total": 3170.00,
-        "userName":"Mandy",
-        "userSurname":"June",
+        "name":"Mandy",
+        "surname":"June",
       }
       );
 
@@ -41,7 +41,7 @@ export default function TestInoviceUpload() {
       console.error("Error creating invoice:", error);
     }
   };
-  //testOrder();
+  // testOrder();
   return (
     <div>
       <p>testInoviceUpload</p>

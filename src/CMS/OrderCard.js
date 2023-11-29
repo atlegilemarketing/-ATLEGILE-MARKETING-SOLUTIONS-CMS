@@ -91,7 +91,7 @@ function OrderCard({ openOrderDetails, setOpenOrderDetails, order }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-            {order.orderName}
+         {order.userName}
           </Typography>
         </Grid>
 
@@ -106,7 +106,7 @@ function OrderCard({ openOrderDetails, setOpenOrderDetails, order }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-            {order.regNumber}
+          {order. purchaseDate}
           </Typography>
         </Grid>
 
@@ -121,7 +121,7 @@ function OrderCard({ openOrderDetails, setOpenOrderDetails, order }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-            {order.orderType}
+          {order.deliveryDate}
           </Typography>
         </Grid>
 
@@ -136,7 +136,7 @@ function OrderCard({ openOrderDetails, setOpenOrderDetails, order }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-            {order.industry}
+          {order.deliveryStatus}
           </Typography>
         </Grid>
 
@@ -151,7 +151,7 @@ function OrderCard({ openOrderDetails, setOpenOrderDetails, order }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-            {order.industry}
+          {order.deliveryAddress}
           </Typography>
         </Grid>
 

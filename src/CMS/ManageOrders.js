@@ -22,10 +22,18 @@ export default function ManageOrders() {
         const snapshot = await ordersRef.get();
         const ordersData = snapshot.docs.map((doc) => ({
           id: doc.id,
-          businessName: doc.data().businessName,
-          regNumber: doc.data().regNumber,
-          businessType: doc.data().businessType,
-          industry: doc.data().industry,
+          agentReferal: doc.data().agentReferal,
+          deliveryAddress: doc.data().deliveryAddress,
+          deliveryDate: doc.data().deliveryDate,
+          deliveryGuy: doc.data().deliveryGuy,
+          deliveryFee: doc.data().deliveryFee,
+          orderNumber: doc.data().orderNumber,
+          orderSummary: doc.data().orderSummary,
+          purchaseDate: doc.data().purchaseDate,
+          total: doc.data().total,
+          userName: doc.data().userName,
+          userSurname: doc.data().userSurname,
+          products: doc.data().products,
         }));
         setOrdersList(ordersData);
       } catch (error) {
@@ -360,11 +368,12 @@ export default function ManageOrders() {
               <CircularProgress />
             </Box>
           ) : (
-            ordersList.map((product) => (
+            ordersList.map((order) => (
               <OrderCard
                 openOrderDetails={openOrderDetails}
                 setOpenOrderDetails={setOpenOrderDetails}
-                product={product}
+                order={order}
+                key={order.id}
               />
             ))
           )}
