@@ -7,8 +7,6 @@ import { firebase } from "../config";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
-import UserCard from "./UserCard";
-import BusinessCard from "./BusinessCard";
 import CircularProgress from "@mui/material/CircularProgress";
 
 export default function ManageBusinesses() {
@@ -45,7 +43,7 @@ export default function ManageBusinesses() {
           regNumber: doc.data().regNumber,
           businessType: doc.data().selectedBusinessType,
           industry: doc.data().selectedIndustry,
-          actions: ['Some Action'],
+          actions: ["Some Action"],
         }));
         setBusinessesList(businessesData);
       } catch (error) {
@@ -367,12 +365,19 @@ export default function ManageBusinesses() {
                     xs={12 / 5}
                     sx={{
                       pl: 2,
-                      pr: 2
+                      pr: 2,
+                      //
+                      //border:"1px red solid"
                     }}
                   >
-                    <Typography sx={{ fontSize: 14,
-                      display: "flex",
-                      alignItems: "center", }} noWrap>
+                    <Typography
+                      sx={{
+                        fontSize: 14,
+                        display: "flex",
+                        pb:1
+                      }}
+                      noWrap
+                    >
                       {user.name}
                     </Typography>
                   </Grid>
@@ -385,6 +390,7 @@ export default function ManageBusinesses() {
                       pr: 2,
                       display: "flex",
                       alignItems: "center",
+                      //border:"1px red solid"
                     }}
                   >
                     <Typography sx={{ fontSize: 14 }} noWrap>
@@ -400,6 +406,7 @@ export default function ManageBusinesses() {
                       pr: 2,
                       display: "flex",
                       alignItems: "center",
+                      //border:"1px red solid"
                     }}
                   >
                     <Typography sx={{ fontSize: 14 }} noWrap>
@@ -414,6 +421,7 @@ export default function ManageBusinesses() {
                       pl: 2,
                       display: "flex",
                       alignItems: "center",
+                      //border: "1px red solid",
                     }}
                   >
                     <Typography sx={{ fontSize: 14 }} noWrap>
@@ -427,7 +435,7 @@ export default function ManageBusinesses() {
                     sx={{
                       pl: 1,
                       display: "flex",
-                      alignItems: "center",
+                      //border: "1px red solid",
                     }}
                   >
                     <Typography sx={{ fontSize: 14 }} noWrap>
@@ -479,7 +487,9 @@ export default function ManageBusinesses() {
                   borderRight: "1px lightgray solid",
                 }}
               >
-                <Typography sx={{ fontWeight: 550, fontSize: 14 }}>Business Name</Typography>
+                <Typography sx={{ fontWeight: 550, fontSize: 14 }}>
+                  Business Name
+                </Typography>
                 <Typography
                   sx={{
                     color: "gray",
@@ -504,7 +514,9 @@ export default function ManageBusinesses() {
                   borderRight: "1px lightgray solid",
                 }}
               >
-                <Typography sx={{ fontWeight: 550, fontSize: 14 }}>Reg Number</Typography>
+                <Typography sx={{ fontWeight: 550, fontSize: 14 }}>
+                  Reg Number
+                </Typography>
                 <Typography
                   sx={{
                     color: "gray",
@@ -552,7 +564,9 @@ export default function ManageBusinesses() {
                   justifyContent: "space-between",
                 }}
               >
-                <Typography sx={{ fontWeight: 550, fontSize: 14 }}>Industry</Typography>
+                <Typography sx={{ fontWeight: 550, fontSize: 14 }}>
+                  Industry
+                </Typography>
                 <Typography
                   sx={{
                     color: "gray",
@@ -586,7 +600,7 @@ export default function ManageBusinesses() {
                     border: "none",
                     borderBottom: "1px lightgray solid",
                     ml: 0,
-                    mt: 2,
+                    mt: 4,
                   }}
                 >
                   <Grid
@@ -595,9 +609,13 @@ export default function ManageBusinesses() {
                     sx={{
                       pl: 2,
                       pr: 2,
+                      display: "flex",
+                      alignItems: "center",
                     }}
                   >
-                    <Typography sx={{ fontSize: 14 }} >{business.businessName}</Typography>
+                    <Typography sx={{ fontSize: 14 }} noWrap>
+                      {business.businessName}
+                    </Typography>
                   </Grid>
 
                   <Grid
@@ -606,9 +624,13 @@ export default function ManageBusinesses() {
                     sx={{
                       pl: 2,
                       pr: 2,
+                      display: "flex",
+                      alignItems: "center",
                     }}
                   >
-                    <Typography sx={{ fontSize: 14 }} >{business.regNumber}</Typography>
+                    <Typography sx={{ fontSize: 14 }} noWrap>
+                      {business.regNumber}
+                    </Typography>
                   </Grid>
 
                   <Grid
@@ -617,9 +639,13 @@ export default function ManageBusinesses() {
                     sx={{
                       pl: 2,
                       pr: 2,
+                      display: "flex",
+                      alignItems: "center",
                     }}
                   >
-                    <Typography sx={{ fontSize: 14 }} >{business.businessType}</Typography>
+                    <Typography sx={{ fontSize: 14 }} noWrap>
+                      {business.businessType}
+                    </Typography>
                   </Grid>
 
                   <Grid
@@ -628,9 +654,13 @@ export default function ManageBusinesses() {
                     sx={{
                       pl: 2,
                       pr: 2,
+                      display: "flex",
+                      alignItems: "center",
                     }}
                   >
-                    <Typography sx={{ fontSize: 14 }} >{business.industry}</Typography>
+                    <Typography sx={{ fontSize: 14 }} noWrap>
+                      {business.industry}
+                    </Typography>
                   </Grid>
                 </Grid>
               ))

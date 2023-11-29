@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import { Grid, Typography, Button, Modal, Box } from "@mui/material";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
-function BusinessCard({
-  business,
-}) {
+function BusinessCard({ business }) {
   const [open, setOpen] = useState(false);
-  console.log("Industry: ",business.industry)
+  console.log("Industry: ", business.industry);
   return (
     <>
       <Modal
@@ -47,7 +45,7 @@ function BusinessCard({
               <HighlightOffIcon />
             </Button>
           </Box>
-          <Box sx={{ backgroundColor: "white",p:3 }}>
+          <Box sx={{ backgroundColor: "white", p: 3 }}>
             <Typography>Business Name: {business.businessName}</Typography>
             <Typography>Reg Number: {business.regNumber}</Typography>
             <Typography>Business Type: {business.businessType}</Typography>
@@ -73,11 +71,14 @@ function BusinessCard({
           xs={12 / 5}
           sx={{
             pl: 2,
-            pr: 2,display: "flex",
+            pr: 2,
+            display: "flex",
             alignItems: "center",
           }}
         >
-          <Typography sx={{ fontSize: 14 }} >{business.businessName}</Typography>
+          <Typography sx={{ fontSize: 14 }} noWrap>
+            {business.businessName}
+          </Typography>
         </Grid>
 
         <Grid
@@ -85,11 +86,14 @@ function BusinessCard({
           xs={12 / 5}
           sx={{
             pl: 2,
-            pr: 2,display: "flex",
+            pr: 2,
+            display: "flex",
             alignItems: "center",
           }}
         >
-          <Typography sx={{ fontSize: 14 }} >{business.regNumber}</Typography>
+          <Typography sx={{ fontSize: 14 }} noWrap>
+            {business.regNumber}
+          </Typography>
         </Grid>
 
         <Grid
@@ -97,11 +101,14 @@ function BusinessCard({
           xs={12 / 5}
           sx={{
             pl: 2,
-            pr: 2,display: "flex",
+            pr: 2,
+            display: "flex",
             alignItems: "center",
           }}
         >
-          <Typography sx={{ fontSize: 14 }} >{business.businessType}</Typography>
+          <Typography sx={{ fontSize: 14 }} noWrap>
+            {business.businessType}
+          </Typography>
         </Grid>
 
         <Grid
@@ -109,11 +116,14 @@ function BusinessCard({
           xs={12 / 5}
           sx={{
             pl: 2,
-            pr: 2,display: "flex",
+            pr: 2,
+            display: "flex",
             alignItems: "center",
           }}
         >
-          <Typography sx={{ fontSize: 14 }} >{business.industry}</Typography>
+          <Typography sx={{ fontSize: 14 }} noWrap>
+            {business.industry}
+          </Typography>
         </Grid>
 
         <Grid
@@ -121,13 +131,15 @@ function BusinessCard({
           xs={12 / 5}
           sx={{
             pl: 1,
-            pr: 1, 
+            pr: 1,
+            display: "flex",
+            alignItems: "center",
           }}
         >
           <Button
             onClick={() => setOpen(true)}
             variant="text"
-            sx={{ textDecoration: "none", color: "#1890ff",fontSize: 14  }}
+            sx={{ textDecoration: "none", color: "#1890ff", fontSize: 14 }}
           >
             View Details
           </Button>

@@ -6,19 +6,19 @@ import { firebase } from "../config";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
-import clipArt from "../images/clipArtProducts.png";
-import ProductCard from "./ProductCard";
+import clipArt from "../images/clipArtOrders.png";
+import OrderCard from "./OrdersCard";
 import CircularProgress from "@mui/material/CircularProgress";
 
-export default function ManageProducts() {
-  const [productsList, setProductsList] = useState([]);
+export default function ManageOrders() {
+  const [productsList, setOrdersList] = useState([]);
   const [user] = useAuthState(firebase.auth());
-  const [openProductDetails, setOpenProductDetails] = useState(false);
+  const [openOrderDetails, setOpenOrderDetails] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const productsRef = firebase.firestore().collection("Products");
+        const productsRef = firebase.firestore().collection("Orders");
         const snapshot = await productsRef.get();
         const productsData = snapshot.docs.map((doc) => ({
           id: doc.id,
@@ -27,7 +27,7 @@ export default function ManageProducts() {
           businessType: doc.data().businessType,
           industry: doc.data().industry,
         }));
-        setProductsList(productsData);
+        setOrdersList(productsData);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -125,7 +125,7 @@ export default function ManageProducts() {
               }}
             >
               <Typography sx={{ color: "gray", fontSize: 12 }}>
-                New Products
+                New Orders
               </Typography>
               <Typography sx={{ fontWeight: 400, fontSize: 20 }}>
                 300
@@ -236,7 +236,7 @@ export default function ManageProducts() {
                 borderRight: "1px lightgray solid",
               }}
             >
-              <Typography sx={{ fontWeight: 600,fontSize: 14 }}>Product Name</Typography>
+              <Typography sx={{ fontWeight: 600,fontSize: 14 }}>Order Name</Typography>
               <Typography
                 sx={{
                   color: "gray",
@@ -314,9 +314,9 @@ export default function ManageProducts() {
             </Box>
           ) : (
             productsList.map((product) => (
-              <ProductCard
-                openProductDetails={openProductDetails}
-                setOpenProductDetails={setOpenProductDetails}
+              <OrderCard
+                openOrderDetails={openOrderDetails}
+                setOpenOrderDetails={setOpenOrderDetails}
                 product={product}
               />
             ))

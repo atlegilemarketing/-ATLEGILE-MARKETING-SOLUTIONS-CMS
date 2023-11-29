@@ -1,43 +1,48 @@
 import React from "react";
 import { Grid, Typography, Button, Modal, Box } from "@mui/material";
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
-
-function ProductCard({ openProductDetails, setOpenProductDetails, product }) {
+function OrderCard({ openOrderDetails, setOpenOrderDetails, order }) {
   return (
     <>
       <Modal
-        open={openProductDetails}
-        onClose={() => setOpenProductDetails(false)}
-        sx={{ "& .MuiBackdrop-root": { backgroundColor: "rgb(0,0,0,0.1)" },display:"flex",alignItems:"center",justifyContent:"center" }}
+        open={openOrderDetails}
+        onClose={() => setOpenOrderDetails(false)}
+        sx={{
+          "& .MuiBackdrop-root": { backgroundColor: "rgb(0,0,0,0.1)" },
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={{backgroundColor:"white"}}>
-        <Box
+        <Box sx={{ backgroundColor: "white" }}>
+          <Box
             sx={{
               border: "none",
               borderBottom: "1px lightgray solid",
-             p:2,
-             display:"flex",alignItems:"center",justifyContent:"space-between" 
+              p: 2,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
             }}
           >
-            <Typography sx={{ fontWeight: 700 }}>Product Details</Typography>
-            
+            <Typography sx={{ fontWeight: 700 }}>Order Details</Typography>
+
             <Button
-              onClick={() => setOpenProductDetails(false)}
+              onClick={() => setOpenOrderDetails(false)}
               variant="text"
               fullWidth
               sx={{
                 display: "flex",
                 justifyContent: "flex-end",
                 alignItems: "flex-end",
-                color:"black"
+                color: "black",
               }}
             >
-              <HighlightOffIcon/>
+              <HighlightOffIcon />
             </Button>
-            
           </Box>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Text in a modal
@@ -50,7 +55,7 @@ function ProductCard({ openProductDetails, setOpenProductDetails, product }) {
 
       <Grid
         container
-        key={product.id}
+        key={order.id}
         sx={{
           display: "flex",
           flexDirection: "row",
@@ -66,9 +71,13 @@ function ProductCard({ openProductDetails, setOpenProductDetails, product }) {
           sx={{
             pl: 2,
             pr: 2,
+            display: "flex",
+            alignItems: "center",
           }}
         >
-          <Typography sx={{ fontSize: 14 }} >{product.productName}</Typography>
+          <Typography sx={{ fontSize: 14 }} noWrap>
+            {order.orderName}
+          </Typography>
         </Grid>
 
         <Grid
@@ -77,9 +86,13 @@ function ProductCard({ openProductDetails, setOpenProductDetails, product }) {
           sx={{
             pl: 2,
             pr: 2,
+            display: "flex",
+            alignItems: "center",
           }}
         >
-          <Typography sx={{ fontSize: 14 }} >{product.regNumber}</Typography>
+          <Typography sx={{ fontSize: 14 }} noWrap>
+            {order.regNumber}
+          </Typography>
         </Grid>
 
         <Grid
@@ -88,9 +101,13 @@ function ProductCard({ openProductDetails, setOpenProductDetails, product }) {
           sx={{
             pl: 2,
             pr: 2,
+            display: "flex",
+            alignItems: "center",
           }}
         >
-          <Typography sx={{ fontSize: 14 }} >{product.productType}</Typography>
+          <Typography sx={{ fontSize: 14 }} noWrap>
+            {order.orderType}
+          </Typography>
         </Grid>
 
         <Grid
@@ -99,9 +116,13 @@ function ProductCard({ openProductDetails, setOpenProductDetails, product }) {
           sx={{
             pl: 2,
             pr: 2,
+            display: "flex",
+            alignItems: "center",
           }}
         >
-          <Typography sx={{ fontSize: 14 }} >{product.industry}</Typography>
+          <Typography sx={{ fontSize: 14 }} noWrap>
+            {order.industry}
+          </Typography>
         </Grid>
 
         <Grid
@@ -110,9 +131,13 @@ function ProductCard({ openProductDetails, setOpenProductDetails, product }) {
           sx={{
             pl: 2,
             pr: 2,
+            display: "flex",
+            alignItems: "center",
           }}
         >
-          <Typography sx={{ fontSize: 14 }} >{product.industry}</Typography>
+          <Typography sx={{ fontSize: 14 }} noWrap>
+            {order.industry}
+          </Typography>
         </Grid>
 
         <Grid
@@ -121,12 +146,14 @@ function ProductCard({ openProductDetails, setOpenProductDetails, product }) {
           sx={{
             pl: 1,
             pr: 1,
+            display: "flex",
+            alignItems: "center",
           }}
         >
           <Button
-            onClick={() => setOpenProductDetails(true)}
+            onClick={() => setOpenOrderDetails(true)}
             variant="text"
-            sx={{ textDecoration: "none", color: "#1890ff",fontSize: 14 }}
+            sx={{ textDecoration: "none", color: "#1890ff", fontSize: 14 }}
           >
             View Details
           </Button>
@@ -136,4 +163,4 @@ function ProductCard({ openProductDetails, setOpenProductDetails, product }) {
   );
 }
 
-export default ProductCard;
+export default OrderCard;

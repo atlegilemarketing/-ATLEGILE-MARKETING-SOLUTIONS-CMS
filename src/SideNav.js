@@ -14,7 +14,7 @@ function SideNav() {
     navigate("users");
   };
   const handleNavigateToProducts = () => {
-    navigate("products");
+    navigate("orders");
   };
   return (
     <Box
@@ -105,7 +105,7 @@ function SideNav() {
         >
           <StarIcon sx={{ color: "gray", mr: 4 }} />
           <Typography variant="inherit" sx={{ color: "black" }}>
-            Products
+            Orders
           </Typography>
         </Button>
 
