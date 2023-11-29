@@ -13,14 +13,14 @@ import UserCard from "./UserCard";
 export default function ManageUsers() {
   // State variables
   const [usersList, setUsersList] = useState([]);
+  const [usersCount, setUsersCount] = useState(0);
   const [businessesCount, setBusinessesCount] = useState(0);
   const [user] = useAuthState(firebase.auth());
 
-  // useEffect to fetch data on component mount or when user changes
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch users
+       
         const usersRef = firebase.firestore().collection("Users");
         const usersSnapshot = await usersRef.get();
 
@@ -35,7 +35,10 @@ export default function ManageUsers() {
         }));
         setUsersList(usersData);
 
-        // Fetch businesses count
+        // const usersRef = firebase.firestore().collection("Users");
+        // const usersSnapshot = await  usersRef.get();
+        setUsersCount( usersSnapshot.size);
+
         const businessesRef = firebase.firestore().collection("Business");
         const businessesSnapshot = await businessesRef.get();
         setBusinessesCount(businessesSnapshot.size);
@@ -44,7 +47,6 @@ export default function ManageUsers() {
       }
     };
 
-    // Check if user is authenticated before fetching data
     if (user) {
       fetchData();
     }
@@ -133,7 +135,7 @@ export default function ManageUsers() {
             <Typography sx={{ color: "gray", fontSize: 12 }}>
               New Users
             </Typography>
-            <Typography sx={{ fontWeight: 400, fontSize: 20 }}>300</Typography>
+            <Typography sx={{ fontWeight: 400, fontSize: 20 }}>{usersCount}</Typography>
           </Box>
 
           <Box
