@@ -6,19 +6,19 @@ import { firebase } from "../config";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
-import clipArt from "../images/clipArtOrders.png";
-import OrderCard from "./OrderCard";
+import clipArt from "../images/clipArtProducts.png";
+import ProductCard from "./ProductCard";
 import CircularProgress from "@mui/material/CircularProgress";
 
-export default function ManageOrders() {
-  const [productsList, setOrdersList] = useState([]);
+export default function ManageProducts() {
+  const [productsList, setProductsList] = useState([]);
   const [user] = useAuthState(firebase.auth());
-  const [openOrderDetails, setOpenOrderDetails] = useState(false);
+  const [openProductDetails, setOpenProductDetails] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const productsRef = firebase.firestore().collection("Orders");
+        const productsRef = firebase.firestore().collection("Products");
         const snapshot = await productsRef.get();
         const productsData = snapshot.docs.map((doc) => ({
           id: doc.id,
@@ -27,7 +27,7 @@ export default function ManageOrders() {
           businessType: doc.data().businessType,
           industry: doc.data().industry,
         }));
-        setOrdersList(productsData);
+        setProductsList(productsData);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -73,7 +73,7 @@ export default function ManageOrders() {
                 paddingLeft: 2,
               }}
             >
-              MANAGE ORDERS
+              MANAGE PRODUCTS
             </Typography>
           </Box>
         </Box>
@@ -125,7 +125,7 @@ export default function ManageOrders() {
               }}
             >
               <Typography sx={{ color: "gray", fontSize: 12 }}>
-                New Orders
+                New Products
               </Typography>
               <Typography sx={{ fontWeight: 400, fontSize: 20 }}>
                 300
@@ -150,8 +150,8 @@ export default function ManageOrders() {
 
           <Box
             sx={{
-              border: "none",
-              borderBottom: "1px lightgray solid",
+              bproduct: "none",
+              bproductBottom: "1px lightgray solid",
               ml: 4,
               mt: 4,
             }}
@@ -169,8 +169,8 @@ export default function ManageOrders() {
               mt: 2,
               pt: 2,
               pb: 2,
-              border: "none",
-              borderBottom: "1px lightgray solid",
+              bproduct: "none",
+              bproductBottom: "1px lightgray solid",
             }}
           >
             <Grid
@@ -183,8 +183,8 @@ export default function ManageOrders() {
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-between",
-                border: "none",
-                borderRight: "1px lightgray solid",
+                bproduct: "none",
+                bproductRight: "1px lightgray solid",
               }}
             >
               <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
@@ -210,8 +210,8 @@ export default function ManageOrders() {
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-between",
-                border: "none",
-                borderRight: "1px lightgray solid",
+                bproduct: "none",
+                bproductRight: "1px lightgray solid",
               }}
             >
               <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
@@ -236,12 +236,12 @@ export default function ManageOrders() {
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-between",
-                border: "none",
-                borderRight: "1px lightgray solid",
+                bproduct: "none",
+                bproductRight: "1px lightgray solid",
               }}
             >
               <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
-                Order Name
+                Product Name
               </Typography>
               <Typography
                 sx={{
@@ -262,8 +262,8 @@ export default function ManageOrders() {
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-between",
-                border: "none",
-                borderRight: "1px lightgray solid",
+                bproduct: "none",
+                bproductRight: "1px lightgray solid",
               }}
             >
               <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
@@ -288,8 +288,8 @@ export default function ManageOrders() {
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-between",
-                border: "none",
-                borderRight: "1px lightgray solid",
+                bproduct: "none",
+                bproductRight: "1px lightgray solid",
               }}
             >
               <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
@@ -334,9 +334,9 @@ export default function ManageOrders() {
             </Box>
           ) : (
             productsList.map((product) => (
-              <OrderCard
-                openOrderDetails={openOrderDetails}
-                setOpenOrderDetails={setOpenOrderDetails}
+              <ProductCard
+                openProductDetails={openProductDetails}
+                setOpenProductDetails={setOpenProductDetails}
                 product={product}
               />
             ))

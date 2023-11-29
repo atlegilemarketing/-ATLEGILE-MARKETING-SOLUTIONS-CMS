@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography, Button, Grid } from "@mui/material";
+import { Box, Typography, Grid } from "@mui/material";
 import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
 import SearchIcon from "@mui/icons-material/Search";
 import clipArt from "../images/clipArtWelcome.png";
@@ -374,7 +374,7 @@ export default function ManageBusinesses() {
                       sx={{
                         fontSize: 14,
                         display: "flex",
-                        pb:1
+                        //pb:1
                       }}
                       noWrap
                     >

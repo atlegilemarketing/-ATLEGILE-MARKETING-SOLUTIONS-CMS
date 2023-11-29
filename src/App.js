@@ -6,6 +6,7 @@ import ManageUsers from "./CMS/ManageUsers";
 import ManageBusiness from "./CMS/ManageBusiness";
 import SignIn from "./CMS/SignIn";
 import ManageOrders from "./CMS/ManageOrders";
+import ManageProducts from "./CMS/ManageProduct";
 
 const Layout = ({ children }) => (
   <div style={{ display: "flex" }}>
@@ -30,6 +31,7 @@ function App() {
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="users" element={<ManageUsers />} />
           <Route path="orders" element={<ManageOrders />} />
+          <Route path="products" element={<ManageProducts />} />
           <Route path="businesses" element={<ManageBusiness />} />
         </Route>
 

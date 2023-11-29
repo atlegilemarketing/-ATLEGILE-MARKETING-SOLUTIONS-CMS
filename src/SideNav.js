@@ -1,21 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Typography, Avatar, Button } from "@mui/material";
 import { Star as StarIcon } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 function SideNav() {
   const navigate = useNavigate();
+  const [activePage, setActivePage] = useState("");
+
   const handleNavigateToDashboard = () => {
+    setActivePage("dashboard");
     navigate("dashboard");
   };
   const handleNavigateToBusinesses = () => {
+    setActivePage("businesses");
     navigate("businesses");
   };
   const handleNavigateToUsers = () => {
+    setActivePage("users");
     navigate("users");
   };
-  const handleNavigateToProducts = () => {
+  const handleNavigateToOrders = () => {
+    setActivePage("orders");
     navigate("orders");
   };
+
+  const handleNavigateToProducts = () => {
+    setActivePage("products");
+    navigate("products");
+  };
+
+  const handleSignOut = () => {};
   return (
     <Box
       sx={{
@@ -67,6 +80,7 @@ function SideNav() {
             borderBottom: "1px lightgray solid",
             justifyContent: "flex-start",
             textTransform: "none",
+            backgroundColor:"#b8d9f7"
           }}
         >
           <StarIcon sx={{ color: "gray", mr: 4 }} />
@@ -93,7 +107,7 @@ function SideNav() {
         </Button>
 
         <Button
-          onClick={handleNavigateToProducts}
+          onClick={handleNavigateToOrders}
           variant="text"
           fullWidth
           id="users-link"
@@ -106,6 +120,23 @@ function SideNav() {
           <StarIcon sx={{ color: "gray", mr: 4 }} />
           <Typography variant="inherit" sx={{ color: "black" }}>
             Orders
+          </Typography>
+        </Button>
+
+        <Button
+          onClick={handleNavigateToProducts}
+          variant="text"
+          fullWidth
+          id="users-link"
+          sx={{
+            borderBottom: "1px lightgray solid",
+            justifyContent: "flex-start",
+            textTransform: "none",
+          }}
+        >
+          <StarIcon sx={{ color: "gray", mr: 4 }} />
+          <Typography variant="inherit" sx={{ color: "black" }}>
+            Products
           </Typography>
         </Button>
 
@@ -124,6 +155,18 @@ function SideNav() {
           <Typography variant="inherit" sx={{ color: "black" }}>
             Businesses
           </Typography>
+        </Button>
+      </Box>
+      <Box sx={{ mt: 2 }}>
+        <Button
+          onClick={handleSignOut}
+          variant="text"
+          id="signOut"
+          sx={{
+            display: "flex",
+          }}
+        >
+          <Typography sx={{ color: "#d32f2f" }}>Sign out</Typography>
         </Button>
       </Box>
     </Box>
