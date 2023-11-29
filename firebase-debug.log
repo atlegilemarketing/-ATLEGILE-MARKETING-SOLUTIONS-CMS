@@ -1,6 +1,0 @@
-[debug] [2023-11-29T09:54:05.881Z] ----------------------------------------------------------------------
-[debug] [2023-11-29T09:54:05.889Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Mahlatse\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
-[debug] [2023-11-29T09:54:05.890Z] CLI Version:   12.9.1
-[debug] [2023-11-29T09:54:05.890Z] Platform:      win32
-[debug] [2023-11-29T09:54:05.890Z] Node Version:  v20.9.0
-[debug] [2023-11-29T09:54:05.891Z] Time:          Wed Nov 29 2023 11:54:05 GMT+0200 (South Africa Standard Time)

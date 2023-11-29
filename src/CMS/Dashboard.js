@@ -14,6 +14,7 @@ export default function ManageBusinesses() {
   const [businessesList, setBusinessesList] = useState([]);
   const [usersCount, setUsersCount] = useState(0);
   const [businessesCount, setBusinessesCount] = useState(0);
+  const [productsCount, setProductsCount] = useState(0);
   const [user] = useAuthState(firebase.auth());
 
   useEffect(() => {
@@ -38,9 +39,10 @@ export default function ManageBusinesses() {
       }
 
       try {
+        // Fetch businesses
         const businessesRef = firebase.firestore().collection("Business");
-        const snapshot = await businessesRef.get();
-        const businessesData = snapshot.docs.map((doc) => ({
+        const businessesSnapshot = await businessesRef.get();
+        const businessesData = businessesSnapshot.docs.map((doc) => ({
           id: doc.id,
           businessName: doc.data().businessName,
           regNumber: doc.data().regNumber,
@@ -49,12 +51,27 @@ export default function ManageBusinesses() {
           actions: ["Some Action"],
         }));
         setBusinessesList(businessesData);
-        setBusinessesCount(snapshot.size);
+        setBusinessesCount(businessesSnapshot.size);
       } catch (error) {
         console.error("Error fetching businesses:", error);
       }
+  
+      try {
+        
+        const productsRef = firebase.firestore().collection("Products");
+        const productsSnapshot = await productsRef.get();
+        const productsData = productsSnapshot.docs.map((doc) => ({
+        
+          id: doc.id,
+          productName: doc.data().productName,
+          
+        }));
+        setProductsCount(productsSnapshot.size);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
     };
-
+  
     if (user) {
       fetchData();
     }
@@ -170,7 +187,7 @@ export default function ManageBusinesses() {
             <Typography sx={{ color: "gray", fontSize: 12 }}>
               New Products
             </Typography>
-            <Typography sx={{ fontWeight: 400, fontSize: 20 }}>300</Typography>
+            <Typography sx={{ fontWeight: 400, fontSize: 20 }}>{productsCount}</Typography>
           </Box>
         </Box>
 
