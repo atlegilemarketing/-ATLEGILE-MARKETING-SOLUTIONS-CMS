@@ -12,6 +12,8 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 export default function ManageBusinesses() {
   const [businessesList, setBusinessesList] = useState([]);
+  const [usersCount, setUsersCount] = useState(0);
+  const [businessesCount, setBusinessesCount] = useState(0);
   const [user] = useAuthState(firebase.auth());
 
 
@@ -28,6 +30,11 @@ export default function ManageBusinesses() {
           industry: doc.data().selectedIndustry,
         }));
         setBusinessesList(businessesData);
+        // setBusinessesCount(businessesSnapshot.size);
+
+        const usersRef = firebase.firestore().collection("Users");
+        const usersSnapshot = await usersRef.get();
+setUsersCount( usersSnapshot.size);
       } catch (error) {
         console.error("Error fetching businesses:", error);
       }
@@ -143,7 +150,7 @@ export default function ManageBusinesses() {
                 New Users
               </Typography>
               <Typography sx={{ fontWeight: 400, fontSize: 20 }}>
-                300
+              {usersCount}
               </Typography>
             </Box>
           </Box>
@@ -156,7 +163,7 @@ export default function ManageBusinesses() {
               mt: 4,
             }}
           >
-            <Typography sx={{ fontWeight: 700 }}>NEW BUSINESSES</Typography>
+            <Typography sx={{ fontWeight: 700 }}> {businessesCount}</Typography>
           </Box>
 
           <Grid
