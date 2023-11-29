@@ -14,6 +14,8 @@ import CircularProgress from "@mui/material/CircularProgress";
 export default function ManageBusinesses() {
   const [usersList, setUsersList] = useState([]);
   const [businessesList, setBusinessesList] = useState([]);
+  const [usersCount, setUsersCount] = useState(0);
+  const [businessesCount, setBusinessesCount] = useState(0);
   const [user] = useAuthState(firebase.auth());
 
   useEffect(() => {
@@ -32,6 +34,7 @@ export default function ManageBusinesses() {
           actions: ["Block User", "View Details"],
         }));
         setUsersList(usersData);
+        setUsersCount(snapshot.size);
       } catch (error) {
         console.error("Error fetching users:", error);
       }
@@ -48,6 +51,7 @@ export default function ManageBusinesses() {
           actions: ['Some Action'],
         }));
         setBusinessesList(businessesData);
+        setBusinessesCount(snapshot.size);
       } catch (error) {
         console.error("Error fetching businesses:", error);
       }
@@ -142,7 +146,7 @@ export default function ManageBusinesses() {
             <Typography sx={{ color: "gray", fontSize: 12 }}>
               New Businesses
             </Typography>
-            <Typography sx={{ fontWeight: 400, fontSize: 20 }}>300</Typography>
+            <Typography sx={{ fontWeight: 400, fontSize: 20 }}>{usersCount}</Typography>
           </Box>
 
           <Box
@@ -155,7 +159,7 @@ export default function ManageBusinesses() {
             <Typography sx={{ color: "gray", fontSize: 12 }}>
               New Users
             </Typography>
-            <Typography sx={{ fontWeight: 400, fontSize: 20 }}>300</Typography>
+            <Typography sx={{ fontWeight: 400, fontSize: 20 }}> {businessesCount}</Typography>
           </Box>
 
           <Box
