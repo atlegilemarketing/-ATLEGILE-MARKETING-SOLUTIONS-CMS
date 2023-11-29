@@ -15,7 +15,7 @@ export default function SideNav() {
   const [imageURL, setImageURL] = useState(null);
   const fileInputRef = useRef(null);
   const [user] = useAuthState(firebase.auth());
-  
+
 console.log("",user)
   const handleNavigateToDashboard = () => {
     setActivePage("dashboard");
@@ -90,8 +90,9 @@ console.log("",user)
         onChange={handleFileChange}
         style={{ display: "none" }}
         ref={fileInputRef}
-      />{user.name?
-        <Avatar alt={user.name} src={user.imageURL} sx={{cursor:"pointer"}} onClick={openFileInput}/>:<Avatar
+      />
+      
+      <Avatar
         sx={{
           color: "gray",
           width: 275,
@@ -103,7 +104,8 @@ console.log("",user)
         onClick={openFileInput}
       >
         S
-      </Avatar>}
+      </Avatar>
+
       <Box
         sx={{
           display: "flex",

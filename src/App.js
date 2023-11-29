@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Outlet,
+} from "react-router-dom";
 import SideNav from "./SideNav";
 import Dashboard from "./CMS/Dashboard";
 import ManageUsers from "./CMS/ManageUsers";
@@ -7,11 +12,12 @@ import ManageBusiness from "./CMS/ManageBusiness";
 import SignIn from "./CMS/SignIn";
 import ManageOrders from "./CMS/ManageOrders";
 import ManageProducts from "./CMS/ManageProduct";
+import TestInoviceUpload from "./CMS/testInoviceUpload";
 
 const Layout = ({ children }) => (
   <div style={{ display: "flex" }}>
     <SideNav />
-    <div style={{ flex: 1, }}>{children}</div>
+    <div style={{ flex: 1 }}>{children}</div>
   </div>
 );
 
@@ -19,7 +25,7 @@ function App() {
   return (
     <Router>
       <Routes>
-      <Route path="/" element={<SignIn />} />
+        <Route path="/" element={<SignIn />} />
         <Route
           path="main"
           element={
@@ -33,8 +39,8 @@ function App() {
           <Route path="orders" element={<ManageOrders />} />
           <Route path="products" element={<ManageProducts />} />
           <Route path="businesses" element={<ManageBusiness />} />
+          <Route path="test" element={<TestInoviceUpload />} />
         </Route>
-
       </Routes>
     </Router>
   );

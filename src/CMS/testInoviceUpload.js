@@ -1,40 +1,51 @@
-import React, { useEffect } from "react";
-import { firebase } from "../config";
+import React from "react";
+import { firebase, firestore } from "../config";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { addDoc, collection } from "firebase/firestore";
 
 export default function TestInoviceUpload() {
-  const [user] = useAuthState(firebase.auth());
+  //const [user] = useAuthState(firebase.auth());
+  let newOrder;
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        //const businessesRef = firebase.firestore().collection("Business");
-        //   const snapshot = await businessesRef.get();
-        //   const businessesData = snapshot.docs.map((doc) => ({
-        //     id: doc.id,
-        //     businessName: doc.data().businessName,
-        //     regNumber: doc.data().regNumber,
-        //     businessType: doc.data().selectedBusinessType,
-        //     industry: doc.data().selectedIndustry,
-        //   }));
-        //   setBusinessesList(businessesData);
-        //   setBusinessesCount(snapshot.size);
+  const testOrder = async () => {
+    const ordersCollection = collection(firestore, "Orders");
 
-        //   const usersRef = firebase.firestore().collection("Users");
-        //   const usersSnapshot = await usersRef.get();
-        //   setUsersCount(usersSnapshot.size);
-      } catch (error) {
-        console.error("Error fetching businesses:", error);
+    try {
+      newOrder = await addDoc(ordersCollection, {
+        "agentReferal": 0.1,
+        "createdAt": "November 28, 2023 at 3:16:31 PM UTC+2",
+        "deliveryAddress": "123 Sade Street, Johannesburg Gauteng 1658",
+        "deliveryDate":"November 28, 2023 at 3:16:31 PM UTC+2",
+        "deliveryGuy":"Ben",
+        "deliveryFee": 150.00,
+        "orderNumber": "#CMD2134",
+        "orderSummary": 3000.00,
+        "price": 4500.00,
+        "products": [
+            {"name":"Sneakers","business":"Nike","price":856.23,"quantity":2,"total":(856.23*2)},
+            {"name":"Sneakers","business":"Nike","price":856.23,"quantity":2,"total":(856.23*2)},
+            {"name":"Sneakers","business":"Nike","price":856.23,"quantity":2,"total":(856.23*2)},
+        ],
+        "purchaseDate": "24 November 2023",
+        "total": 3170.00,
+        "userName":"Mandy",
+        "userSurname":"June",
       }
-    };
+      );
 
-    if (user) {
-      fetchData();
+      alert("The Orders invoice has been added successfully.");
+      console.log("New invoice document ID:", newOrder.id);
+    } catch (error) {
+      console.error("Error creating invoice:", error);
     }
-  }, [user]);
-  return <div>testInoviceUpload</div>;
+  };
+  //testOrder();
+  return (
+    <div>
+      <p>testInoviceUpload</p>
+      
+    </div>
+  );
 }
-
-
