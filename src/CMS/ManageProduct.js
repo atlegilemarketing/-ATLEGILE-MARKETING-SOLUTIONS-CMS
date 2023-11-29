@@ -12,6 +12,8 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 export default function ManageProducts() {
   const [productsList, setProductsList] = useState([]);
+  const [productsCount, setProductsCount] = useState(0);
+  const [usersCount, setUsersCount] = useState(0);
   const [user] = useAuthState(firebase.auth());
   const [openProductDetails, setOpenProductDetails] = useState(false);
 
@@ -28,8 +30,22 @@ export default function ManageProducts() {
           industry: doc.data().industry,
         }));
         setProductsList(productsData);
+        setProductsCount(snapshot.size);
       } catch (error) {
         console.error("Error fetching products:", error);
+      }
+
+      try {
+        const usersRef = firebase.firestore().collection("Users");
+        const usersSnapshot = await usersRef.get();
+        const usersData = usersSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          usersName: doc.data().usersName,
+        }));
+        setProductsList(usersData);  
+        setUsersCount(usersSnapshot.size);  
+      } catch (error) {
+        console.error("Error fetching users:", error);  
       }
     };
 
@@ -128,7 +144,7 @@ export default function ManageProducts() {
                 New Products
               </Typography>
               <Typography sx={{ fontWeight: 400, fontSize: 20 }}>
-                300
+              {productsCount}
               </Typography>
             </Box>
 
@@ -143,7 +159,7 @@ export default function ManageProducts() {
                 New Users
               </Typography>
               <Typography sx={{ fontWeight: 400, fontSize: 20 }}>
-                300
+              {usersCount}
               </Typography>
             </Box>
           </Box>
