@@ -11,16 +11,20 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import UserCard from "./UserCard";
 
 export default function ManageUsers() {
+  // State variables
   const [usersList, setUsersList] = useState([]);
+  const [businessesCount, setBusinessesCount] = useState(0);
   const [user] = useAuthState(firebase.auth());
 
+  // useEffect to fetch data on component mount or when user changes
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Fetch users
         const usersRef = firebase.firestore().collection("Users");
-        const snapshot = await usersRef.get();
+        const usersSnapshot = await usersRef.get();
 
-        const usersData = snapshot.docs.map((doc) => ({
+        const usersData = usersSnapshot.docs.map((doc) => ({
           id: doc.id,
           name: doc.data().name,
           surname: doc.data().surname,
@@ -30,16 +34,21 @@ export default function ManageUsers() {
           actions: ["Block User", "View Details"],
         }));
         setUsersList(usersData);
+
+        // Fetch businesses count
+        const businessesRef = firebase.firestore().collection("Business");
+        const businessesSnapshot = await businessesRef.get();
+        setBusinessesCount(businessesSnapshot.size);
       } catch (error) {
-        console.error("Error fetching users:", error);
+        console.error("Error fetching data:", error);
       }
     };
 
+    // Check if user is authenticated before fetching data
     if (user) {
       fetchData();
     }
-  }, [user]);
-
+  }, [user]); 
   return (
     <Box
       sx={{
@@ -134,10 +143,12 @@ export default function ManageUsers() {
               flexDirection: "column",
             }}
           >
-            <Typography sx={{ color: "gray", fontSize: 12 }}>
-              New Users
-            </Typography>
-            <Typography sx={{ fontWeight: 400, fontSize: 20 }}>300</Typography>
+        <Typography sx={{ color: "gray", fontSize: 12 }}>
+            New Businesses
+          </Typography>
+          <Typography sx={{ fontWeight: 400, fontSize: 20 }}>
+            {businessesCount}
+          </Typography>
           </Box>
         </Box>
 
