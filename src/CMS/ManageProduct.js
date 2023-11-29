@@ -150,8 +150,8 @@ export default function ManageProducts() {
 
           <Box
             sx={{
-              border: "none",
-              borderBottom: "1px lightgray solid",
+              bproduct: "none",
+              bproductBottom: "1px lightgray solid",
               ml: 4,
               mt: 4,
             }}
@@ -169,8 +169,8 @@ export default function ManageProducts() {
               mt: 2,
               pt: 2,
               pb: 2,
-              border: "none",
-              borderBottom: "1px lightgray solid",
+              bproduct: "none",
+              bproductBottom: "1px lightgray solid",
             }}
           >
             <Grid
@@ -183,18 +183,20 @@ export default function ManageProducts() {
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-between",
-                border: "none",
-                borderRight: "1px lightgray solid",
+                bproduct: "none",
+                bproductRight: "1px lightgray solid",
               }}
             >
-              <Typography sx={{ fontWeight: 600,fontSize: 14 }}>Invoice</Typography>
+              <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
+                Invoice
+              </Typography>
               <Typography
                 sx={{
                   color: "gray",
                 }}
               >
-                <UnfoldMoreIcon sx={{fontSize:17}}/>
-                <SearchIcon sx={{fontSize:17}}/>
+                <UnfoldMoreIcon sx={{ fontSize: 17 }} />
+                <SearchIcon sx={{ fontSize: 17 }} />
               </Typography>
             </Grid>
 
@@ -208,17 +210,19 @@ export default function ManageProducts() {
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-between",
-                border: "none",
-                borderRight: "1px lightgray solid",
+                bproduct: "none",
+                bproductRight: "1px lightgray solid",
               }}
             >
-              <Typography sx={{ fontWeight: 600,fontSize: 14 }}>Date</Typography>
+              <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
+                Date
+              </Typography>
               <Typography
                 sx={{
                   color: "gray",
                 }}
               >
-                <UnfoldMoreIcon sx={{fontSize:17}}/>
+                <UnfoldMoreIcon sx={{ fontSize: 17 }} />
               </Typography>
             </Grid>
 
@@ -232,17 +236,19 @@ export default function ManageProducts() {
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-between",
-                border: "none",
-                borderRight: "1px lightgray solid",
+                bproduct: "none",
+                bproductRight: "1px lightgray solid",
               }}
             >
-              <Typography sx={{ fontWeight: 600,fontSize: 14 }}>Product Name</Typography>
+              <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
+                Product Name
+              </Typography>
               <Typography
                 sx={{
                   color: "gray",
                 }}
               >
-                <UnfoldMoreIcon sx={{fontSize:17}}/>
+                <UnfoldMoreIcon sx={{ fontSize: 17 }} />
               </Typography>
             </Grid>
 
@@ -256,17 +262,19 @@ export default function ManageProducts() {
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-between",
-                border: "none",
-                borderRight: "1px lightgray solid",
+                bproduct: "none",
+                bproductRight: "1px lightgray solid",
               }}
             >
-              <Typography sx={{ fontWeight: 600,fontSize: 14 }}>Company</Typography>
+              <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
+                Company
+              </Typography>
               <Typography
                 sx={{
                   color: "gray",
                 }}
               >
-                <UnfoldMoreIcon sx={{fontSize:17}}/>
+                <UnfoldMoreIcon sx={{ fontSize: 17 }} />
               </Typography>
             </Grid>
 
@@ -280,17 +288,19 @@ export default function ManageProducts() {
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-between",
-                border: "none",
-                borderRight: "1px lightgray solid",
+                bproduct: "none",
+                bproductRight: "1px lightgray solid",
               }}
             >
-              <Typography sx={{ fontWeight: 600,fontSize: 14 }}>Total</Typography>
+              <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
+                Total
+              </Typography>
               <Typography
                 sx={{
                   color: "gray",
                 }}
               >
-                <UnfoldMoreIcon sx={{fontSize:17}}/>
+                <UnfoldMoreIcon sx={{ fontSize: 17 }} />
               </Typography>
             </Grid>
             <Grid
@@ -304,13 +314,23 @@ export default function ManageProducts() {
                 alignItems: "center",
               }}
             >
-              <Typography sx={{ fontWeight: 600,fontSize: 14 }}>Actions</Typography>
+              <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
+                Actions
+              </Typography>
             </Grid>
           </Grid>
 
           {productsList.length === 0 ? (
-            <Box sx={{display:"flex",alignItems:"center",justifyContent:"center",width:"100%",height:"20vh"}}>
-            <CircularProgress />
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "100%",
+                height: "20vh",
+              }}
+            >
+              <CircularProgress />
             </Box>
           ) : (
             productsList.map((product) => (
