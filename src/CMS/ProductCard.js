@@ -19,7 +19,7 @@ function ProductCard({ product }) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box>
+        <Box sx={{ maxWidth: "500px" }}>
           <Box
             sx={{
               backgroundColor: "#072840",
@@ -46,10 +46,53 @@ function ProductCard({ product }) {
             </Button>
           </Box>
           <Box sx={{ backgroundColor: "white", p: 3 }}>
-            <Typography>Business Name: {product.productName}</Typography>
-            <Typography>Reg Number: {product.regNumber}</Typography>
-            <Typography>Business Type: {product.productType}</Typography>
-            <Typography>Industry: {product.industry}</Typography>
+            <Typography
+              sx={{
+                display: "flex",
+                //justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Typography sx={{fontWeight:700}}>Product Name:</Typography>{" "}
+              {product.productName}
+            </Typography>
+
+            <Typography
+              sx={{
+                display: "flex",
+                //justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Typography sx={{fontWeight:700}}>Business Name:</Typography>{" "}
+              {product.businessName}
+            </Typography>
+
+            <Typography
+              sx={{
+                display: "flex",
+                justifyContent: "flex-start",
+                alignItems: "center",
+              }}
+            >
+              <Typography sx={{fontWeight:700}}>Description:</Typography>{" "}
+              {product.description}
+            </Typography>
+
+            <Typography
+              sx={{
+                display: "flex",
+                //justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Typography sx={{fontWeight:700}}>Description:</Typography>{" "}
+              {product.description}
+            </Typography>
+            <Typography> {product.description}</Typography>
+            <Typography>Quantity: {product.quantity}</Typography>
+            <Typography>Sales: {product.sales}</Typography>
+            <Typography>Category: {product.selectedProductCategory}</Typography>
           </Box>
         </Box>
       </Modal>
@@ -92,7 +135,7 @@ function ProductCard({ product }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-          {product.businessName}
+            {product.businessName}
           </Typography>
         </Grid>
 
@@ -107,7 +150,7 @@ function ProductCard({ product }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-          {product.price}
+            {product.price}
           </Typography>
         </Grid>
 
@@ -122,7 +165,7 @@ function ProductCard({ product }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-          {product.quantity}
+            {product.quantity}
           </Typography>
         </Grid>
 
@@ -137,7 +180,7 @@ function ProductCard({ product }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-          {product.selectedProductCategory}
+            {product.selectedProductCategory}
           </Typography>
         </Grid>
 

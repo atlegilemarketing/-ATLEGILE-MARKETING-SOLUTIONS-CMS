@@ -15,6 +15,7 @@ export default function SideNav() {
   const [imageURL, setImageURL] = useState(null);
   const fileInputRef = useRef(null);
   const [user] = useAuthState(firebase.auth());
+  
 console.log("",user)
   const handleNavigateToDashboard = () => {
     setActivePage("dashboard");
@@ -69,7 +70,7 @@ console.log("",user)
   //          })
   //      })
   //   }:()=>null
-  //  }
+  // }
 
   return (
     <Box
