@@ -37,63 +37,88 @@ function ProductCard({ product }) {
               variant="text"
               sx={{
                 display: "flex",
-                justifyContent: "flex-end",
-                alignItems: "flex-end",
+                justifyContent: "center",
                 color: "white",
               }}
             >
               <HighlightOffIcon />
             </Button>
           </Box>
-          <Box sx={{ backgroundColor: "white", p: 3 }}>
-            <Typography
+
+          <Grid container sx={{ backgroundColor: "white", p: 3 }}>
+            <Grid item sx={{ fontWeight: 700 }} xs={4}>
+              Product Name:
+            </Grid>
+            <Grid
+              item
               sx={{
                 display: "flex",
-                //justifyContent: "center",
-                alignItems: "center",
               }}
+              xs={8}
             >
-              <Typography sx={{fontWeight:700}}>Product Name:</Typography>{" "}
               {product.productName}
-            </Typography>
-
-            <Typography
+            </Grid>
+            <Grid sx={{ fontWeight: 700 }} xs={4}>
+              Business Name:
+            </Grid>
+            <Grid
+              item
               sx={{
                 display: "flex",
-                //justifyContent: "center",
-                alignItems: "center",
               }}
+              xs={8}
             >
-              <Typography sx={{fontWeight:700}}>Business Name:</Typography>{" "}
               {product.businessName}
-            </Typography>
-
-            <Typography
+            </Grid>
+            <Grid item sx={{ fontWeight: 700 }} xs={4}>
+              Description:
+            </Grid>
+            <Grid
+              item
               sx={{
                 display: "flex",
-                justifyContent: "flex-start",
-                alignItems: "center",
               }}
+              xs={8}
             >
-              <Typography sx={{fontWeight:700}}>Description:</Typography>{" "}
               {product.description}
-            </Typography>
-
-            <Typography
+            </Grid>
+            <Grid item sx={{ fontWeight: 700 }} xs={4}>
+              Quantity:
+            </Grid>
+            <Grid
+              item
               sx={{
                 display: "flex",
-                //justifyContent: "center",
-                alignItems: "center",
               }}
+              xs={8}
             >
-              <Typography sx={{fontWeight:700}}>Description:</Typography>{" "}
-              {product.description}
-            </Typography>
-            <Typography> {product.description}</Typography>
-            <Typography>Quantity: {product.quantity}</Typography>
-            <Typography>Sales: {product.sales}</Typography>
-            <Typography>Category: {product.selectedProductCategory}</Typography>
-          </Box>
+              {product.quantity}
+            </Grid>
+            <Grid item sx={{ fontWeight: 700 }} xs={4}>
+              Sales:
+            </Grid>
+            <Grid
+              item
+              sx={{
+                display: "flex",
+              }}
+              xs={8}
+            >
+              {product.sales}
+            </Grid>
+            <Grid item sx={{ fontWeight: 700 }} xs={4}>
+              Category:
+            </Grid>
+            <Grid
+              item
+              sx={{
+                display: "flex",
+              }}
+              xs={8}
+            >
+              {product.selectedProductCategory}
+            </Grid>
+          </Grid>
         </Box>
       </Modal>
 
