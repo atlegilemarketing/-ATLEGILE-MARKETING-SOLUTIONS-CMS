@@ -45,12 +45,17 @@ function BusinessCard({ business }) {
               <HighlightOffIcon />
             </Button>
           </Box>
-          <Box sx={{ backgroundColor: "white", p: 3 }}>
-            <Typography>Business Name: {business.businessName}</Typography>
-            <Typography>Reg Number: {business.regNumber}</Typography>
-            <Typography>Business Type: {business.businessType}</Typography>
-            <Typography>Industry: {business.industry}</Typography>
-          </Box>
+
+          <Grid container sx={{ backgroundColor: "white", p: 3 }}>
+            <Grid item xs={4} sx={{ fontWeight: 700 }} >Business Name:</Grid>
+            <Grid item xs={8}>{business.businessName}</Grid>
+            <Grid item xs={4} sx={{ fontWeight: 700 }} >Reg Number:</Grid>
+            <Grid item xs={8}>{business.regNumber}</Grid>
+            <Grid item xs={4} sx={{ fontWeight: 700 }} >Business Type:</Grid>
+            <Grid item xs={8}>{business.businessType}</Grid>
+            <Grid item xs={4} sx={{ fontWeight: 700 }} >Industry:</Grid>
+            <Grid item xs={8}>{business.industry}</Grid>
+          </Grid>
         </Box>
       </Modal>
 
