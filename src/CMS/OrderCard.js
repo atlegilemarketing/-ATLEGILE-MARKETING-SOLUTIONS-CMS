@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Grid, Typography, Button, Modal, Box } from "@mui/material";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
-function OrderCard({ openOrderDetails, setOpenOrderDetails, order }) {
-  
+function OrderCard({ order }) {
+  const [open, setOpen] = useState(false); 
   return (
     <>
       <Modal
-        open={openOrderDetails}
-        onClose={() => setOpenOrderDetails(false)}
+        open={open}
+        onClose={() => setOpen(false)}
         sx={{
           "& .MuiBackdrop-root": { backgroundColor: "rgb(0,0,0,0.1)" },
           display: "flex",
@@ -32,7 +32,7 @@ function OrderCard({ openOrderDetails, setOpenOrderDetails, order }) {
             <Typography sx={{ fontWeight: 700 }}>Order Details</Typography>
 
             <Button
-              onClick={() => setOpenOrderDetails(false)}
+              onClick={() => setOpen(false)}
               variant="text"
               fullWidth
               sx={{
@@ -107,7 +107,7 @@ function OrderCard({ openOrderDetails, setOpenOrderDetails, order }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-          {order. purchaseDate}
+          {order.purchaseDate}
           </Typography>
         </Grid>
 
@@ -167,7 +167,7 @@ function OrderCard({ openOrderDetails, setOpenOrderDetails, order }) {
           }}
         >
           <Button
-            onClick={() => setOpenOrderDetails(true)}
+            onClick={() => setOpen(true)}
             variant="text"
             sx={{ textDecoration: "none", color: "#1890ff", fontSize: 14 }}
           >
