@@ -3,7 +3,8 @@ import { Grid, Typography, Button, Modal, Box } from "@mui/material";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 function OrderCard({ order }) {
-  const [open, setOpen] = useState(false); 
+  const [open, setOpen] = useState(false);
+  //console.log("Orders purchaseDate object: ", order.purchaseDate);
   return (
     <>
       <Modal
@@ -29,7 +30,7 @@ function OrderCard({ order }) {
               justifyContent: "space-between",
             }}
           >
-            <Typography sx={{ fontWeight: 700 }}>Order Details</Typography>
+            <Typography sx={{ fontWeight: 700 }}></Typography>
 
             <Button
               onClick={() => setOpen(false)}
@@ -45,12 +46,6 @@ function OrderCard({ order }) {
               <HighlightOffIcon />
             </Button>
           </Box>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
         </Box>
       </Modal>
 
@@ -68,7 +63,7 @@ function OrderCard({ order }) {
       >
         <Grid
           item
-          xs={12/7}
+          xs={12 / 7}
           sx={{
             pl: 2,
             pr: 2,
@@ -77,13 +72,13 @@ function OrderCard({ order }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-            {order.orderName}
+            {order.orderNumber}
           </Typography>
         </Grid>
 
         <Grid
           item
-          xs={12/7}
+          xs={12 / 7}
           sx={{
             pl: 2,
             pr: 2,
@@ -92,13 +87,13 @@ function OrderCard({ order }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-         {order.userName}
+            {order.userName}
           </Typography>
         </Grid>
 
         <Grid
           item
-          xs={12/7}
+          xs={12 / 7}
           sx={{
             pl: 2,
             pr: 2,
@@ -107,13 +102,13 @@ function OrderCard({ order }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-          {order.purchaseDate}
+            {new Date(order.purchaseDate.seconds * 1000 + Math.floor(order.purchaseDate.nanoseconds / 1e6)).toLocaleString()}
           </Typography>
         </Grid>
 
         <Grid
           item
-          xs={12/7}
+          xs={12 / 7}
           sx={{
             pl: 2,
             pr: 2,
@@ -122,13 +117,13 @@ function OrderCard({ order }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-          {order.deliveryDate}
+            {order.total}
           </Typography>
         </Grid>
 
         <Grid
           item
-          xs={12/7}
+          xs={12 / 7}
           sx={{
             pl: 2,
             pr: 2,
@@ -137,13 +132,13 @@ function OrderCard({ order }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-          {order.deliveryStatus}
+            {order.deliveryStatus}
           </Typography>
         </Grid>
 
         <Grid
           item
-          xs={12/7}
+          xs={12 / 7}
           sx={{
             pl: 2,
             pr: 2,
@@ -152,13 +147,13 @@ function OrderCard({ order }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-          {order.deliveryAddress}
+            {order.deliveryAddress}
           </Typography>
         </Grid>
 
         <Grid
           item
-          xs={12/7}
+          xs={12 / 7}
           sx={{
             pl: 1,
             pr: 1,
