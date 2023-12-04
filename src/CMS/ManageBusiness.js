@@ -138,7 +138,7 @@ export default function ManageBusinesses() {
                 New Businesses
               </Typography>
               <Typography sx={{ fontWeight: 400, fontSize: 20 }}>
-              {businessesCount}
+                {businessesCount}
               </Typography>
             </Box>
 

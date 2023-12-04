@@ -14,6 +14,7 @@ export default function ManageUsers() {
   const [usersList, setUsersList] = useState([]);
   const [usersCount, setUsersCount] = useState(0);
   const [businessesCount, setBusinessesCount] = useState(0);
+  const [ordersCount, setOrdersCount] = useState(0); 
   const [user] = useAuthState(firebase.auth());
 
   useEffect(() => {
@@ -41,6 +42,14 @@ export default function ManageUsers() {
       } catch (error) {
         console.error("Error fetching data:", error);
       }
+      try {
+        const ordersRef = firebase.firestore().collection("Orders");
+        const ordersSnapshot = await ordersRef.get();
+        setOrdersCount(ordersSnapshot.size);
+      } catch (error) {
+        console.error("Error fetching orders:", error);
+      }
+
     };
 
     if (user) {
@@ -118,7 +127,7 @@ export default function ManageUsers() {
             }}
           >
             <Typography sx={{ color: "gray", fontSize: 12 }}>Sales</Typography>
-            <Typography sx={{ fontWeight: 400, fontSize: 20 }}>300</Typography>
+            <Typography sx={{ fontWeight: 400, fontSize: 20 }}>{ordersCount}</Typography>
           </Box>
 
           <Box

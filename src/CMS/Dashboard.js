@@ -15,6 +15,7 @@ export default function ManageBusinesses() {
   const [usersCount, setUsersCount] = useState(0);
   const [businessesCount, setBusinessesCount] = useState(0);
   const [productsCount, setProductsCount] = useState(0);
+  const [ordersCount, setOrdersCount] = useState(0); // New state for orders count
   const [user] = useAuthState(firebase.auth());
 
   useEffect(() => {
@@ -54,7 +55,7 @@ export default function ManageBusinesses() {
       } catch (error) {
         console.error("Error fetching businesses:", error);
       }
-  
+
       try {
         const productsRef = firebase.firestore().collection("Products");
         const productsSnapshot = await productsRef.get();
@@ -62,12 +63,21 @@ export default function ManageBusinesses() {
       } catch (error) {
         console.error("Error fetching products:", error);
       }
+
+      try {
+        const ordersRef = firebase.firestore().collection("Orders");
+        const ordersSnapshot = await ordersRef.get();
+        setOrdersCount(ordersSnapshot.size);
+      } catch (error) {
+        console.error("Error fetching orders:", error);
+      }
     };
-  
+
     if (user) {
       fetchData();
     }
   }, [user]);
+
 
   return (
     <Box
@@ -140,7 +150,7 @@ export default function ManageBusinesses() {
             }}
           >
             <Typography sx={{ color: "gray", fontSize: 12 }}>Sales</Typography>
-            <Typography sx={{ fontWeight: 400, fontSize: 20 }}>300</Typography>
+            <Typography sx={{ fontWeight: 400, fontSize: 20 }}>{ordersCount}</Typography>
           </Box>
 
           <Box

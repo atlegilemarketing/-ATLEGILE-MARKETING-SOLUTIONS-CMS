@@ -13,6 +13,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 export default function ManageProducts() {
   const [productsList, setProductsList] = useState([]);
   const [productsCount, setProductsCount] = useState(0);
+  const [ordersCount, setOrdersCount] = useState(0); // New state for orders count
   const [usersCount, setUsersCount] = useState(0);
   const [user] = useAuthState(firebase.auth());
   const [openProductDetails, setOpenProductDetails] = useState(false);
@@ -49,6 +50,13 @@ export default function ManageProducts() {
         setUsersCount(usersSnapshot.size);
       } catch (error) {
         console.error("Error fetching users:", error);
+      }
+      try {
+        const ordersRef = firebase.firestore().collection("Orders");
+        const ordersSnapshot = await ordersRef.get();
+        setOrdersCount(ordersSnapshot.size);
+      } catch (error) {
+        console.error("Error fetching orders:", error);
       }
     };
 
@@ -132,7 +140,7 @@ export default function ManageProducts() {
                 Sales
               </Typography>
               <Typography sx={{ fontWeight: 400, fontSize: 20 }}>
-                300
+              {ordersCount}
               </Typography>
             </Box>
 

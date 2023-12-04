@@ -14,7 +14,8 @@ export default function ManageOrders() {
   const [ordersList, setOrdersList] = useState([]);
   const [usersList, setUsersList] = useState([]);
   const [usersCount, setUsersCount] = useState(0);
-  const [ordersCount, setOrdersCount] = useState(0);  // Add this line
+  const [ordersCount, setOrdersCount] = useState(0);
+  const [salesTotal, setSalesTotal] = useState(0); // Add this line
   const [user] = useAuthState(firebase.auth());
   const [openOrderDetails, setOpenOrderDetails] = useState(false);
 
@@ -57,8 +58,11 @@ export default function ManageOrders() {
         }));
         setOrdersList(ordersData);
 
-        // Calculate statistics for Orders
         setOrdersCount(ordersData.length);
+
+
+        const totalSales = ordersData.reduce((acc, order) => acc + order.total, 0);
+        setSalesTotal(totalSales);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -144,7 +148,7 @@ export default function ManageOrders() {
                 Sales
               </Typography>
               <Typography sx={{ fontWeight: 400, fontSize: 20 }}>
-                300
+              {ordersCount}
               </Typography>
             </Box>
 
