@@ -16,6 +16,8 @@ export default function ManageBusinesses() {
   const [businessesCount, setBusinessesCount] = useState(0);
   const [user] = useAuthState(firebase.auth());
 
+  const [prevBusinessesCount, setPrevBusinessesCount] = useState(0);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -29,7 +31,8 @@ export default function ManageBusinesses() {
           industry: doc.data().selectedIndustry,
         }));
         setBusinessesList(businessesData);
-        setBusinessesCount(snapshot.size); 
+        setPrevBusinessesCount(businessesCount); 
+        setBusinessesCount(snapshot.size);
 
         const usersRef = firebase.firestore().collection("Users");
         const usersSnapshot = await usersRef.get();
@@ -42,7 +45,8 @@ export default function ManageBusinesses() {
     if (user) {
       fetchData();
     }
-  }, [user]);
+  }, [user, businessesCount]); 
+  const newBusinessesCount = businessesCount - prevBusinessesCount;
 
   return (
     <>
@@ -134,7 +138,7 @@ export default function ManageBusinesses() {
                 New Businesses
               </Typography>
               <Typography sx={{ fontWeight: 400, fontSize: 20 }}>
-                300
+              {businessesCount}
               </Typography>
             </Box>
 
