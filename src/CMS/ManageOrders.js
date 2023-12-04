@@ -12,15 +12,35 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 export default function ManageOrders() {
   const [ordersList, setOrdersList] = useState([]);
+  const [usersList, setUsersList] = useState([]);
+  const [usersCount, setUsersCount] = useState(0);
+  const [ordersCount, setOrdersCount] = useState(0);  // Add this line
   const [user] = useAuthState(firebase.auth());
   const [openOrderDetails, setOpenOrderDetails] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Fetch data for Users
+        const usersRef = firebase.firestore().collection("Users");
+        const usersSnapshot = await usersRef.get();
+
+        const usersData = usersSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          name: doc.data().name,
+          surname: doc.data().surname,
+          email: doc.data().email,
+          phone: doc.data().phone,
+          location: doc.data().location,
+          actions: ["Block User", "View Details"],
+        }));
+        setUsersList(usersData);
+        setUsersCount(usersSnapshot.size);
+
+        // Fetch data for Orders
         const ordersRef = firebase.firestore().collection("Orders");
-        const snapshot = await ordersRef.get();
-        const ordersData = snapshot.docs.map((doc) => ({
+        const ordersSnapshot = await ordersRef.get();
+        const ordersData = ordersSnapshot.docs.map((doc) => ({
           id: doc.id,
           agentReferal: doc.data().agentReferal,
           deliveryAddress: doc.data().deliveryAddress,
@@ -36,8 +56,11 @@ export default function ManageOrders() {
           products: doc.data().products,
         }));
         setOrdersList(ordersData);
+
+        // Calculate statistics for Orders
+        setOrdersCount(ordersData.length);
       } catch (error) {
-        console.error("Error fetching orders:", error);
+        console.error("Error fetching data:", error);
       }
     };
 
@@ -136,7 +159,7 @@ export default function ManageOrders() {
                 New Orders
               </Typography>
               <Typography sx={{ fontWeight: 400, fontSize: 20 }}>
-                300
+              {ordersCount}
               </Typography>
             </Box>
 
@@ -151,7 +174,7 @@ export default function ManageOrders() {
                 New Users
               </Typography>
               <Typography sx={{ fontWeight: 400, fontSize: 20 }}>
-                300
+              {usersCount}
               </Typography>
             </Box>
           </Box>
