@@ -15,14 +15,14 @@ export default function ManageOrders() {
   const [usersList, setUsersList] = useState([]);
   const [usersCount, setUsersCount] = useState(0);
   const [ordersCount, setOrdersCount] = useState(0);
-  const [salesTotal, setSalesTotal] = useState(0); // Add this line
+  const [salesTotal, setSalesTotal] = useState(0); 
   const [user] = useAuthState(firebase.auth());
   const [openOrderDetails, setOpenOrderDetails] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch data for Users
+     
         const usersRef = firebase.firestore().collection("Users");
         const usersSnapshot = await usersRef.get();
 
@@ -38,7 +38,7 @@ export default function ManageOrders() {
         setUsersList(usersData);
         setUsersCount(usersSnapshot.size);
 
-        // Fetch data for Orders
+     
         const ordersRef = firebase.firestore().collection("Orders");
         const ordersSnapshot = await ordersRef.get();
         const ordersData = ordersSnapshot.docs.map((doc) => ({
@@ -126,7 +126,7 @@ export default function ManageOrders() {
               borderBottom: "1px lightgray solid",
             }}
           >
-            <Typography sx={{ fontWeight: 700 }}>USERS</Typography>
+            <Typography sx={{ fontWeight: 700 }}>ORDERS</Typography>
           </Box>
 
           <Box

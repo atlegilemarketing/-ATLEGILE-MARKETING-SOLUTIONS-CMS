@@ -13,7 +13,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 export default function ManageProducts() {
   const [productsList, setProductsList] = useState([]);
   const [productsCount, setProductsCount] = useState(0);
-  const [ordersCount, setOrdersCount] = useState(0); // New state for orders count
+  const [ordersCount, setOrdersCount] = useState(0); 
   const [usersCount, setUsersCount] = useState(0);
   const [user] = useAuthState(firebase.auth());
   const [openProductDetails, setOpenProductDetails] = useState(false);
@@ -118,7 +118,7 @@ export default function ManageProducts() {
               borderBottom: "1px lightgray solid",
             }}
           >
-            <Typography sx={{ fontWeight: 700 }}>USERS</Typography>
+            <Typography sx={{ fontWeight: 700 }}>PRODUCTS</Typography>
           </Box>
 
           <Box

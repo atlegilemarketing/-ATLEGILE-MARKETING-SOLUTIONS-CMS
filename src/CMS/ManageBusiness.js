@@ -13,11 +13,11 @@ import CircularProgress from "@mui/material/CircularProgress";
 export default function ManageBusinesses() {
   const [businessesList, setBusinessesList] = useState([]);
   const [usersCount, setUsersCount] = useState(0);
+  const [ordersCount, setOrdersCount] = useState(0);
   const [businessesCount, setBusinessesCount] = useState(0);
   const [user] = useAuthState(firebase.auth());
 
   const [prevBusinessesCount, setPrevBusinessesCount] = useState(0);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -31,23 +31,28 @@ export default function ManageBusinesses() {
           industry: doc.data().selectedIndustry,
         }));
         setBusinessesList(businessesData);
-        setPrevBusinessesCount(businessesCount); 
+        setPrevBusinessesCount(businessesCount);
         setBusinessesCount(snapshot.size);
-
+  
         const usersRef = firebase.firestore().collection("Users");
         const usersSnapshot = await usersRef.get();
         setUsersCount(usersSnapshot.size);
+  
+        const ordersRef = firebase.firestore().collection("Orders");
+        const ordersSnapshot = await ordersRef.get();
+        setOrdersCount(ordersSnapshot.size);
       } catch (error) {
-        console.error("Error fetching businesses:", error);
+        console.error("Error fetching data:", error);
       }
     };
-
+  
     if (user) {
       fetchData();
     }
-  }, [user, businessesCount]); 
+  }, [user, businessesCount]);
+  
   const newBusinessesCount = businessesCount - prevBusinessesCount;
-
+  
   return (
     <>
       <Box
@@ -101,7 +106,7 @@ export default function ManageBusinesses() {
               borderBottom: "1px lightgray solid",
             }}
           >
-            <Typography sx={{ fontWeight: 700 }}>USERS</Typography>
+            <Typography sx={{ fontWeight: 700 }}>BUSINESSES</Typography>
           </Box>
 
           <Box

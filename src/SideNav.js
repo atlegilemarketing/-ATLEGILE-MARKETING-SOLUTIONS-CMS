@@ -1,22 +1,17 @@
-import React, { useState, useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { Box, Typography, Avatar, Button } from "@mui/material";
 import { Star as StarIcon } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import { firebase } from "./config";
+import { firebase, firestore } from "./config";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { getDownloadURL, ref, uploadBytes,getStorage } from "firebase/storage";
 
-export default function SideNav() {
+export default function SideNav({ userData }) {
   const navigate = useNavigate();
-  const [activePage, setActivePage] = useState("");
-  const [image, setImage] = useState(null);
-  const [imageURL, setImageURL] = useState(null);
-  const fileInputRef = useRef(null);
-  const [user] = useAuthState(firebase.auth());
+  const [activePage, setActivePage] = React.useState("");
+  const [image, setImage] = React.useState(null);
+  const fileInputRef = React.useRef(null);
 
-console.log("",user)
   const handleNavigateToDashboard = () => {
     setActivePage("dashboard");
     navigate("dashboard");
@@ -42,11 +37,17 @@ console.log("",user)
     navigate("products");
   };
 
-  const handleSignOut = () => {};
+  const handleSignOut = async () => {
+    try {
+      await firebase.auth().signOut();
+      navigate("/Signin");
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+  };
 
   const handleFileChange = (e) => {
     const selectedImage = e.target.files[0];
-    //console.log("selectedImage: ", selectedImage);
     if (selectedImage) {
       const reader = new FileReader();
       reader.onload = (e) => {
@@ -60,23 +61,10 @@ console.log("",user)
     fileInputRef.current.click();
   };
 
-  //{
-  //   image !==null?()=>{
-  //      const imgRef =  ref(storageBucket, `images/${Date.now()}`)
-  //      uploadBytes(imgRef,image).then(value=>{
-  //          console.log(value)
-  //          getDownloadURL(value.ref).then(url=>{
-  //              setImageURL(data=>[...data,url])
-  //          })
-  //      })
-  //   }:()=>null
-  // }
-
   return (
     <Box
       sx={{
         width: "318px",
-        //height: "110%",
         border: "none",
         borderRight: "1px lightgray solid",
         padding: 2,
@@ -91,7 +79,7 @@ console.log("",user)
         style={{ display: "none" }}
         ref={fileInputRef}
       />
-      
+
       <Avatar
         sx={{
           color: "gray",
@@ -99,11 +87,11 @@ console.log("",user)
           height: 275,
           mt: 8,
           mb: 4,
-          cursor:"pointer"
+          cursor: "pointer",
         }}
         onClick={openFileInput}
       >
-        S
+        {userData && userData.name ? userData.name[0] : "S"}
       </Avatar>
 
       <Box
@@ -115,13 +103,13 @@ console.log("",user)
         }}
       >
         <Typography variant="h4" sx={{ fontWeight: 700, color: "black" }}>
-          James
+          {userData ? userData.name : "Loading..."}
         </Typography>
         <Typography sx={{ fontWeight: 600, color: "black" }}>
-          0123456789
+          {userData ? userData.phone : "Loading..."}
         </Typography>
         <Typography sx={{ fontWeight: 600, color: "black" }}>
-          example@mail.com
+          {userData ? userData.email : "email"}
         </Typography>
       </Box>
       <Box sx={{ mt: 2 }}>
@@ -152,7 +140,8 @@ console.log("",user)
             borderBottom: "1px lightgray solid",
             justifyContent: "flex-start",
             textTransform: "none",
-            backgroundColor: activePage === "users" ? "#b8d9f7" : "transparent",
+            backgroundColor:
+              activePage === "users" ? "#b8d9f7" : "transparent",
           }}
         >
           <StarIcon sx={{ color: "gray", mr: 4 }} />
