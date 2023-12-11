@@ -3,8 +3,25 @@ import React, { useRef } from "react";
 import { Box, Typography, Avatar, Button } from "@mui/material";
 import { Star as StarIcon } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import { signOut,getAuth, onAuthStateChanged } from 'firebase/auth';
 
 export default function SideNav({ userData }) {
+  const auth = getAuth();
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/auth.user
+    
+    console.log("User logged in with ID: ",user.email)
+    // ...
+  } else {
+    // User is signed out
+    // ...
+    console.log("No user logged in.")
+  }
+});
+
+
   const navigate = useNavigate();
   const [activePage, setActivePage] = React.useState("");
   // eslint-disable-next-line
@@ -37,7 +54,8 @@ export default function SideNav({ userData }) {
   };
 
   const handleSignOut = () => {
-    navigate("/Signin");
+    signOut(auth);
+    navigate("/");
   };
 
   const handleFileChange = (e) => {
