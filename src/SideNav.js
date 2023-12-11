@@ -1,10 +1,7 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import { Box, Typography, Avatar, Button } from "@mui/material";
 import { Star as StarIcon } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import { firebase, firestore } from "./config";
-import "firebase/compat/auth";
-import "firebase/compat/firestore";
 
 export default function SideNav({ userData }) {
   const navigate = useNavigate();
@@ -37,13 +34,8 @@ export default function SideNav({ userData }) {
     navigate("products");
   };
 
-  const handleSignOut = async () => {
-    try {
-      await firebase.auth().signOut();
-      navigate("/Signin");
-    } catch (error) {
-      console.error("Error signing out:", error);
-    }
+  const handleSignOut = () => {
+    navigate("/Signin");
   };
 
   const handleFileChange = (e) => {
@@ -103,13 +95,13 @@ export default function SideNav({ userData }) {
         }}
       >
         <Typography variant="h4" sx={{ fontWeight: 700, color: "black" }}>
-          {userData ? userData.name : "Loading..."}
+         James
         </Typography>
         <Typography sx={{ fontWeight: 600, color: "black" }}>
-          {userData ? userData.phone : "Loading..."}
+        012346789
         </Typography>
         <Typography sx={{ fontWeight: 600, color: "black" }}>
-          {userData ? userData.email : "email"}
+         example@email.com
         </Typography>
       </Box>
       <Box sx={{ mt: 2 }}>

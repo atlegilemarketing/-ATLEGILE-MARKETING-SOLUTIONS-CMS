@@ -38,9 +38,9 @@ export default function SignIn() {
 
   const handleSignIn = () => {
     // Check if the email ends with "@ams.com"
-    if (!email.toLowerCase().endsWith("@ams.com")) {
+    if (!email.toLowerCase().endsWith("@ams.co.za")) {
       setTitle("Invalid Email");
-      setMessage("Please use an email address ending with @ams.com");
+      setMessage("Please use an email address ending with @ams.co.za");
       setOpenAlert(true);
       return;
     }
@@ -65,7 +65,7 @@ export default function SignIn() {
         });
       })
       .catch((error) => {
-        // Log more details about the error
+      
         setTitle("Error: " + error.code);
         setMessage(error.message);
         setOpenAlert(true);
@@ -237,7 +237,7 @@ export default function SignIn() {
         </Box>
       </Container>
       
-      {/* Pass userData to SideNav component */}
+    
       {userData && <SideNav userData={userData} />}
     </>
   );
