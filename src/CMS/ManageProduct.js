@@ -43,6 +43,7 @@ export default function ManageProducts() {
       try {
         const usersRef = firebase.firestore().collection("Users");
         const usersSnapshot = await usersRef.get();
+        // eslint-disable-next-line
         const usersData = usersSnapshot.docs.map((doc) => ({
           id: doc.id,
           usersName: doc.data().usersName,

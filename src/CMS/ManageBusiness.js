@@ -16,7 +16,7 @@ export default function ManageBusinesses() {
   const [ordersCount, setOrdersCount] = useState(0);
   const [businessesCount, setBusinessesCount] = useState(0);
   const [user] = useAuthState(firebase.auth());
-
+// eslint-disable-next-line
   const [prevBusinessesCount, setPrevBusinessesCount] = useState(0);
   useEffect(() => {
     const fetchData = async () => {
@@ -51,7 +51,7 @@ export default function ManageBusinesses() {
     }
   }, [user, businessesCount]);
   
-  const newBusinessesCount = businessesCount - prevBusinessesCount;
+  //const newBusinessesCount = businessesCount - prevBusinessesCount;
   
   return (
     <>

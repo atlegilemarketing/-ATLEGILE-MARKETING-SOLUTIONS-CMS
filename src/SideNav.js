@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import React, { useRef } from "react";
 import { Box, Typography, Avatar, Button } from "@mui/material";
 import { Star as StarIcon } from "@mui/icons-material";
@@ -6,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 export default function SideNav({ userData }) {
   const navigate = useNavigate();
   const [activePage, setActivePage] = React.useState("");
+  // eslint-disable-next-line
   const [image, setImage] = React.useState(null);
   const fileInputRef = React.useRef(null);
 

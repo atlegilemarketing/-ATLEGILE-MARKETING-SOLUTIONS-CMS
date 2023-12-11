@@ -12,9 +12,11 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 export default function ManageOrders() {
   const [ordersList, setOrdersList] = useState([]);
+  // eslint-disable-next-line
   const [usersList, setUsersList] = useState([]);
   const [usersCount, setUsersCount] = useState(0);
   const [ordersCount, setOrdersCount] = useState(0);
+  // eslint-disable-next-line
   const [salesTotal, setSalesTotal] = useState(0); 
   const [user] = useAuthState(firebase.auth());
   const [openOrderDetails, setOpenOrderDetails] = useState(false);
