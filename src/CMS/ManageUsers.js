@@ -1,3 +1,5 @@
+// ManageUsers.js
+
 import React, { useState, useEffect } from "react";
 import { Box, Typography, Grid } from "@mui/material";
 import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
@@ -10,52 +12,64 @@ import "firebase/compat/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import UserCard from "./UserCard";
 
+
 export default function ManageUsers() {
   const [usersList, setUsersList] = useState([]);
   const [usersCount, setUsersCount] = useState(0);
   const [businessesCount, setBusinessesCount] = useState(0);
-  const [ordersCount, setOrdersCount] = useState(0); 
+  const [ordersCount, setOrdersCount] = useState(0);
   const [user] = useAuthState(firebase.auth());
 
+  const fetchData = async () => {
+    try {
+      const usersRef = firebase.firestore().collection("Users");
+      const usersSnapshot = await usersRef.get();
+
+      const usersData = usersSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        name: doc.data().name,
+        surname: doc.data().surname,
+        email: doc.data().email,
+        phone: doc.data().phone,
+        location: doc.data().location,
+        actions: ["Block User", "View Details"],
+      }));
+      setUsersList(usersData);
+      setUsersCount(usersSnapshot.size);
+
+      const businessesRef = firebase.firestore().collection("Business");
+      const businessesSnapshot = await businessesRef.get();
+      setBusinessesCount(businessesSnapshot.size);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+    try {
+      const ordersRef = firebase.firestore().collection("Orders");
+      const ordersSnapshot = await ordersRef.get();
+      setOrdersCount(ordersSnapshot.size);
+    } catch (error) {
+      console.error("Error fetching orders:", error);
+    }
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-       
-        const usersRef = firebase.firestore().collection("Users");
-        const usersSnapshot = await usersRef.get();
-
-        const usersData = usersSnapshot.docs.map((doc) => ({
-          id: doc.id,
-          name: doc.data().name,
-          surname: doc.data().surname,
-          email: doc.data().email,
-          phone: doc.data().phone,
-          location: doc.data().location,
-          actions: ["Block User", "View Details"],
-        }));
-        setUsersList(usersData);
-        setUsersCount( usersSnapshot.size);
-
-        const businessesRef = firebase.firestore().collection("Business");
-        const businessesSnapshot = await businessesRef.get();
-        setBusinessesCount(businessesSnapshot.size);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-      try {
-        const ordersRef = firebase.firestore().collection("Orders");
-        const ordersSnapshot = await ordersRef.get();
-        setOrdersCount(ordersSnapshot.size);
-      } catch (error) {
-        console.error("Error fetching orders:", error);
-      }
-
-    };
-
     if (user) {
       fetchData();
     }
-  }, [user]); 
+  }, [user]);
+
+  const blockUser = async (userId) => {
+    try {
+      await firebase.firestore().collection("Users").doc(userId).update({
+        blocked: true,
+      });
+
+      fetchData();
+    } catch (error) {
+      console.error("Error blocking user:", error);
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -127,7 +141,9 @@ export default function ManageUsers() {
             }}
           >
             <Typography sx={{ color: "gray", fontSize: 12 }}>Sales</Typography>
-            <Typography sx={{ fontWeight: 400, fontSize: 20 }}>{ordersCount}</Typography>
+            <Typography sx={{ fontWeight: 400, fontSize: 20 }}>
+              {ordersCount}
+            </Typography>
           </Box>
 
           <Box
@@ -140,7 +156,9 @@ export default function ManageUsers() {
             <Typography sx={{ color: "gray", fontSize: 12 }}>
               New Users
             </Typography>
-            <Typography sx={{ fontWeight: 400, fontSize: 20 }}>{usersCount}</Typography>
+            <Typography sx={{ fontWeight: 400, fontSize: 20 }}>
+              {usersCount}
+            </Typography>
           </Box>
 
           <Box
@@ -150,12 +168,12 @@ export default function ManageUsers() {
               flexDirection: "column",
             }}
           >
-        <Typography sx={{ color: "gray", fontSize: 12 }}>
-            New Businesses
-          </Typography>
-          <Typography sx={{ fontWeight: 400, fontSize: 20 }}>
-            {businessesCount}
-          </Typography>
+            <Typography sx={{ color: "gray", fontSize: 12 }}>
+              New Businesses
+            </Typography>
+            <Typography sx={{ fontWeight: 400, fontSize: 20 }}>
+              {businessesCount}
+            </Typography>
           </Box>
         </Box>
 
@@ -198,14 +216,14 @@ export default function ManageUsers() {
               borderRight: "1px lightgray solid",
             }}
           >
-            <Typography sx={{ fontWeight: 600,fontSize: 14 }}>Name</Typography>
+            <Typography sx={{ fontWeight: 600, fontSize: 14 }}>Name</Typography>
             <Typography
               sx={{
                 color: "gray",
               }}
             >
-              <UnfoldMoreIcon sx={{fontSize:17}}/>
-              <SearchIcon sx={{fontSize:17}}/>
+              <UnfoldMoreIcon sx={{ fontSize: 17 }} />
+              <SearchIcon sx={{ fontSize: 17 }} />
             </Typography>
           </Grid>
 
@@ -223,13 +241,13 @@ export default function ManageUsers() {
               borderRight: "1px lightgray solid",
             }}
           >
-            <Typography sx={{ fontWeight: 600,fontSize: 14 }}>Surname</Typography>
+            <Typography sx={{ fontWeight: 600, fontSize: 14 }}>Surname</Typography>
             <Typography
               sx={{
                 color: "gray",
               }}
             >
-              <UnfoldMoreIcon sx={{fontSize:17}}/>
+              <UnfoldMoreIcon sx={{ fontSize: 17 }} />
             </Typography>
           </Grid>
 
@@ -247,13 +265,13 @@ export default function ManageUsers() {
               borderRight: "1px lightgray solid",
             }}
           >
-            <Typography sx={{ fontWeight: 600,fontSize: 14 }}>Phone</Typography>
+            <Typography sx={{ fontWeight: 600, fontSize: 14 }}>Phone</Typography>
             <Typography
               sx={{
                 color: "gray",
               }}
             >
-              <UnfoldMoreIcon sx={{fontSize:17}}/>
+              <UnfoldMoreIcon sx={{ fontSize: 17 }} />
             </Typography>
           </Grid>
 
@@ -271,13 +289,13 @@ export default function ManageUsers() {
               borderRight: "1px lightgray solid",
             }}
           >
-            <Typography sx={{ fontWeight: 600,fontSize: 14 }}>Email</Typography>
+            <Typography sx={{ fontWeight: 600, fontSize: 14 }}>Email</Typography>
             <Typography
               sx={{
                 color: "gray",
               }}
             >
-              <UnfoldMoreIcon sx={{fontSize:17}}/>
+              <UnfoldMoreIcon sx={{ fontSize: 17 }} />
             </Typography>
           </Grid>
 
@@ -295,13 +313,13 @@ export default function ManageUsers() {
               borderRight: "1px lightgray solid",
             }}
           >
-            <Typography sx={{ fontWeight: 600,fontSize: 14 }}>Location</Typography>
+            <Typography sx={{ fontWeight: 600, fontSize: 14 }}>Location</Typography>
             <Typography
               sx={{
                 color: "gray",
               }}
             >
-              <UnfoldMoreIcon sx={{fontSize:17}}/>
+              <UnfoldMoreIcon sx={{ fontSize: 17 }} />
             </Typography>
           </Grid>
 
@@ -316,7 +334,7 @@ export default function ManageUsers() {
               alignItems: "center",
             }}
           >
-            <Typography sx={{ fontWeight: 600,fontSize: 14 }}>Actions</Typography>
+            <Typography sx={{ fontWeight: 600, fontSize: 14 }}>Actions</Typography>
           </Grid>
         </Grid>
 
@@ -333,7 +351,9 @@ export default function ManageUsers() {
             <CircularProgress />
           </Box>
         ) : (
-          usersList.map((user) => <UserCard key={user.id} user={user} />)
+          usersList.map((user) => (
+            <UserCard key={user.id} user={user} onBlockUser={blockUser} />
+          ))
         )}
       </Box>
     </Box>

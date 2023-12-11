@@ -15,7 +15,7 @@ export default function ManageBusinesses() {
   const [usersCount, setUsersCount] = useState(0);
   const [businessesCount, setBusinessesCount] = useState(0);
   const [productsCount, setProductsCount] = useState(0);
-  const [ordersCount, setOrdersCount] = useState(0); // New state for orders count
+  const [ordersCount, setOrdersCount] = useState(0); 
   const [user] = useAuthState(firebase.auth());
 
   useEffect(() => {
