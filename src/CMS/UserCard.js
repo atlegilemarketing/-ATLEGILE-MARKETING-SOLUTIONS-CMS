@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import { Grid, Typography, Button, Modal, Box } from "@mui/material";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
-function UserCard({ user }) {
+function UserCard({ user, onBlockUser }) {
   const [open, setOpen] = useState(false);
-  //console.log("Industry: ", user.industry);
-const blockToggleUser=()=>{
-  //Check is user.block is true or false
-  //if true, update the block field in the user's data to false
-  //if false, update the block field in the user's data to true
-}
+
+  const blockToggleUser = () => {
+    // Check if user.block is true or false
+    // If true, update the block field in the user's data to false
+    // If false, update the block field in the user's data to true
+    onBlockUser(user.id, !user.blocked);
+  };
+
   return (
     <>
       <Modal
@@ -145,21 +147,21 @@ const blockToggleUser=()=>{
             alignItems: "center",
           }}
         >
-            <Button
+               <Button
             onClick={blockToggleUser}
-              variant="text"
-              sx={{
-                textDecoration: "none",
-                color: "#1890ff",
-                display: "flex",
-                alignItems: "center",
-                fontSize: 14,
-                border: "none",
-                borderRight: "1px lightgray solid",
-              }}
-            >
-              {user.actions[0]}
-            </Button>
+            variant="text"
+            sx={{
+              textDecoration: "none",
+              color: "#1890ff",
+              display: "flex",
+              alignItems: "center",
+              fontSize: 14,
+              border: "none",
+              borderRight: "1px lightgray solid",
+            }}
+          >
+            {user.actions[0]}
+          </Button>
 
             <Button
             onClick={()=>setOpen(true)}

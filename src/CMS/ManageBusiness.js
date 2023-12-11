@@ -128,7 +128,7 @@ export default function ManageBusinesses() {
                 Sales
               </Typography>
               <Typography sx={{ fontWeight: 400, fontSize: 20 }}>
-                300
+              {ordersCount}
               </Typography>
             </Box>
 
