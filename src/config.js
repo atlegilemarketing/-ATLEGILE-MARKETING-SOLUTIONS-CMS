@@ -4,7 +4,7 @@ import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import "firebase/compat/storage";
 import { getFirestore, doc } from "firebase/firestore";
-import { getStorage } from "firebase/storage";
+
 
 // import firebase from 'firebase/app';
 import 'firebase/storage';
