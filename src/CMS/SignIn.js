@@ -9,9 +9,10 @@ import {
   TextField,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { firebase } from "../config";
+import { firebase, firestore } from "../config";
 import CircularProgress from "@mui/material/CircularProgress";
 import AlertDialog from "./AlertDialog";
+import SideNav from "../SideNav";
 
 const logo = require("../images/cropped-AMS-Shadow-Queen-Logo_BNY-1320x772 1.png");
 
@@ -27,6 +28,8 @@ export default function SignIn() {
   const [open, setOpen] = useState(false);
   let validRegex = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}");
 
+  const [userData, setUserData] = useState(null); 
+
   const handleEmailChange = (e) => {
     const inputEmail = e.target.value;
     setEmail(inputEmail);
@@ -34,8 +37,13 @@ export default function SignIn() {
   };
 
   const handleSignIn = () => {
-    //console.log("EMAIL: ", email);
-    //console.log("password: ", password);
+    // Check if the email ends with "@ams.com"
+    if (!email.toLowerCase().endsWith("@ams.co.za")) {
+      setTitle("Invalid Email");
+      setMessage("Please use an email address ending with @ams.co.za");
+      setOpenAlert(true);
+      return;
+    }
 
     setOpen(true);
     firebase
@@ -43,27 +51,27 @@ export default function SignIn() {
       .signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log("User signed in:", user);
-        setTitle("Successful");
-        setMessage("You have been logged in successfully!");
-        setOpenAlert(true);
-        navigate("/main/dashboard");
+        const userRef = firestore.collection("Users").doc(user.uid);
+        userRef.get().then((doc) => {
+          if (doc.exists) {
+            const userData = doc.data();
+            setUserData(userData);
+          }
+
+          setTitle("Successful");
+          setMessage("You have been logged in successfully!");
+          setOpenAlert(true);
+          navigate("/main/dashboard");
+        });
       })
       .catch((error) => {
-        // Log more details about the error
+      
         setTitle("Error: " + error.code);
         setMessage(error.message);
         setOpenAlert(true);
-        console.log(title, " ", message);
         console.error("Error signing in:", error.code, error.message);
         setOpen(false);
       });
-  };
-  // eslint-disable-next-line
-  const handleGuestSignIn = () => {
-    
-    alert("Signed in as a guest!");
-    navigate("/main/dashboard");
   };
 
   return (
@@ -99,7 +107,6 @@ export default function SignIn() {
           flexDirection: "column",
           height: "100%",
           width: "100%",
-          //border: "1px green solid",
         }}
       >
         <Box
@@ -109,7 +116,6 @@ export default function SignIn() {
             alignItems: "center",
             justifyContent: "center",
             width: "100%",
-            //border: "1px green solid",
           }}
         >
           <img src={logo} alt="cropped AMS Shadow Queen Logo BNY-1320x772" />
@@ -119,7 +125,6 @@ export default function SignIn() {
           sx={{
             width: "100%",
             height: "45vh",
-            //border: "1px green solid",
           }}
         >
           <Box
@@ -147,51 +152,12 @@ export default function SignIn() {
               onChange={handleEmailChange}
               sx={{ mb: 1 }}
             />
-            {/* <label htmlFor="email" sx={{ fontSize: 12, color: "gray" }}>
-              Email
-            </label>
-            <br />
-            <input
-              type="text"
-              id="email"
-              placeholder="Enter email address"
-              sx={{
-                border: "none",
-                borderBottom: isEmailValid
-                  ? "1px solid black"
-                  : "1px solid red",
-                pt: 1,
-                pb: 1,
-                width: "100%",
-                color: isEmailValid ? "black" : "red",
-              }}
-              value={email}
-              onChange={handleEmailChange}
-            /> */}
             {!isEmailValid && (
               <Box sx={{ color: "red", fontSize: 12 }}>
                 Invalid email address.
               </Box>
             )}
             <br />
-            {/* <label htmlFor="password" sx={{ fontSize: 12, color: "gray" }}>
-              Password
-            </label>
-            <br />
-            <input
-              type="password"
-              id="password"
-              placeholder="Enter password"
-              sx={{
-                border: "none",
-                borderBottom: "1px solid black",
-                pt: 10,
-                pb: 10,
-                width: "100%",
-              }}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            /> */}
             <TextField
               fullWidth
               id="password"
@@ -270,6 +236,9 @@ export default function SignIn() {
           </Box>
         </Box>
       </Container>
+      
+    
+      {userData && <SideNav userData={userData} />}
     </>
   );
 }
