@@ -51,7 +51,7 @@ function OrderCard({ order }) {
 
       <Grid
         container
-        key={order.id}
+        key={order.productId}
         sx={{
           display: "flex",
           flexDirection: "row",
@@ -72,7 +72,7 @@ function OrderCard({ order }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-            {order.orderNumber}
+            {/* {order.orderNumber} */}
           </Typography>
         </Grid>
 
@@ -87,7 +87,7 @@ function OrderCard({ order }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-            {order.userName}
+            {/* {order.userName} */}
           </Typography>
         </Grid>
 
@@ -102,7 +102,7 @@ function OrderCard({ order }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-            {new Date(order.purchaseDate.seconds * 1000 + Math.floor(order.purchaseDate.nanoseconds / 1e6)).toLocaleString()}
+          {/* {new Date(order.createdAt * 1000).toLocaleString()} */}
           </Typography>
         </Grid>
 
@@ -117,7 +117,7 @@ function OrderCard({ order }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-            {order.total}
+            {order.deliveryDate}
           </Typography>
         </Grid>
 
@@ -132,7 +132,7 @@ function OrderCard({ order }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-            {order.deliveryStatus}
+            {order.deliveryFee}
           </Typography>
         </Grid>
 

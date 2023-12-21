@@ -45,18 +45,18 @@ export default function ManageOrders() {
         const ordersSnapshot = await ordersRef.get();
         const ordersData = ordersSnapshot.docs.map((doc) => ({
           id: doc.id,
-          agentReferal: doc.data().agentReferal,
+          // agentReferal: doc.data().agentReferal,
           deliveryAddress: doc.data().deliveryAddress,
           deliveryDate: doc.data().deliveryDate,
           deliveryGuy: doc.data().deliveryGuy,
-          deliveryFee: doc.data().deliveryFee,
-          orderNumber: doc.data().orderNumber,
+          // deliveryFee: doc.data().deliveryFee,
+          // orderNumber: doc.data().orderNumber,
           orderSummary: doc.data().orderSummary,
-          purchaseDate: doc.data().purchaseDate,
-          total: doc.data().total,
-          userName: doc.data().userName,
-          userSurname: doc.data().userSurname,
-          products: doc.data().products,
+          // createdAt: doc.data(),
+          // total: doc.data().total,
+          // userName: doc.data().userName,
+          // userSurname: doc.data().userSurname,
+          // products: doc.data().products,
         }));
         setOrdersList(ordersData);
 
