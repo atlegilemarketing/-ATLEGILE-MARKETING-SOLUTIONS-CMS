@@ -19,7 +19,7 @@ function BusinessCard({ business }) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box>
+        <Box sx={{ maxWidth: "500px" }}>
           <Box
             sx={{
               backgroundColor: "#072840",

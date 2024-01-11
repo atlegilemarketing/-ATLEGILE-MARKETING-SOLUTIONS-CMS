@@ -4,10 +4,18 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 function OrderCard({ order }) {
   const [open, setOpen] = useState(false);
-  //console.log("Orders purchaseDate object: ", order.purchaseDate);
+
+  const formatDeliveryDate = (deliveryDate) => {
+    if (deliveryDate && typeof deliveryDate === 'object' && 'seconds' in deliveryDate) {
+      const timestamp = deliveryDate.seconds * 1000;
+      return timestamp ? new Date(timestamp).toLocaleString() : '';
+    }
+    return deliveryDate;
+  };
+
   return (
     <>
-      <Modal
+    <Modal
         open={open}
         onClose={() => setOpen(false)}
         sx={{
@@ -19,33 +27,142 @@ function OrderCard({ order }) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={{ backgroundColor: "white" }}>
+        <Box sx={{ maxWidth: "500px" }}>
           <Box
             sx={{
-              border: "none",
-              borderBottom: "1px lightgray solid",
+              backgroundColor: "#072840",
               p: 2,
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
+              color: "white",
             }}
           >
-            <Typography sx={{ fontWeight: 700 }}></Typography>
+            <Typography sx={{ fontWeight: 700 }}>Order Details</Typography>
 
             <Button
               onClick={() => setOpen(false)}
               variant="text"
-              fullWidth
               sx={{
                 display: "flex",
-                justifyContent: "flex-end",
-                alignItems: "flex-end",
-                color: "black",
+                justifyContent: "center",
+                color: "white",
               }}
             >
               <HighlightOffIcon />
             </Button>
           </Box>
+
+          <Grid container sx={{ backgroundColor: "white", p: 3 }}>
+            <Grid item sx={{ fontWeight: 700 }} xs={4}>
+              Order Number:
+            </Grid>
+            <Grid
+              item
+              sx={{
+                display: "flex",
+              }}
+              xs={8}
+            >
+              {/* {product.productName} */}
+            </Grid>
+            <Grid sx={{ fontWeight: 700 }} xs={4}>
+            Date:
+            </Grid>
+            <Grid
+              item
+              sx={{
+                display: "flex",
+              }}
+              xs={8}
+            >
+              {/* {product.businessName} */}
+            </Grid>
+            <Grid item sx={{ fontWeight: 700 }} xs={4}>
+              Product Name:
+            </Grid>
+            <Grid
+              item
+              sx={{
+                display: "flex",
+              }}
+              xs={8}
+            >
+              {/* {product.description} */}
+            </Grid>
+            <Grid item sx={{ fontWeight: 700 }} xs={4}>
+              Quantity:
+            </Grid>
+            <Grid
+              item
+              sx={{
+                display: "flex",
+              }}
+              xs={8}
+            >
+              {/* {product.quantity} */}
+            </Grid>
+            <Grid item sx={{ fontWeight: 700 }} xs={4}>
+              Total:
+            </Grid>
+            <Grid
+              item
+              sx={{
+                display: "flex",
+              }}
+              xs={8}
+            >
+              {/* {product.sales} */}
+            </Grid>
+            <Grid item sx={{ fontWeight: 700 }} xs={4}>
+              DeliveryStatus:
+            </Grid>
+            <Grid
+              item
+              sx={{
+                display: "flex",
+              }}
+              xs={8}
+            >
+              {/* {product.selectedProductCategory} */}
+            </Grid>
+            <Grid item sx={{ fontWeight: 700 }} xs={4}>
+              Delivery Fee:
+            </Grid>
+            <Grid
+              item
+              sx={{
+                display: "flex",
+              }}
+              xs={8}
+            >
+              {/* {product.selectedProductCategory} */}
+            </Grid>
+            <Grid item sx={{ fontWeight: 700 }} xs={4}>
+              Delivery Address:
+            </Grid>
+            <Grid
+              item
+              sx={{
+                display: "flex",
+              }}
+              xs={8}
+            >
+              {/* {product.selectedProductCategory} */}
+            </Grid>
+            <Grid item sx={{ fontWeight: 700 }} xs={4}>
+              Delivery Guy:
+            </Grid>
+            <Grid
+              item
+              sx={{
+                display: "flex",
+              }}
+              xs={8}
+            >
+              {/* {product.selectedProductCategory} */}
+            </Grid>
+          </Grid>
         </Box>
       </Modal>
 
@@ -72,7 +189,7 @@ function OrderCard({ order }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-            {/* {order.orderNumber} */}
+            {order.orderNumber}
           </Typography>
         </Grid>
 
@@ -87,7 +204,7 @@ function OrderCard({ order }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-            {/* {order.userName} */}
+            {order.userName}
           </Typography>
         </Grid>
 
@@ -102,7 +219,7 @@ function OrderCard({ order }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-          {/* {new Date(order.createdAt * 1000).toLocaleString()} */}
+            {order.createdAt}
           </Typography>
         </Grid>
 
@@ -117,8 +234,7 @@ function OrderCard({ order }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-            {order.deliveryDate}
-          </Typography>
+          {formatDeliveryDate(order.deliveryDate)}          </Typography>
         </Grid>
 
         <Grid
@@ -132,7 +248,7 @@ function OrderCard({ order }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-            {order.deliveryFee}
+            {order.DeliveryStatus}
           </Typography>
         </Grid>
 

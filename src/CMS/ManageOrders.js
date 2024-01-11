@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography, Grid } from "@mui/material";
+import { Box, Typography, Grid, Button, Modal } from "@mui/material";
 import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
 import SearchIcon from "@mui/icons-material/Search";
 import { firebase } from "../config";
@@ -12,19 +12,25 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 export default function ManageOrders() {
   const [ordersList, setOrdersList] = useState([]);
-  // eslint-disable-next-line
   const [usersList, setUsersList] = useState([]);
   const [usersCount, setUsersCount] = useState(0);
   const [ordersCount, setOrdersCount] = useState(0);
-  // eslint-disable-next-line
-  const [salesTotal, setSalesTotal] = useState(0); 
+  const [salesTotal, setSalesTotal] = useState(0);
   const [user] = useAuthState(firebase.auth());
   const [openOrderDetails, setOpenOrderDetails] = useState(false);
+
+  const formatDeliveryDate = (deliveryDate) => {
+    if (deliveryDate && typeof deliveryDate === 'object' && 'seconds' in deliveryDate) {
+      const timestamp = deliveryDate.seconds * 1000;
+      return timestamp ? new Date(timestamp).toLocaleString() : '';
+    }
+    return deliveryDate;
+  };
+
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-     
         const usersRef = firebase.firestore().collection("Users");
         const usersSnapshot = await usersRef.get();
 
@@ -40,30 +46,25 @@ export default function ManageOrders() {
         setUsersList(usersData);
         setUsersCount(usersSnapshot.size);
 
-     
         const ordersRef = firebase.firestore().collection("Orders");
         const ordersSnapshot = await ordersRef.get();
         const ordersData = ordersSnapshot.docs.map((doc) => ({
           id: doc.id,
-          // agentReferal: doc.data().agentReferal,
           deliveryAddress: doc.data().deliveryAddress,
           deliveryDate: doc.data().deliveryDate,
           deliveryGuy: doc.data().deliveryGuy,
-          // deliveryFee: doc.data().deliveryFee,
-          // orderNumber: doc.data().orderNumber,
+          DeliveryStatus: doc.data().DeliveryStatus,
+          orderNumber: doc.data().orderNumber,
           orderSummary: doc.data().orderSummary,
-          // createdAt: doc.data(),
-          // total: doc.data().total,
-          // userName: doc.data().userName,
-          // userSurname: doc.data().userSurname,
-          // products: doc.data().products,
+          userName: doc.data().userName,
+          // createdAt: doc.data().createdAt,
         }));
+        
         setOrdersList(ordersData);
-
+        
         setOrdersCount(ordersData.length);
-
-
-        const totalSales = ordersData.reduce((acc, order) => acc + order.total, 0);
+        
+        const totalSales = ordersData.reduce((acc, order) => (order.total ? acc + order.total : acc), 0);
         setSalesTotal(totalSales);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -150,7 +151,7 @@ export default function ManageOrders() {
                 Sales
               </Typography>
               <Typography sx={{ fontWeight: 400, fontSize: 20 }}>
-              {ordersCount}
+                {ordersCount}
               </Typography>
             </Box>
 
@@ -165,7 +166,7 @@ export default function ManageOrders() {
                 New Orders
               </Typography>
               <Typography sx={{ fontWeight: 400, fontSize: 20 }}>
-              {ordersCount}
+                {ordersCount}
               </Typography>
             </Box>
 
@@ -180,7 +181,7 @@ export default function ManageOrders() {
                 New Users
               </Typography>
               <Typography sx={{ fontWeight: 400, fontSize: 20 }}>
-              {usersCount}
+                {usersCount}
               </Typography>
             </Box>
           </Box>
