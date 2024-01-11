@@ -56,7 +56,7 @@ function ProductCard({ product }) {
               }}
               xs={8}
             >
-              {product.productName}
+              {product.name}
             </Grid>
             <Grid sx={{ fontWeight: 700 }} xs={4}>
               Business Name:

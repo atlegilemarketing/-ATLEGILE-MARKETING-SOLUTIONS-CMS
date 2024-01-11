@@ -6,10 +6,9 @@ function UserCard({ user, onBlockUser }) {
   const [open, setOpen] = useState(false);
 
   const blockToggleUser = () => {
-    // Check if user.block is true or false
-    // If true, update the block field in the user's data to false
-    // If false, update the block field in the user's data to true
-    onBlockUser(user.id, !user.blocked);
+    console.log("blockToggleUser called");
+    console.log("User ID:", user.id);
+    console.log("Blocked:", !user.blocked);
   };
 
   return (
@@ -160,7 +159,7 @@ function UserCard({ user, onBlockUser }) {
               borderRight: "1px lightgray solid",
             }}
           >
-            {user.actions[0]}
+            {user.blocked ? "Unblock User" : "Block User"}
           </Button>
 
             <Button

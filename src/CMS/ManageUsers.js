@@ -1,5 +1,3 @@
-// ManageUsers.js
-
 import React, { useState, useEffect } from "react";
 import { Box, Typography, Grid } from "@mui/material";
 import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
@@ -58,15 +56,22 @@ export default function ManageUsers() {
     }
   }, [user]);
 
-  const blockUser = async (userId) => {
+  const blockUser = async (userId, blocked) => {
     try {
+      // Update the server-side data immediately
       await firebase.firestore().collection("Users").doc(userId).update({
-        blocked: true,
+        blocked: blocked,
       });
 
+      // Refresh user data after blocking/unblocking
       fetchData();
+
+      
+      if (blocked) {
+        window.alert("User blocked successfully!");
+      }
     } catch (error) {
-      console.error("Error blocking user:", error);
+      console.error("Error blocking/unblocking user:", error);
     }
   };
 

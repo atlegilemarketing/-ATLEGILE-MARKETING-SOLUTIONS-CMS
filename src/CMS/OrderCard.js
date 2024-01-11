@@ -115,7 +115,7 @@ function OrderCard({ order }) {
               {/* {product.sales} */}
             </Grid>
             <Grid item sx={{ fontWeight: 700 }} xs={4}>
-              DeliveryStatus:
+              Delivery Status:
             </Grid>
             <Grid
               item

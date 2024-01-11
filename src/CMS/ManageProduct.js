@@ -29,7 +29,7 @@ export default function ManageProducts() {
           description: doc.data().description,
           image: doc.data().image,
           price: doc.data().price,
-          productName: doc.data().productName,
+          name: doc.data().name,
           quantity: doc.data().quantity,
           sales: doc.data().sales,
           selectedProductCategory: doc.data().selectedProductCategory,
