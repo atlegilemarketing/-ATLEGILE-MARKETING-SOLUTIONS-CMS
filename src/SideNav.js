@@ -115,13 +115,13 @@ onAuthStateChanged(auth, (user) => {
         }}
       >
         <Typography variant="h4" sx={{ fontWeight: 700, color: "black" }}>
-         James
+         Admin
         </Typography>
         <Typography sx={{ fontWeight: 600, color: "black" }}>
         012346789
         </Typography>
         <Typography sx={{ fontWeight: 600, color: "black" }}>
-         example@email.com
+         atlegile@ams.co.za
         </Typography>
       </Box>
       <Box sx={{ mt: 2 }}>
