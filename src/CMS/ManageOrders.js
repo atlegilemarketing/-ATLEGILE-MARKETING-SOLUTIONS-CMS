@@ -58,6 +58,8 @@ export default function ManageOrders() {
           orderNumber: doc.data().orderNumber,
           orderSummary: doc.data().orderSummary,
           userName: doc.data().userName,
+        productId: doc.data().productId,
+          
           // createdAt: doc.data().createdAt,
         }));
         
@@ -195,7 +197,7 @@ export default function ManageOrders() {
               mt: 4,
             }}
           >
-            <Typography sx={{ fontWeight: 700 }}>NEW PRODUCTS</Typography>
+            <Typography sx={{ fontWeight: 700 }}>NEW ORDERS</Typography>
           </Box>
 
           <Grid
@@ -227,7 +229,7 @@ export default function ManageOrders() {
               }}
             >
               <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
-                Invoice number
+                Invoice Number
               </Typography>
               <Typography
                 sx={{
@@ -254,7 +256,7 @@ export default function ManageOrders() {
               }}
             >
               <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
-                User name
+                User Name
               </Typography>
               <Typography
                 sx={{

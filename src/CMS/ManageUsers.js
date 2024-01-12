@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography, Grid } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Grid,
+  TextField,
+  InputAdornment,
+} from "@mui/material";
 import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
 import SearchIcon from "@mui/icons-material/Search";
-import clipArt from "../images/clipArtUsers.png";
 import CircularProgress from "@mui/material/CircularProgress";
 import { firebase } from "../config";
 import "firebase/compat/auth";
@@ -10,6 +15,7 @@ import "firebase/compat/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import UserCard from "./UserCard";
 
+import clipArt from "../images/clipArtUsers.png";
 
 export default function ManageUsers() {
   const [usersList, setUsersList] = useState([]);
@@ -17,6 +23,8 @@ export default function ManageUsers() {
   const [businessesCount, setBusinessesCount] = useState(0);
   const [ordersCount, setOrdersCount] = useState(0);
   const [user] = useAuthState(firebase.auth());
+  const [searchInput, setSearchInput] = useState("");
+  const [isSearchActive, setIsSearchActive] = useState(false);
 
   const fetchData = async () => {
     try {
@@ -32,7 +40,18 @@ export default function ManageUsers() {
         location: doc.data().location,
         actions: ["Block User", "View Details"],
       }));
-      setUsersList(usersData);
+
+      // Filter users based on search input
+      const filteredUsers = usersData.filter(
+        (user) =>
+          user.name.toLowerCase().includes(searchInput.toLowerCase()) ||
+          user.surname.toLowerCase().includes(searchInput.toLowerCase()) ||
+          user.phone.includes(searchInput) ||
+          user.email.toLowerCase().includes(searchInput.toLowerCase()) ||
+          user.location.toLowerCase().includes(searchInput.toLowerCase())
+      );
+
+      setUsersList(filteredUsers);
       setUsersCount(usersSnapshot.size);
 
       const businessesRef = firebase.firestore().collection("Business");
@@ -50,23 +69,32 @@ export default function ManageUsers() {
     }
   };
 
+  const handleSearchInputChange = (event) => {
+    setSearchInput(event.target.value);
+  };
+
+  const handleSearchIconClick = () => {
+    setIsSearchActive(true);
+  };
+
+  const handleSearchInputBlur = () => {
+    setIsSearchActive(false);
+  };
+
   useEffect(() => {
     if (user) {
       fetchData();
     }
-  }, [user]);
+  }, [user, searchInput]);
 
   const blockUser = async (userId, blocked) => {
     try {
-      // Update the server-side data immediately
       await firebase.firestore().collection("Users").doc(userId).update({
         blocked: blocked,
       });
 
-      // Refresh user data after blocking/unblocking
       fetchData();
 
-      
       if (blocked) {
         window.alert("User blocked successfully!");
       }
@@ -228,8 +256,35 @@ export default function ManageUsers() {
               }}
             >
               <UnfoldMoreIcon sx={{ fontSize: 17 }} />
-              <SearchIcon sx={{ fontSize: 17 }} />
             </Typography>
+            {isSearchActive ? (
+              <TextField
+                label="Search users"
+                value={searchInput}
+                onChange={handleSearchInputChange}
+                onBlur={handleSearchInputBlur}
+                sx={{
+                  ml: 2,
+                  mt: 2,
+                  mb: 2,
+                }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <SearchIcon
+                        sx={{ fontSize: 17, cursor: "pointer" }}
+                        onClick={handleSearchIconClick}
+                      />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            ) : (
+              <SearchIcon
+                sx={{ fontSize: 17, cursor: "pointer" }}
+                onClick={handleSearchIconClick}
+              />
+            )}
           </Grid>
 
           <Grid

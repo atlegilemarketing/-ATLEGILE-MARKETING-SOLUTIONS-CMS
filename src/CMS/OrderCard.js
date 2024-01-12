@@ -79,7 +79,7 @@ function OrderCard({ order }) {
               {/* {product.businessName} */}
             </Grid>
             <Grid item sx={{ fontWeight: 700 }} xs={4}>
-              Product Name:
+              Product ID:
             </Grid>
             <Grid
               item
@@ -88,7 +88,7 @@ function OrderCard({ order }) {
               }}
               xs={8}
             >
-              {/* {product.description} */}
+              {order.productId}
             </Grid>
             <Grid item sx={{ fontWeight: 700 }} xs={4}>
               Quantity:
