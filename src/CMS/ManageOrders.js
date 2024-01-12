@@ -53,6 +53,7 @@ export default function ManageOrders() {
           deliveryAddress: doc.data().deliveryAddress,
           deliveryDate: doc.data().deliveryDate,
           deliveryGuy: doc.data().deliveryGuy,
+          delivertFee: doc.data().deliveryFee,
           DeliveryStatus: doc.data().DeliveryStatus,
           orderNumber: doc.data().orderNumber,
           orderSummary: doc.data().orderSummary,

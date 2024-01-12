@@ -64,7 +64,7 @@ function OrderCard({ order }) {
               }}
               xs={8}
             >
-              {/* {product.productName} */}
+              {order.orderNumber}
             </Grid>
             <Grid sx={{ fontWeight: 700 }} xs={4}>
             Date:
@@ -100,11 +100,11 @@ function OrderCard({ order }) {
               }}
               xs={8}
             >
-              {/* {product.quantity} */}
+              {order.quantity}
             </Grid>
             <Grid item sx={{ fontWeight: 700 }} xs={4}>
-              Total:
-            </Grid>
+            Total Amount:          
+              </Grid>
             <Grid
               item
               sx={{
@@ -112,7 +112,7 @@ function OrderCard({ order }) {
               }}
               xs={8}
             >
-              {/* {product.sales} */}
+              {order.totalAmount}
             </Grid>
             <Grid item sx={{ fontWeight: 700 }} xs={4}>
               Delivery Status:
@@ -124,7 +124,7 @@ function OrderCard({ order }) {
               }}
               xs={8}
             >
-              {/* {product.selectedProductCategory} */}
+              {order.DeliveryStatus}
             </Grid>
             <Grid item sx={{ fontWeight: 700 }} xs={4}>
               Delivery Fee:
@@ -136,7 +136,7 @@ function OrderCard({ order }) {
               }}
               xs={8}
             >
-              {/* {product.selectedProductCategory} */}
+              {order.deliveryFee}
             </Grid>
             <Grid item sx={{ fontWeight: 700 }} xs={4}>
               Delivery Address:
@@ -148,7 +148,7 @@ function OrderCard({ order }) {
               }}
               xs={8}
             >
-              {/* {product.selectedProductCategory} */}
+              {order.deliveryAddress}
             </Grid>
             <Grid item sx={{ fontWeight: 700 }} xs={4}>
               Delivery Guy:
@@ -160,7 +160,7 @@ function OrderCard({ order }) {
               }}
               xs={8}
             >
-              {/* {product.selectedProductCategory} */}
+              {order.deliveryGuy}
             </Grid>
           </Grid>
         </Box>

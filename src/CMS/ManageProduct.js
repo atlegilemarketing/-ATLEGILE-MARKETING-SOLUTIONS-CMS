@@ -217,6 +217,7 @@ export default function ManageProducts() {
               <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
                 Product Name
               </Typography>
+              
               <Typography
                 sx={{
                   color: "gray",
