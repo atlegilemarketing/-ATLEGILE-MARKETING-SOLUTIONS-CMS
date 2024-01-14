@@ -20,13 +20,16 @@ export default function ManageOrders() {
   const [openOrderDetails, setOpenOrderDetails] = useState(false);
 
   const formatDeliveryDate = (deliveryDate) => {
-    if (deliveryDate && typeof deliveryDate === 'object' && 'seconds' in deliveryDate) {
+    if (
+      deliveryDate &&
+      typeof deliveryDate === "object" &&
+      "seconds" in deliveryDate
+    ) {
       const timestamp = deliveryDate.seconds * 1000;
-      return timestamp ? new Date(timestamp).toLocaleString() : '';
+      return timestamp ? new Date(timestamp).toLocaleString() : "";
     }
     return deliveryDate;
   };
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -57,17 +60,21 @@ export default function ManageOrders() {
           DeliveryStatus: doc.data().DeliveryStatus,
           orderNumber: doc.data().orderNumber,
           orderSummary: doc.data().orderSummary,
+        
           userName: doc.data().userName,
-        productId: doc.data().productId,
-          
-          // createdAt: doc.data().createdAt,
+          productId: doc.data().productId,
+          createdAt: doc.data().createdAt,
         }));
-        
+
         setOrdersList(ordersData);
-        
+        console.log(ordersData);
+
         setOrdersCount(ordersData.length);
-        
-        const totalSales = ordersData.reduce((acc, order) => (order.total ? acc + order.total : acc), 0);
+
+        const totalSales = ordersData.reduce(
+          (acc, order) => (order.total ? acc + order.total : acc),
+          0
+        );
         setSalesTotal(totalSales);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -216,7 +223,7 @@ export default function ManageOrders() {
           >
             <Grid
               item
-              xs={12/7}
+              xs={12 / 7}
               sx={{
                 pl: 2,
                 pr: 2,
@@ -243,7 +250,7 @@ export default function ManageOrders() {
 
             <Grid
               item
-              xs={12/7}
+              xs={12 / 7}
               sx={{
                 pl: 2,
                 pr: 2,
@@ -269,7 +276,7 @@ export default function ManageOrders() {
 
             <Grid
               item
-              xs={12/7}
+              xs={12 / 7}
               sx={{
                 pl: 2,
                 pr: 2,
@@ -295,7 +302,7 @@ export default function ManageOrders() {
 
             <Grid
               item
-              xs={12/7}
+              xs={12 / 7}
               sx={{
                 pl: 2,
                 pr: 2,
@@ -321,7 +328,7 @@ export default function ManageOrders() {
 
             <Grid
               item
-              xs={12/7}
+              xs={12 / 7}
               sx={{
                 pl: 2,
                 pr: 2,
@@ -347,7 +354,7 @@ export default function ManageOrders() {
 
             <Grid
               item
-              xs={12/7}
+              xs={12 / 7}
               sx={{
                 pl: 2,
                 pr: 2,
@@ -373,7 +380,7 @@ export default function ManageOrders() {
 
             <Grid
               item
-              xs={12/7}
+              xs={12 / 7}
               sx={{
                 pl: 2,
                 pr: 2,

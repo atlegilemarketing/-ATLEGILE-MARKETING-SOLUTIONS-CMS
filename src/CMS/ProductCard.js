@@ -94,18 +94,7 @@ function ProductCard({ product }) {
             >
               {product.quantity}
             </Grid>
-            <Grid item sx={{ fontWeight: 700 }} xs={4}>
-              Sales:
-            </Grid>
-            <Grid
-              item
-              sx={{
-                display: "flex",
-              }}
-              xs={8}
-            >
-              {product.sales}
-            </Grid>
+           
             <Grid item sx={{ fontWeight: 700 }} xs={4}>
               Category:
             </Grid>

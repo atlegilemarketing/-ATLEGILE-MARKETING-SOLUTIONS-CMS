@@ -6,16 +6,20 @@ function OrderCard({ order }) {
   const [open, setOpen] = useState(false);
 
   const formatDeliveryDate = (deliveryDate) => {
-    if (deliveryDate && typeof deliveryDate === 'object' && 'seconds' in deliveryDate) {
+    if (
+      deliveryDate &&
+      typeof deliveryDate === "object" &&
+      "seconds" in deliveryDate
+    ) {
       const timestamp = deliveryDate.seconds * 1000;
-      return timestamp ? new Date(timestamp).toLocaleString() : '';
+      return timestamp ? new Date(timestamp).toLocaleString() : "";
     }
     return deliveryDate;
   };
 
   return (
     <>
-    <Modal
+      <Modal
         open={open}
         onClose={() => setOpen(false)}
         sx={{
@@ -66,45 +70,10 @@ function OrderCard({ order }) {
             >
               {order.orderNumber}
             </Grid>
-            <Grid sx={{ fontWeight: 700 }} xs={4}>
-            Date:
-            </Grid>
-            <Grid
-              item
-              sx={{
-                display: "flex",
-              }}
-              xs={8}
-            >
-              {/* {product.businessName} */}
-            </Grid>
+           
             <Grid item sx={{ fontWeight: 700 }} xs={4}>
-              Product ID:
+              Total Amount:
             </Grid>
-            <Grid
-              item
-              sx={{
-                display: "flex",
-              }}
-              xs={8}
-            >
-              {order.productId}
-            </Grid>
-            <Grid item sx={{ fontWeight: 700 }} xs={4}>
-              Quantity:
-            </Grid>
-            <Grid
-              item
-              sx={{
-                display: "flex",
-              }}
-              xs={8}
-            >
-              {order.quantity}
-            </Grid>
-            <Grid item sx={{ fontWeight: 700 }} xs={4}>
-            Total Amount:          
-              </Grid>
             <Grid
               item
               sx={{
@@ -219,7 +188,8 @@ function OrderCard({ order }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-            {order.createdAt}
+            
+            {formatDeliveryDate(order.createdAt)}
           </Typography>
         </Grid>
 
@@ -234,7 +204,8 @@ function OrderCard({ order }) {
           }}
         >
           <Typography sx={{ fontSize: 14 }} noWrap>
-          {formatDeliveryDate(order.deliveryDate)}          </Typography>
+            {formatDeliveryDate(order.deliveryDate)}{" "}
+          </Typography>
         </Grid>
 
         <Grid
