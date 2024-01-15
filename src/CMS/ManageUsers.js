@@ -25,7 +25,7 @@ export default function ManageUsers() {
   const [user] = useAuthState(firebase.auth());
   const [searchInput, setSearchInput] = useState("");
   const [isSearchActive, setIsSearchActive] = useState(false);
-  const [usersInfo, setUsersInfo] = useState([]); //for storing all the users information
+  const [usersInfo, setUsersInfo] = useState([]); 
 
   const fetchData = async () => {
     try {
