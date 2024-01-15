@@ -4,6 +4,7 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 function OrderCard({ order }) {
   const [open, setOpen] = useState(false);
+  console.log(order);
 
   const formatDeliveryDate = (deliveryDate) => {
     if (
@@ -29,8 +30,7 @@ function OrderCard({ order }) {
           justifyContent: "center",
         }}
         aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+        aria-describedby="modal-modal-description">
         <Box sx={{ maxWidth: "500px" }}>
           <Box
             sx={{
@@ -40,8 +40,7 @@ function OrderCard({ order }) {
               alignItems: "center",
               justifyContent: "space-between",
               color: "white",
-            }}
-          >
+            }}>
             <Typography sx={{ fontWeight: 700 }}>Order Details</Typography>
 
             <Button
@@ -51,8 +50,7 @@ function OrderCard({ order }) {
                 display: "flex",
                 justifyContent: "center",
                 color: "white",
-              }}
-            >
+              }}>
               <HighlightOffIcon />
             </Button>
           </Box>
@@ -66,12 +64,11 @@ function OrderCard({ order }) {
               sx={{
                 display: "flex",
               }}
-              xs={8}
-            >
+              xs={8}>
               {order.orderNumber}
             </Grid>
-           
-            <Grid item sx={{ fontWeight: 700 }} xs={4}>
+
+            {/* <Grid item sx={{ fontWeight: 700 }} xs={4}>
               Total Amount:
             </Grid>
             <Grid
@@ -79,10 +76,9 @@ function OrderCard({ order }) {
               sx={{
                 display: "flex",
               }}
-              xs={8}
-            >
+              xs={8}>
               {order.totalAmount}
-            </Grid>
+            </Grid> */}
             <Grid item sx={{ fontWeight: 700 }} xs={4}>
               Delivery Status:
             </Grid>
@@ -91,8 +87,7 @@ function OrderCard({ order }) {
               sx={{
                 display: "flex",
               }}
-              xs={8}
-            >
+              xs={8}>
               {order.DeliveryStatus}
             </Grid>
             <Grid item sx={{ fontWeight: 700 }} xs={4}>
@@ -103,9 +98,8 @@ function OrderCard({ order }) {
               sx={{
                 display: "flex",
               }}
-              xs={8}
-            >
-              {order.deliveryFee}
+              xs={8}>
+              {order.delivertFee}
             </Grid>
             <Grid item sx={{ fontWeight: 700 }} xs={4}>
               Delivery Address:
@@ -115,8 +109,7 @@ function OrderCard({ order }) {
               sx={{
                 display: "flex",
               }}
-              xs={8}
-            >
+              xs={8}>
               {order.deliveryAddress}
             </Grid>
             <Grid item sx={{ fontWeight: 700 }} xs={4}>
@@ -127,8 +120,7 @@ function OrderCard({ order }) {
               sx={{
                 display: "flex",
               }}
-              xs={8}
-            >
+              xs={8}>
               {order.deliveryGuy}
             </Grid>
           </Grid>
@@ -145,8 +137,7 @@ function OrderCard({ order }) {
           borderBottom: "1px lightgray solid",
           ml: 2,
           mt: 2,
-        }}
-      >
+        }}>
         <Grid
           item
           xs={12 / 7}
@@ -155,8 +146,7 @@ function OrderCard({ order }) {
             pr: 2,
             display: "flex",
             alignItems: "center",
-          }}
-        >
+          }}>
           <Typography sx={{ fontSize: 14 }} noWrap>
             {order.orderNumber}
           </Typography>
@@ -170,8 +160,7 @@ function OrderCard({ order }) {
             pr: 2,
             display: "flex",
             alignItems: "center",
-          }}
-        >
+          }}>
           <Typography sx={{ fontSize: 14 }} noWrap>
             {order.userName}
           </Typography>
@@ -185,10 +174,8 @@ function OrderCard({ order }) {
             pr: 2,
             display: "flex",
             alignItems: "center",
-          }}
-        >
+          }}>
           <Typography sx={{ fontSize: 14 }} noWrap>
-            
             {formatDeliveryDate(order.createdAt)}
           </Typography>
         </Grid>
@@ -201,8 +188,7 @@ function OrderCard({ order }) {
             pr: 2,
             display: "flex",
             alignItems: "center",
-          }}
-        >
+          }}>
           <Typography sx={{ fontSize: 14 }} noWrap>
             {formatDeliveryDate(order.deliveryDate)}{" "}
           </Typography>
@@ -216,8 +202,7 @@ function OrderCard({ order }) {
             pr: 2,
             display: "flex",
             alignItems: "center",
-          }}
-        >
+          }}>
           <Typography sx={{ fontSize: 14 }} noWrap>
             {order.DeliveryStatus}
           </Typography>
@@ -231,8 +216,7 @@ function OrderCard({ order }) {
             pr: 2,
             display: "flex",
             alignItems: "center",
-          }}
-        >
+          }}>
           <Typography sx={{ fontSize: 14 }} noWrap>
             {order.deliveryAddress}
           </Typography>
@@ -246,13 +230,11 @@ function OrderCard({ order }) {
             pr: 1,
             display: "flex",
             alignItems: "center",
-          }}
-        >
+          }}>
           <Button
             onClick={() => setOpen(true)}
             variant="text"
-            sx={{ textDecoration: "none", color: "#1890ff", fontSize: 14 }}
-          >
+            sx={{ textDecoration: "none", color: "#1890ff", fontSize: 14 }}>
             View Details
           </Button>
         </Grid>
