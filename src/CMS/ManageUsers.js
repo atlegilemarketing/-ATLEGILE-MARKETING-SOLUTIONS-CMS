@@ -25,6 +25,7 @@ export default function ManageUsers() {
   const [user] = useAuthState(firebase.auth());
   const [searchInput, setSearchInput] = useState("");
   const [isSearchActive, setIsSearchActive] = useState(false);
+  const [usersInfo, setUsersInfo] = useState([]); //for storing all the users information
 
   const fetchData = async () => {
     try {
@@ -40,20 +41,23 @@ export default function ManageUsers() {
         location: doc.data().location,
         actions: ["Block User", "View Details"],
       }));
-      console.log('location is :',usersData.location)
-
+      // console.log(usersData);
+      setUsersInfo(usersData);
+      console.log(usersInfo);
       // Filter users based on search input
-      const filteredUsers = usersData.filter(
-        (user) =>
-          user.name.toLowerCase().includes(searchInput.toLowerCase()) ||
-          user.surname.toLowerCase().includes(searchInput.toLowerCase()) ||
-          user.phone.includes(searchInput) ||
-          user.email.toLowerCase().includes(searchInput.toLowerCase()) ||
-          user.location.toLowerCase().includes(searchInput.toLowerCase())
-      );
+      // const filteredUsers = usersData.filter(
+      //   (user) =>
+      //     user.name.toLowerCase().includes(searchInput.toLowerCase()) ||
+      //     user.surname.toLowerCase().includes(searchInput.toLowerCase()) ||
+      //     user.phone.includes(searchInput) ||
+      //     user.email.toLowerCase().includes(searchInput.toLowerCase()) ||
+      //     user.location.toLowerCase().includes(searchInput.toLowerCase())
+      // );
 
-      setUsersList(filteredUsers);
+      // setUsersList(filteredUsers);
       setUsersCount(usersSnapshot.size);
+
+      // console.log(usersList);
 
       const businessesRef = firebase.firestore().collection("Business");
       const businessesSnapshot = await businessesRef.get();
@@ -110,15 +114,13 @@ export default function ManageUsers() {
         height: "100vh",
         overflow: "hidden",
         overflowY: "auto",
-      }}
-    >
+      }}>
       <Box
         sx={{
           height: "20vh",
           backgroundColor: "#072840",
           display: "flex",
-        }}
-      >
+        }}>
         <Box
           sx={{
             backgroundImage: `url(${clipArt})`,
@@ -128,16 +130,14 @@ export default function ManageUsers() {
             backgroundSize: "50%",
             display: "flex",
             alignItems: "center",
-          }}
-        >
+          }}>
           <Typography
             sx={{
               color: "white",
               fontSize: 30,
               fontWeight: 600,
               paddingLeft: 2,
-            }}
-          >
+            }}>
             MANAGE USERS
           </Typography>
         </Box>
@@ -146,16 +146,14 @@ export default function ManageUsers() {
       <Box
         sx={{
           height: "80vh",
-        }}
-      >
+        }}>
         <Box
           sx={{
             ml: 4,
             mt: 4,
             border: "none",
             borderBottom: "1px lightgray solid",
-          }}
-        >
+          }}>
           <Typography sx={{ fontWeight: 700 }}>USERS</Typography>
         </Box>
 
@@ -165,15 +163,13 @@ export default function ManageUsers() {
             flexDirection: "row",
             ml: 4,
             mt: 8,
-          }}
-        >
+          }}>
           <Box
             sx={{
               width: "100px",
               display: "flex",
               flexDirection: "column",
-            }}
-          >
+            }}>
             <Typography sx={{ color: "gray", fontSize: 12 }}>Sales</Typography>
             <Typography sx={{ fontWeight: 400, fontSize: 20 }}>
               {ordersCount}
@@ -185,13 +181,12 @@ export default function ManageUsers() {
               width: "100px",
               display: "flex",
               flexDirection: "column",
-            }}
-          >
+            }}>
             <Typography sx={{ color: "gray", fontSize: 12 }}>
               New Users
             </Typography>
             <Typography sx={{ fontWeight: 400, fontSize: 20 }}>
-              {usersCount}
+              {usersInfo.length}
             </Typography>
           </Box>
 
@@ -200,8 +195,7 @@ export default function ManageUsers() {
               width: "100px",
               display: "flex",
               flexDirection: "column",
-            }}
-          >
+            }}>
             <Typography sx={{ color: "gray", fontSize: 12 }}>
               New Businesses
             </Typography>
@@ -217,8 +211,7 @@ export default function ManageUsers() {
             borderBottom: "1px lightgray solid",
             ml: 4,
             mt: 4,
-          }}
-        >
+          }}>
           <Typography sx={{ fontWeight: 700 }}>NEW USERS</Typography>
         </Box>
 
@@ -234,8 +227,7 @@ export default function ManageUsers() {
             pb: 2,
             border: "none",
             borderBottom: "1px lightgray solid",
-          }}
-        >
+          }}>
           <Grid
             item
             xs={2}
@@ -248,14 +240,12 @@ export default function ManageUsers() {
               justifyContent: "space-between",
               border: "none",
               borderRight: "1px lightgray solid",
-            }}
-          >
+            }}>
             <Typography sx={{ fontWeight: 600, fontSize: 14 }}>Name</Typography>
             <Typography
               sx={{
                 color: "gray",
-              }}
-            >
+              }}>
               <UnfoldMoreIcon sx={{ fontSize: 17 }} />
             </Typography>
             {isSearchActive ? (
@@ -300,14 +290,14 @@ export default function ManageUsers() {
               justifyContent: "space-between",
               border: "none",
               borderRight: "1px lightgray solid",
-            }}
-          >
-            <Typography sx={{ fontWeight: 600, fontSize: 14 }}>Surname</Typography>
+            }}>
+            <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
+              Surname
+            </Typography>
             <Typography
               sx={{
                 color: "gray",
-              }}
-            >
+              }}>
               <UnfoldMoreIcon sx={{ fontSize: 17 }} />
             </Typography>
           </Grid>
@@ -324,14 +314,14 @@ export default function ManageUsers() {
               justifyContent: "space-between",
               border: "none",
               borderRight: "1px lightgray solid",
-            }}
-          >
-            <Typography sx={{ fontWeight: 600, fontSize: 14 }}>Phone</Typography>
+            }}>
+            <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
+              Phone
+            </Typography>
             <Typography
               sx={{
                 color: "gray",
-              }}
-            >
+              }}>
               <UnfoldMoreIcon sx={{ fontSize: 17 }} />
             </Typography>
           </Grid>
@@ -348,14 +338,14 @@ export default function ManageUsers() {
               justifyContent: "space-between",
               border: "none",
               borderRight: "1px lightgray solid",
-            }}
-          >
-            <Typography sx={{ fontWeight: 600, fontSize: 14 }}>Email</Typography>
+            }}>
+            <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
+              Email
+            </Typography>
             <Typography
               sx={{
                 color: "gray",
-              }}
-            >
+              }}>
               <UnfoldMoreIcon sx={{ fontSize: 17 }} />
             </Typography>
           </Grid>
@@ -372,14 +362,14 @@ export default function ManageUsers() {
               justifyContent: "space-between",
               border: "none",
               borderRight: "1px lightgray solid",
-            }}
-          >
-            <Typography sx={{ fontWeight: 600, fontSize: 14 }}>Location</Typography>
+            }}>
+            <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
+              Location
+            </Typography>
             <Typography
               sx={{
                 color: "gray",
-              }}
-            >
+              }}>
               <UnfoldMoreIcon sx={{ fontSize: 17 }} />
             </Typography>
           </Grid>
@@ -393,13 +383,14 @@ export default function ManageUsers() {
               display: "flex",
               flexDirection: "row",
               alignItems: "center",
-            }}
-          >
-            <Typography sx={{ fontWeight: 600, fontSize: 14 }}>Actions</Typography>
+            }}>
+            <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
+              Actions
+            </Typography>
           </Grid>
         </Grid>
 
-        {usersList.length === 0 ? (
+        {usersInfo.length === 0 ? (
           <Box
             sx={{
               display: "flex",
@@ -407,12 +398,11 @@ export default function ManageUsers() {
               justifyContent: "center",
               width: "100%",
               height: "20vh",
-            }}
-          >
+            }}>
             <CircularProgress />
           </Box>
         ) : (
-          usersList.map((user) => (
+          usersInfo.map((user) => (
             <UserCard key={user.id} user={user} onBlockUser={blockUser} />
           ))
         )}
