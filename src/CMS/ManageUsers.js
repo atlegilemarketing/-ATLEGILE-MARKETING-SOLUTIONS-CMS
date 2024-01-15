@@ -40,6 +40,7 @@ export default function ManageUsers() {
         location: doc.data().location,
         actions: ["Block User", "View Details"],
       }));
+      console.log('location is :',usersData.location)
 
       // Filter users based on search input
       const filteredUsers = usersData.filter(
