@@ -200,6 +200,7 @@ export default function ManageProducts() {
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-between",
+                borderRight: "1px lightgray solid",
               }}>
               <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
                 Product Name
@@ -224,6 +225,7 @@ export default function ManageProducts() {
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-between",
+                borderRight: "1px lightgray solid",
               }}>
               <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
                 Business
@@ -246,6 +248,7 @@ export default function ManageProducts() {
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-between",
+                borderRight: "1px lightgray solid",
               }}>
               <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
                 Price
@@ -268,6 +271,7 @@ export default function ManageProducts() {
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-between",
+                borderRight: "1px lightgray solid",
               }}>
               <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
                 Quantity
@@ -291,7 +295,7 @@ export default function ManageProducts() {
                 alignItems: "center",
                 justifyContent: "space-between",
                 bproduct: "none",
-                bproductRight: "1px lightgray solid",
+                borderRight: "1px lightgray solid",
               }}>
               <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
                 Category
@@ -312,6 +316,7 @@ export default function ManageProducts() {
                 display: "flex",
                 flexDirection: "row",
                 alignItems: "center",
+                borderRight: "1px lightgray solid",
               }}>
               <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
                 Actions
