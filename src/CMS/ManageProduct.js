@@ -13,7 +13,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 export default function ManageProducts() {
   const [productsList, setProductsList] = useState([]);
   const [productsCount, setProductsCount] = useState(0);
-  const [ordersCount, setOrdersCount] = useState(0); 
+  const [ordersCount, setOrdersCount] = useState(0);
   const [usersCount, setUsersCount] = useState(0);
   const [user] = useAuthState(firebase.auth());
   const [openProductDetails, setOpenProductDetails] = useState(false);
@@ -36,6 +36,7 @@ export default function ManageProducts() {
         }));
         setProductsList(productsData);
         setProductsCount(snapshot.size);
+        console.log(productsData);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -73,15 +74,13 @@ export default function ManageProducts() {
           height: "100vh",
           overflow: "hidden",
           overflowY: "auto",
-        }}
-      >
+        }}>
         <Box
           sx={{
             height: "20%",
             backgroundColor: "#072840",
             display: "flex",
-          }}
-        >
+          }}>
           <Box
             sx={{
               backgroundImage: `url(${clipArt})`,
@@ -91,16 +90,14 @@ export default function ManageProducts() {
               backgroundSize: "50%",
               display: "flex",
               alignItems: "center",
-            }}
-          >
+            }}>
             <Typography
               sx={{
                 color: "white",
                 fontSize: 30,
                 fontWeight: 600,
                 paddingLeft: 2,
-              }}
-            >
+              }}>
               MANAGE PRODUCTS
             </Typography>
           </Box>
@@ -109,16 +106,14 @@ export default function ManageProducts() {
         <Box
           sx={{
             height: "80%",
-          }}
-        >
+          }}>
           <Box
             sx={{
               ml: 4,
               mt: 4,
               border: "none",
               borderBottom: "1px lightgray solid",
-            }}
-          >
+            }}>
             <Typography sx={{ fontWeight: 700 }}>PRODUCTS</Typography>
           </Box>
 
@@ -128,20 +123,18 @@ export default function ManageProducts() {
               flexDirection: "row",
               ml: 4,
               mt: 8,
-            }}
-          >
+            }}>
             <Box
               sx={{
                 width: "100px",
                 display: "flex",
                 flexDirection: "column",
-              }}
-            >
+              }}>
               <Typography sx={{ color: "gray", fontSize: 12 }}>
                 Sales
               </Typography>
               <Typography sx={{ fontWeight: 400, fontSize: 20 }}>
-              {ordersCount}
+                {ordersCount}
               </Typography>
             </Box>
 
@@ -150,13 +143,12 @@ export default function ManageProducts() {
                 width: "100px",
                 display: "flex",
                 flexDirection: "column",
-              }}
-            >
+              }}>
               <Typography sx={{ color: "gray", fontSize: 12 }}>
                 New Products
               </Typography>
               <Typography sx={{ fontWeight: 400, fontSize: 20 }}>
-              {productsCount}
+                {productsCount}
               </Typography>
             </Box>
 
@@ -165,13 +157,12 @@ export default function ManageProducts() {
                 width: "100px",
                 display: "flex",
                 flexDirection: "column",
-              }}
-            >
+              }}>
               <Typography sx={{ color: "gray", fontSize: 12 }}>
                 New Users
               </Typography>
               <Typography sx={{ fontWeight: 400, fontSize: 20 }}>
-              {usersCount}
+                {usersCount}
               </Typography>
             </Box>
           </Box>
@@ -182,8 +173,7 @@ export default function ManageProducts() {
               borderBottom: "1px lightgray solid",
               ml: 4,
               mt: 4,
-            }}
-          >
+            }}>
             <Typography sx={{ fontWeight: 700 }}>NEW PRODUCTS</Typography>
           </Box>
 
@@ -199,8 +189,7 @@ export default function ManageProducts() {
               pb: 2,
               border: "none",
               borderBottom: "1px lightgray solid",
-            }}
-          >
+            }}>
             <Grid
               item
               xs={2}
@@ -211,18 +200,15 @@ export default function ManageProducts() {
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-between",
-       
-              }}
-            >
+              }}>
               <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
                 Product Name
               </Typography>
-              
+
               <Typography
                 sx={{
                   color: "gray",
-                }}
-              >
+                }}>
                 <UnfoldMoreIcon sx={{ fontSize: 17 }} />
                 <SearchIcon sx={{ fontSize: 17 }} />
               </Typography>
@@ -238,17 +224,14 @@ export default function ManageProducts() {
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-between",
-
-              }}
-            >
+              }}>
               <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
                 Business
               </Typography>
               <Typography
                 sx={{
                   color: "gray",
-                }}
-              >
+                }}>
                 <UnfoldMoreIcon sx={{ fontSize: 17 }} />
               </Typography>
             </Grid>
@@ -263,17 +246,14 @@ export default function ManageProducts() {
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-between",
-
-              }}
-            >
+              }}>
               <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
                 Price
               </Typography>
               <Typography
                 sx={{
                   color: "gray",
-                }}
-              >
+                }}>
                 <UnfoldMoreIcon sx={{ fontSize: 17 }} />
               </Typography>
             </Grid>
@@ -288,17 +268,14 @@ export default function ManageProducts() {
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-between",
-
-              }}
-            >
+              }}>
               <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
                 Quantity
               </Typography>
               <Typography
                 sx={{
                   color: "gray",
-                }}
-              >
+                }}>
                 <UnfoldMoreIcon sx={{ fontSize: 17 }} />
               </Typography>
             </Grid>
@@ -315,16 +292,14 @@ export default function ManageProducts() {
                 justifyContent: "space-between",
                 bproduct: "none",
                 bproductRight: "1px lightgray solid",
-              }}
-            >
+              }}>
               <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
                 Category
               </Typography>
               <Typography
                 sx={{
                   color: "gray",
-                }}
-              >
+                }}>
                 <UnfoldMoreIcon sx={{ fontSize: 17 }} />
               </Typography>
             </Grid>
@@ -337,8 +312,7 @@ export default function ManageProducts() {
                 display: "flex",
                 flexDirection: "row",
                 alignItems: "center",
-              }}
-            >
+              }}>
               <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
                 Actions
               </Typography>
@@ -353,8 +327,7 @@ export default function ManageProducts() {
                 justifyContent: "center",
                 width: "100%",
                 height: "20%",
-              }}
-            >
+              }}>
               <CircularProgress />
             </Box>
           ) : (
