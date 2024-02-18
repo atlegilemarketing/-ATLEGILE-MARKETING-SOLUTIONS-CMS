@@ -11,7 +11,6 @@ import OrderCard from "./OrderCard";
 
 // Define the component function ManageOrders
 export default function ManageOrders() {
-  // Define state variables using the useState hook
   const [ordersList, setOrdersList] = useState([]);
   const [usersCount, setUsersCount] = useState(0);
   const [ordersCount, setOrdersCount] = useState(0);
@@ -20,10 +19,8 @@ export default function ManageOrders() {
 
   // Use the useEffect hook to fetch data when the component mounts
   useEffect(() => {
-    // Define an asynchronous function fetchData
     const fetchData = async () => {
       try {
-        // Fetch data from the 'Users' collection in Firestore
         const usersRef = firebase.firestore().collection("Users");
         const usersSnapshot = await usersRef.get();
 
@@ -54,9 +51,7 @@ export default function ManageOrders() {
 
         // Set the number of orders in the state
         setOrdersCount(ordersData.length);
-
       } catch (error) {
-        // Handle any errors that occur during data fetching
         console.error("Error fetching data:", error);
       }
     };
@@ -65,7 +60,7 @@ export default function ManageOrders() {
     if (user) {
       fetchData();
     }
-  }, [user]); // Run the effect whenever the user authentication status changes
+  }, [user]);
 
   // Return the JSX for rendering the component
   return (
@@ -75,13 +70,15 @@ export default function ManageOrders() {
           height: "100vh",
           overflow: "hidden",
           overflowY: "auto",
-        }}>
+        }}
+      >
         <Box
           sx={{
             height: "20vh",
             backgroundColor: "#072840",
             display: "flex",
-          }}>
+          }}
+        >
           <Box
             sx={{
               backgroundImage: `url(${clipArt})`,
@@ -91,14 +88,16 @@ export default function ManageOrders() {
               backgroundSize: "50%",
               display: "flex",
               alignItems: "center",
-            }}>
+            }}
+          >
             <Typography
               sx={{
                 color: "white",
                 fontSize: 30,
                 fontWeight: 600,
                 paddingLeft: 2,
-              }}>
+              }}
+            >
               MANAGE ORDERS
             </Typography>
           </Box>
@@ -107,14 +106,16 @@ export default function ManageOrders() {
         <Box
           sx={{
             height: "80vh",
-          }}>
+          }}
+        >
           <Box
             sx={{
               ml: 4,
               mt: 4,
               border: "none",
               borderBottom: "1px lightgray solid",
-            }}>
+            }}
+          >
             <Typography sx={{ fontWeight: 700 }}>ORDERS</Typography>
           </Box>
 
@@ -125,14 +126,15 @@ export default function ManageOrders() {
               flexDirection: "row",
               ml: 4,
               mt: 8,
-            }}>
-            {/* Display sales count */}
+            }}
+          >
             <Box
               sx={{
                 width: "100px",
                 display: "flex",
                 flexDirection: "column",
-              }}>
+              }}
+            >
               <Typography sx={{ color: "gray", fontSize: 12 }}>
                 Sales
               </Typography>
@@ -147,7 +149,8 @@ export default function ManageOrders() {
                 width: "100px",
                 display: "flex",
                 flexDirection: "column",
-              }}>
+              }}
+            >
               <Typography sx={{ color: "gray", fontSize: 12 }}>
                 New Orders
               </Typography>
@@ -162,7 +165,8 @@ export default function ManageOrders() {
                 width: "100px",
                 display: "flex",
                 flexDirection: "column",
-              }}>
+              }}
+            >
               <Typography sx={{ color: "gray", fontSize: 12 }}>
                 New Users
               </Typography>
@@ -178,7 +182,8 @@ export default function ManageOrders() {
               borderBottom: "1px lightgray solid",
               ml: 4,
               mt: 4,
-            }}>
+            }}
+          >
             <Typography sx={{ fontWeight: 700 }}>NEW ORDERS</Typography>
           </Box>
 
@@ -195,7 +200,8 @@ export default function ManageOrders() {
               pb: 2,
               border: "none",
               borderBottom: "1px lightgray solid",
-            }}>
+            }}
+          >
             {/* Grid items for each order attribute */}
             <Grid
               item
@@ -209,24 +215,169 @@ export default function ManageOrders() {
                 justifyContent: "space-between",
                 border: "none",
                 borderRight: "1px lightgray solid",
-              }}>
+              }}
+            >
               <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
                 Invoice Number
               </Typography>
               <Typography
                 sx={{
                   color: "gray",
-                }}>
+                }}
+              >
                 <UnfoldMoreIcon sx={{ fontSize: 17 }} />
                 <SearchIcon sx={{ fontSize: 17 }} />
               </Typography>
             </Grid>
 
-            {/* Repeat similar grid items for other order attributes */}
+            <Grid
+              item
+              xs={12 / 7}
+              sx={{
+                pl: 2,
+                pr: 2,
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+                border: "none",
+                borderRight: "1px lightgray solid",
+              }}
+            >
+              <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
+                User Name
+              </Typography>
+              <Typography
+                sx={{
+                  color: "gray",
+                }}
+              >
+                <UnfoldMoreIcon sx={{ fontSize: 17 }} />
+              </Typography>
+            </Grid>
 
+            <Grid
+              item
+              xs={12 / 7}
+              sx={{
+                pl: 2,
+                pr: 2,
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+                border: "none",
+                borderRight: "1px lightgray solid",
+              }}
+            >
+              <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
+                Purchase Date
+              </Typography>
+              <Typography
+                sx={{
+                  color: "gray",
+                }}
+              >
+                <UnfoldMoreIcon sx={{ fontSize: 17 }} />
+              </Typography>
+            </Grid>
+
+            <Grid
+              item
+              xs={12 / 7}
+              sx={{
+                pl: 2,
+                pr: 2,
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+                border: "none",
+                borderRight: "1px lightgray solid",
+              }}
+            >
+              <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
+                Delivery Date
+              </Typography>
+              <Typography
+                sx={{
+                  color: "gray",
+                }}
+              >
+                <UnfoldMoreIcon sx={{ fontSize: 17 }} />
+              </Typography>
+            </Grid>
+
+            <Grid
+              item
+              xs={12 / 7}
+              sx={{
+                pl: 2,
+                pr: 2,
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+                border: "none",
+                borderRight: "1px lightgray solid",
+              }}
+            >
+              <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
+                Delivery Status
+              </Typography>
+              <Typography
+                sx={{
+                  color: "gray",
+                }}
+              >
+                <UnfoldMoreIcon sx={{ fontSize: 17 }} />
+              </Typography>
+            </Grid>
+
+            <Grid
+              item
+              xs={12 / 7}
+              sx={{
+                pl: 2,
+                pr: 2,
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+                border: "none",
+                borderRight: "1px lightgray solid",
+              }}
+            >
+              <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
+                Delivery Address
+              </Typography>
+              <Typography
+                sx={{
+                  color: "gray",
+                }}
+              >
+                <UnfoldMoreIcon sx={{ fontSize: 17 }} />
+              </Typography>
+            </Grid>
+
+            <Grid
+              item
+              xs={12 / 7}
+              sx={{
+                pl: 2,
+                pr: 2,
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
+                Actions
+              </Typography>
+            </Grid>
           </Grid>
-
           {/* Display loading spinner if orders are being fetched */}
+
           {ordersList.length === 0 ? (
             <Box
               sx={{
@@ -235,11 +386,13 @@ export default function ManageOrders() {
                 justifyContent: "center",
                 width: "100%",
                 height: "20vh",
-              }}>
+              }}
+            >
               <CircularProgress />
             </Box>
           ) : (
             // Display OrderCard component for each order in ordersList
+
             ordersList.map((order) => (
               <OrderCard
                 openOrderDetails={openOrderDetails}
