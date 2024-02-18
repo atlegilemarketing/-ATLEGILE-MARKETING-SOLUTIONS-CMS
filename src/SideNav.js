@@ -5,32 +5,42 @@ import { Star as StarIcon } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { signOut,getAuth, onAuthStateChanged } from 'firebase/auth';
 
+// Define functional component SideNav that takes userData as a prop
 export default function SideNav({ userData }) {
+
+// Get the authentication instance
   const auth = getAuth();
+
+
+// Listen for changes in user authentication state
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/auth.user
     
+    // Log the user's email if logged in
     console.log("User logged in with ID: ",user.email)
   
   } else {
     
+    // Log that no user is logged in
     console.log("No user logged in.")
   }
 });
 
+  // Get the navigation function from React Router
 
   const navigate = useNavigate();
+    // Initialize state variables for the active page and user image
+
   const [activePage, setActivePage] = React.useState("");
   const [image, setImage] = React.useState(null);
   const fileInputRef = React.useRef(null);
+  // Function to handle navigation to the Dashboard page
 
   const handleNavigateToDashboard = () => {
     setActivePage("dashboard");
     navigate("dashboard");
   };
-
+ // Define similar functions for other navigation links
   const handleNavigateToBusinesses = () => {
     setActivePage("businesses");
     navigate("businesses");
@@ -50,11 +60,13 @@ onAuthStateChanged(auth, (user) => {
     setActivePage("products");
     navigate("products");
   };
+  // Function to handle signing out
 
   const handleSignOut = () => {
     signOut(auth);
     navigate("/");
   };
+  // Function to handle file selection for user image
 
   const handleFileChange = (e) => {
     const selectedImage = e.target.files[0];
@@ -66,10 +78,12 @@ onAuthStateChanged(auth, (user) => {
       reader.readAsDataURL(selectedImage);
     }
   };
+  // Function to open the file input for changing the user image
 
   const openFileInput = () => {
     fileInputRef.current.click();
   };
+  // Return the JSX for rendering the sidebar navigation menu
 
   return (
     <Box
