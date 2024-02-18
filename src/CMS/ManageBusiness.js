@@ -11,6 +11,8 @@ import BusinessCard from "./BusinessCard";
 import CircularProgress from "@mui/material/CircularProgress";
 
 export default function ManageBusinesses() {
+    // State variables to store data fetched from Firebase
+
   const [businessesList, setBusinessesList] = useState([]);
   const [usersCount, setUsersCount] = useState(0);
   const [ordersCount, setOrdersCount] = useState(0);
@@ -18,9 +20,13 @@ export default function ManageBusinesses() {
   const [user] = useAuthState(firebase.auth());
 // eslint-disable-next-line
   const [prevBusinessesCount, setPrevBusinessesCount] = useState(0);
+    // Fetch data from Firebase on component mount or when the user changes
+
   useEffect(() => {
     const fetchData = async () => {
       try {
+                // Fetch businesses data
+
         const businessesRef = firebase.firestore().collection("Business");
         const snapshot = await businessesRef.get();
         const businessesData = snapshot.docs.map((doc) => ({
@@ -33,11 +39,13 @@ export default function ManageBusinesses() {
         setBusinessesList(businessesData);
         setPrevBusinessesCount(businessesCount);
         setBusinessesCount(snapshot.size);
-  
+          // Fetch users data
+
         const usersRef = firebase.firestore().collection("Users");
         const usersSnapshot = await usersRef.get();
         setUsersCount(usersSnapshot.size);
-  
+          // Fetch orders data
+
         const ordersRef = firebase.firestore().collection("Orders");
         const ordersSnapshot = await ordersRef.get();
         setOrdersCount(ordersSnapshot.size);
@@ -51,10 +59,11 @@ export default function ManageBusinesses() {
     }
   }, [user, businessesCount]);
   
-  //const newBusinessesCount = businessesCount - prevBusinessesCount;
-  
+
   return (
     <>
+            {/* Main container */}
+
       <Box
         sx={{
           height: "100vh",
@@ -62,6 +71,8 @@ export default function ManageBusinesses() {
           overflowY: "auto",
         }}
       >
+                {/* Header */}
+
         <Box
           sx={{
             height: "20vh",
@@ -92,12 +103,15 @@ export default function ManageBusinesses() {
             </Typography>
           </Box>
         </Box>
+        {/* Main content */}
 
         <Box
           sx={{
             height: "80vh",
           }}
         >
+                    {/* Section: Business counts */}
+
           <Box
             sx={{
               ml: 4,
@@ -108,6 +122,7 @@ export default function ManageBusinesses() {
           >
             <Typography sx={{ fontWeight: 700 }}>BUSINESSES</Typography>
           </Box>
+          {/* Display counts of sales, new businesses, and new users */}
 
           <Box
             sx={{
@@ -131,6 +146,7 @@ export default function ManageBusinesses() {
               {ordersCount}
               </Typography>
             </Box>
+          {/* Section: New businesses */}
 
             <Box
               sx={{
@@ -173,6 +189,7 @@ export default function ManageBusinesses() {
           >
             <Typography sx={{ fontWeight: 700 }}> NEW BUSINESSES</Typography>
           </Box>
+          {/* Grid to display new businesses with columns for name, reg number, business type, industry, and actions */}
 
           <Grid
             container
@@ -188,6 +205,8 @@ export default function ManageBusinesses() {
               borderBottom: "1px lightgray solid",
             }}
           >
+                        {/* Column headers */}
+
             <Grid
               item
               xs={12 / 5}
@@ -284,6 +303,7 @@ export default function ManageBusinesses() {
                 <UnfoldMoreIcon sx={{fontSize:17}}/>
               </Typography>
             </Grid>
+            {/* Actions column */}
 
             <Grid
               item
@@ -299,6 +319,7 @@ export default function ManageBusinesses() {
               <Typography sx={{ fontWeight: 550, fontSize: 14 }}>Actions</Typography>
             </Grid>
           </Grid>
+          {/* Display a loading indicator or the list of businesses */}
 
           {businessesList.length === 0 ? (
             <Box
