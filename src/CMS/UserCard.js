@@ -2,14 +2,19 @@ import React, { useState } from "react";
 import { Grid, Typography, Button, Modal, Box } from "@mui/material";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
+// UserCard component to display user information
+
 function UserCard({ user, onBlockUser }) {
   const [open, setOpen] = useState(false);
+  // Function to toggle user block status
 
   const blockToggleUser = () => {
     console.log("blockToggleUser called");
     console.log("User ID:", user.id);
     console.log("Blocked:", !user.blocked);
   };
+
+  // Render the UserCard component
 
   return (
     <>
@@ -37,6 +42,7 @@ function UserCard({ user, onBlockUser }) {
             }}
           >
             <Typography sx={{ fontWeight: 700 }}>User Details</Typography>
+            {/* Close button for the modal */}
 
             <Button
               onClick={() => setOpen(false)}
@@ -51,6 +57,8 @@ function UserCard({ user, onBlockUser }) {
               <HighlightOffIcon />
             </Button>
           </Box>
+          {/* User details displayed in the modal */}
+
           <Box sx={{ backgroundColor: "white", p: 3 }}>
             <Typography>Name: {user.name}</Typography>
             <Typography>Surname: {user.surname}</Typography>
@@ -60,6 +68,8 @@ function UserCard({ user, onBlockUser }) {
           </Box>
         </Box>
       </Modal>
+
+      {/* Grid for displaying user information */}
 
       <Grid
         container
@@ -73,6 +83,8 @@ function UserCard({ user, onBlockUser }) {
           mt: 2,
         }}
       >
+        {/* User information displayed in grid cells */}
+
         <Grid
           item
           xs={2}
@@ -83,7 +95,9 @@ function UserCard({ user, onBlockUser }) {
             alignItems: "center",
           }}
         >
-          <Typography sx={{ fontSize: 14 }}  noWrap>{user.name}</Typography>
+          <Typography sx={{ fontSize: 14 }} noWrap>
+            {user.name}
+          </Typography>
         </Grid>
 
         <Grid
@@ -96,7 +110,9 @@ function UserCard({ user, onBlockUser }) {
             alignItems: "center",
           }}
         >
-          <Typography sx={{ fontSize: 14 }}  noWrap>{user.surname}</Typography>
+          <Typography sx={{ fontSize: 14 }} noWrap>
+            {user.surname}
+          </Typography>
         </Grid>
 
         <Grid
@@ -109,7 +125,9 @@ function UserCard({ user, onBlockUser }) {
             alignItems: "center",
           }}
         >
-          <Typography sx={{ fontSize: 14 }}  noWrap>{user.phone}</Typography>
+          <Typography sx={{ fontSize: 14 }} noWrap>
+            {user.phone}
+          </Typography>
         </Grid>
 
         <Grid
@@ -121,7 +139,9 @@ function UserCard({ user, onBlockUser }) {
             alignItems: "center",
           }}
         >
-          <Typography sx={{ fontSize: 14 }}  noWrap>{user.email}</Typography>
+          <Typography sx={{ fontSize: 14 }} noWrap>
+            {user.email}
+          </Typography>
         </Grid>
 
         <Grid
@@ -133,8 +153,11 @@ function UserCard({ user, onBlockUser }) {
             alignItems: "center",
           }}
         >
-          <Typography sx={{ fontSize: 14 }}  noWrap>{user.location}</Typography>
+          <Typography sx={{ fontSize: 14 }} noWrap>
+            {user.location}
+          </Typography>
         </Grid>
+        {/* Actions grid cell with buttons for blocking/unblocking and viewing details */}
 
         <Grid
           item
@@ -146,7 +169,9 @@ function UserCard({ user, onBlockUser }) {
             alignItems: "center",
           }}
         >
-               <Button
+          {/* Button to toggle user block status */}
+
+          <Button
             onClick={blockToggleUser}
             variant="text"
             sx={{
@@ -161,20 +186,21 @@ function UserCard({ user, onBlockUser }) {
           >
             {user.blocked ? "Unblock User" : "Block User"}
           </Button>
+          {/* Button to open modal with user details */}
 
-            <Button
-            onClick={()=>setOpen(true)}
-              variant="text"
-              sx={{
-                textDecoration: "none",
-                color: "#1890ff",
-                display: "flex",
-                alignItems: "center",
-                fontSize: 14,
-              }}
-            >
-              {user.actions[1]}
-            </Button>
+          <Button
+            onClick={() => setOpen(true)}
+            variant="text"
+            sx={{
+              textDecoration: "none",
+              color: "#1890ff",
+              display: "flex",
+              alignItems: "center",
+              fontSize: 14,
+            }}
+          >
+            {user.actions[1]}
+          </Button>
         </Grid>
       </Grid>
     </>
