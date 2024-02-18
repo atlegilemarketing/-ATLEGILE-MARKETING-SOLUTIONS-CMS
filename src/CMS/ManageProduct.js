@@ -11,16 +11,22 @@ import ProductCard from "./ProductCard";
 import CircularProgress from "@mui/material/CircularProgress";
 
 export default function ManageProducts() {
+    // State variables to store data fetched from Firebase
+
   const [productsList, setProductsList] = useState([]);
   const [productsCount, setProductsCount] = useState(0);
-  const [ordersCount, setOrdersCount] = useState(0);
+  const [ordersCount, setOrdersCount] = useState(0); 
   const [usersCount, setUsersCount] = useState(0);
   const [user] = useAuthState(firebase.auth());
   const [openProductDetails, setOpenProductDetails] = useState(false);
 
+    // Fetch data from Firebase on component mount or when the user changes
+
   useEffect(() => {
     const fetchData = async () => {
       try {
+                // Fetch products data
+
         const productsRef = firebase.firestore().collection("Products");
         const snapshot = await productsRef.get();
         const productsData = snapshot.docs.map((doc) => ({
@@ -42,6 +48,8 @@ export default function ManageProducts() {
       }
 
       try {
+                // Fetch users data
+
         const usersRef = firebase.firestore().collection("Users");
         const usersSnapshot = await usersRef.get();
         // eslint-disable-next-line
@@ -54,6 +62,8 @@ export default function ManageProducts() {
         console.error("Error fetching users:", error);
       }
       try {
+                // Fetch orders data
+
         const ordersRef = firebase.firestore().collection("Orders");
         const ordersSnapshot = await ordersRef.get();
         setOrdersCount(ordersSnapshot.size);
@@ -69,6 +79,8 @@ export default function ManageProducts() {
 
   return (
     <>
+          {/* Main container */}
+
       <Box
         sx={{
           height: "100vh",
@@ -102,6 +114,7 @@ export default function ManageProducts() {
             </Typography>
           </Box>
         </Box>
+        {/* Main content */}
 
         <Box
           sx={{
@@ -116,6 +129,7 @@ export default function ManageProducts() {
             }}>
             <Typography sx={{ fontWeight: 700 }}>PRODUCTS</Typography>
           </Box>
+          {/* Display counts of sales, new products, and new users */}
 
           <Box
             sx={{
@@ -166,6 +180,7 @@ export default function ManageProducts() {
               </Typography>
             </Box>
           </Box>
+          {/* Section: New products */}
 
           <Box
             sx={{
@@ -176,6 +191,7 @@ export default function ManageProducts() {
             }}>
             <Typography sx={{ fontWeight: 700 }}>NEW PRODUCTS</Typography>
           </Box>
+          {/* Grid to display new products with columns for name, business, price, quantity, category, and actions */}
 
           <Grid
             container
@@ -307,6 +323,8 @@ export default function ManageProducts() {
                 <UnfoldMoreIcon sx={{ fontSize: 17 }} />
               </Typography>
             </Grid>
+                        {/* Actions column */}
+
             <Grid
               item
               xs={2}
@@ -324,6 +342,8 @@ export default function ManageProducts() {
             </Grid>
           </Grid>
 
+  {/* Display a loading spinner if products are being fetched */}
+          {/* Otherwise, map through productsList and display ProductCard components for each product */}
           {productsList.length === 0 ? (
             <Box
               sx={{
