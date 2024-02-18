@@ -3,9 +3,10 @@ import { Grid, Typography, Button, Modal, Box } from "@mui/material";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 function OrderCard({ order }) {
+  // State for controlling modal open/close
   const [open, setOpen] = useState(false);
-  console.log(order);
 
+  // Function to format delivery date
   const formatDeliveryDate = (deliveryDate) => {
     if (
       deliveryDate &&
@@ -20,7 +21,8 @@ function OrderCard({ order }) {
 
   return (
     <>
-      <Modal
+       {/* Modal for displaying order details */}
+       <Modal
         open={open}
         onClose={() => setOpen(false)}
         sx={{
@@ -32,6 +34,7 @@ function OrderCard({ order }) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         <Box sx={{ maxWidth: "500px" }}>
+          
           <Box
             sx={{
               backgroundColor: "#072840",
@@ -54,7 +57,7 @@ function OrderCard({ order }) {
               <HighlightOffIcon />
             </Button>
           </Box>
-
+   {/* Content of the modal */}
           <Grid container sx={{ backgroundColor: "white", p: 3 }}>
             <Grid item sx={{ fontWeight: 700 }} xs={4}>
               Order Number:
@@ -67,18 +70,7 @@ function OrderCard({ order }) {
               xs={8}>
               {order.orderNumber}
             </Grid>
-
-            {/* <Grid item sx={{ fontWeight: 700 }} xs={4}>
-              Total Amount:
-            </Grid>
-            <Grid
-              item
-              sx={{
-                display: "flex",
-              }}
-              xs={8}>
-              {order.totalAmount}
-            </Grid> */}
+           
             <Grid item sx={{ fontWeight: 700 }} xs={4}>
               Delivery Status:
             </Grid>
@@ -127,6 +119,7 @@ function OrderCard({ order }) {
         </Box>
       </Modal>
 
+      {/* Order card displayed in a Grid */}
       <Grid
         container
         key={order.productId}
@@ -138,6 +131,8 @@ function OrderCard({ order }) {
           ml: 2,
           mt: 2,
         }}>
+          
+        {/* Button to view order details in modal */}
         <Grid
           item
           xs={12 / 7}

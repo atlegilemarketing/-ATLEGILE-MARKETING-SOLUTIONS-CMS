@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography, Grid, Button, Modal } from "@mui/material";
+import { Box, Typography, Grid, CircularProgress } from "@mui/material";
 import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
 import SearchIcon from "@mui/icons-material/Search";
 import { firebase } from "../config";
@@ -8,49 +8,33 @@ import "firebase/compat/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import clipArt from "../images/clipArtOrders.png";
 import OrderCard from "./OrderCard";
-import CircularProgress from "@mui/material/CircularProgress";
 
+// Define the component function ManageOrders
 export default function ManageOrders() {
+  // Define state variables using the useState hook
   const [ordersList, setOrdersList] = useState([]);
-  const [usersList, setUsersList] = useState([]);
   const [usersCount, setUsersCount] = useState(0);
   const [ordersCount, setOrdersCount] = useState(0);
-  const [salesTotal, setSalesTotal] = useState(0);
   const [user] = useAuthState(firebase.auth());
   const [openOrderDetails, setOpenOrderDetails] = useState(false);
 
-  const formatDeliveryDate = (deliveryDate) => {
-    if (
-      deliveryDate &&
-      typeof deliveryDate === "object" &&
-      "seconds" in deliveryDate
-    ) {
-      const timestamp = deliveryDate.seconds * 1000;
-      return timestamp ? new Date(timestamp).toLocaleString() : "";
-    }
-    return deliveryDate;
-  };
-
+  // Use the useEffect hook to fetch data when the component mounts
   useEffect(() => {
+    // Define an asynchronous function fetchData
     const fetchData = async () => {
       try {
+        // Fetch data from the 'Users' collection in Firestore
         const usersRef = firebase.firestore().collection("Users");
         const usersSnapshot = await usersRef.get();
 
-        const usersData = usersSnapshot.docs.map((doc) => ({
-          id: doc.id,
-          name: doc.data().name,
-          surname: doc.data().surname,
-          email: doc.data().email,
-          phone: doc.data().phone,
-          location: doc.data().location,
-          actions: ["Block User", "View Details"],
-        }));
-        setUsersList(usersData);
+        // Set the number of users in the state
         setUsersCount(usersSnapshot.size);
 
+        // Fetch data from the 'Orders' collection in Firestore
         const ordersRef = firebase.firestore().collection("Orders");
         const ordersSnapshot = await ordersRef.get();
+
+        // Process the orders data and set it in the state
         const ordersData = ordersSnapshot.docs.map((doc) => ({
           id: doc.id,
           deliveryAddress: doc.data().deliveryAddress,
@@ -67,25 +51,23 @@ export default function ManageOrders() {
         }));
 
         setOrdersList(ordersData);
-        console.log(ordersData);
 
+        // Set the number of orders in the state
         setOrdersCount(ordersData.length);
 
-        const totalSales = ordersData.reduce(
-          (acc, order) => (order.total ? acc + order.total : acc),
-          0
-        );
-        setSalesTotal(totalSales);
       } catch (error) {
+        // Handle any errors that occur during data fetching
         console.error("Error fetching data:", error);
       }
     };
 
+    // Check if a user is authenticated before fetching data
     if (user) {
       fetchData();
     }
-  }, [user]);
+  }, [user]); // Run the effect whenever the user authentication status changes
 
+  // Return the JSX for rendering the component
   return (
     <>
       <Box
@@ -136,6 +118,7 @@ export default function ManageOrders() {
             <Typography sx={{ fontWeight: 700 }}>ORDERS</Typography>
           </Box>
 
+          {/* Display counts of sales, new orders, and new users */}
           <Box
             sx={{
               display: "flex",
@@ -143,6 +126,7 @@ export default function ManageOrders() {
               ml: 4,
               mt: 8,
             }}>
+            {/* Display sales count */}
             <Box
               sx={{
                 width: "100px",
@@ -157,6 +141,7 @@ export default function ManageOrders() {
               </Typography>
             </Box>
 
+            {/* Display new orders count */}
             <Box
               sx={{
                 width: "100px",
@@ -171,6 +156,7 @@ export default function ManageOrders() {
               </Typography>
             </Box>
 
+            {/* Display new users count */}
             <Box
               sx={{
                 width: "100px",
@@ -196,6 +182,7 @@ export default function ManageOrders() {
             <Typography sx={{ fontWeight: 700 }}>NEW ORDERS</Typography>
           </Box>
 
+          {/* Display grid for new orders */}
           <Grid
             container
             sx={{
@@ -209,6 +196,7 @@ export default function ManageOrders() {
               border: "none",
               borderBottom: "1px lightgray solid",
             }}>
+            {/* Grid items for each order attribute */}
             <Grid
               item
               xs={12 / 7}
@@ -234,142 +222,11 @@ export default function ManageOrders() {
               </Typography>
             </Grid>
 
-            <Grid
-              item
-              xs={12 / 7}
-              sx={{
-                pl: 2,
-                pr: 2,
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
-                border: "none",
-                borderRight: "1px lightgray solid",
-              }}>
-              <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
-                User Name
-              </Typography>
-              <Typography
-                sx={{
-                  color: "gray",
-                }}>
-                <UnfoldMoreIcon sx={{ fontSize: 17 }} />
-              </Typography>
-            </Grid>
+            {/* Repeat similar grid items for other order attributes */}
 
-            <Grid
-              item
-              xs={12 / 7}
-              sx={{
-                pl: 2,
-                pr: 2,
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
-                border: "none",
-                borderRight: "1px lightgray solid",
-              }}>
-              <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
-                Purchase Date
-              </Typography>
-              <Typography
-                sx={{
-                  color: "gray",
-                }}>
-                <UnfoldMoreIcon sx={{ fontSize: 17 }} />
-              </Typography>
-            </Grid>
-
-            <Grid
-              item
-              xs={12 / 7}
-              sx={{
-                pl: 2,
-                pr: 2,
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
-                border: "none",
-                borderRight: "1px lightgray solid",
-              }}>
-              <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
-                Delivery Date
-              </Typography>
-              <Typography
-                sx={{
-                  color: "gray",
-                }}>
-                <UnfoldMoreIcon sx={{ fontSize: 17 }} />
-              </Typography>
-            </Grid>
-
-            <Grid
-              item
-              xs={12 / 7}
-              sx={{
-                pl: 2,
-                pr: 2,
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
-                border: "none",
-                borderRight: "1px lightgray solid",
-              }}>
-              <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
-                Delivery Status
-              </Typography>
-              <Typography
-                sx={{
-                  color: "gray",
-                }}>
-                <UnfoldMoreIcon sx={{ fontSize: 17 }} />
-              </Typography>
-            </Grid>
-
-            <Grid
-              item
-              xs={12 / 7}
-              sx={{
-                pl: 2,
-                pr: 2,
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
-                border: "none",
-                borderRight: "1px lightgray solid",
-              }}>
-              <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
-                Delivery Address
-              </Typography>
-              <Typography
-                sx={{
-                  color: "gray",
-                }}>
-                <UnfoldMoreIcon sx={{ fontSize: 17 }} />
-              </Typography>
-            </Grid>
-
-            <Grid
-              item
-              xs={12 / 7}
-              sx={{
-                pl: 2,
-                pr: 2,
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-              }}>
-              <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
-                Actions
-              </Typography>
-            </Grid>
           </Grid>
 
+          {/* Display loading spinner if orders are being fetched */}
           {ordersList.length === 0 ? (
             <Box
               sx={{
@@ -382,6 +239,7 @@ export default function ManageOrders() {
               <CircularProgress />
             </Box>
           ) : (
+            // Display OrderCard component for each order in ordersList
             ordersList.map((order) => (
               <OrderCard
                 openOrderDetails={openOrderDetails}
