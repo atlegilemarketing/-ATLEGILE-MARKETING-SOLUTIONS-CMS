@@ -2,11 +2,17 @@ import React, { useState } from "react";
 import { Grid, Typography, Button, Modal, Box } from "@mui/material";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
+// Define the BusinessCard component that displays business details
 function BusinessCard({ business }) {
   const [open, setOpen] = useState(false);
+
+    // Log the industry of the business to the console
+
   console.log("Industry: ", business.industry);
   return (
     <>
+          {/* Modal dialog to display detailed business information */}
+
       <Modal
         open={open}
         onClose={() => setOpen(false)}
@@ -45,7 +51,8 @@ function BusinessCard({ business }) {
               <HighlightOffIcon />
             </Button>
           </Box>
-
+          
+           {/* Grid to display business information */}
           <Grid container sx={{ backgroundColor: "white", p: 3 }}>
             <Grid item xs={4} sx={{ fontWeight: 700 }} >Business Name:</Grid>
             <Grid item xs={8}>{business.businessName}</Grid>
@@ -59,6 +66,7 @@ function BusinessCard({ business }) {
         </Box>
       </Modal>
 
+      {/* Grid container to display basic business information */}
       <Grid
         container
         key={business.id}
@@ -71,6 +79,8 @@ function BusinessCard({ business }) {
           mt: 2,
         }}
       >
+
+                {/* Grid item to display business name */}
         <Grid
           item
           xs={12 / 5}
@@ -86,6 +96,7 @@ function BusinessCard({ business }) {
           </Typography>
         </Grid>
 
+        {/* Grid item to display registration number */}
         <Grid
           item
           xs={12 / 5}
@@ -101,6 +112,7 @@ function BusinessCard({ business }) {
           </Typography>
         </Grid>
 
+        {/* Grid item to display business type */}
         <Grid
           item
           xs={12 / 5}
@@ -116,6 +128,7 @@ function BusinessCard({ business }) {
           </Typography>
         </Grid>
 
+        {/* Grid item to display industry */}
         <Grid
           item
           xs={12 / 5}
@@ -131,6 +144,7 @@ function BusinessCard({ business }) {
           </Typography>
         </Grid>
 
+        {/* Grid item with a button to view detailed business information */}
         <Grid
           item
           xs={12 / 5}
