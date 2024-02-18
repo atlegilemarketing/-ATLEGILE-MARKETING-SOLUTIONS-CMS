@@ -6,6 +6,8 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
+// Define the BusinessDetails component that displays business details in a dialog
+
 export default function BusinessDetails({
   openBusinessDetails,
   setOpenBusinessDetails,
@@ -15,10 +17,10 @@ export default function BusinessDetails({
     setOpenBusinessDetails(false);
   };
 
-  //console.log(title, " ", message);
-
   return (
     <React.Fragment>
+            {/* Dialog to display business details */}
+
       <Dialog
         open={openBusinessDetails}
         onClose={handleClose}
