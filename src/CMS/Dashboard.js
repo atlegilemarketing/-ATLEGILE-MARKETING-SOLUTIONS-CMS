@@ -9,7 +9,11 @@ import "firebase/compat/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import CircularProgress from "@mui/material/CircularProgress";
 
+// Define functional component ManageBusinesses
+
 export default function ManageBusinesses() {
+    // Initialize state variables to store data counts and lists
+
   const [usersList, setUsersList] = useState([]);
   const [businessesList, setBusinessesList] = useState([]);
   const [usersCount, setUsersCount] = useState(0);
@@ -18,8 +22,12 @@ export default function ManageBusinesses() {
   const [ordersCount, setOrdersCount] = useState(0); 
   const [user] = useAuthState(firebase.auth());
 
+    // useEffect hook to fetch data when the component mounts or when the user changes
+
   useEffect(() => {
     const fetchData = async () => {
+            // Fetch users data
+
       try {
         const usersRef = firebase.firestore().collection("Users");
         const snapshot = await usersRef.get();
@@ -38,6 +46,7 @@ export default function ManageBusinesses() {
       } catch (error) {
         console.error("Error fetching users:", error);
       }
+      // Fetch businesses data
 
       try {
         const businessesRef = firebase.firestore().collection("Business");
@@ -55,6 +64,7 @@ export default function ManageBusinesses() {
       } catch (error) {
         console.error("Error fetching businesses:", error);
       }
+      // Fetch products count
 
       try {
         const productsRef = firebase.firestore().collection("Products");
@@ -72,12 +82,14 @@ export default function ManageBusinesses() {
         console.error("Error fetching orders:", error);
       }
     };
+    // Check if user is authenticated before fetching data
 
     if (user) {
       fetchData();
     }
   }, [user]);
 
+  // Return JSX for rendering the dashboard
 
   return (
     <Box
@@ -133,6 +145,7 @@ export default function ManageBusinesses() {
         >
           <Typography sx={{ fontWeight: 700 }}>DASHBOARD</Typography>
         </Box>
+        {/* Render statistics for sales, new businesses, new users, and new products */}
 
         <Box
           sx={{
@@ -142,6 +155,8 @@ export default function ManageBusinesses() {
             mt: 8,
           }}
         >
+                  {/* Render statistics boxes */}
+
           <Box
             sx={{
               width: "100px",
@@ -192,6 +207,8 @@ export default function ManageBusinesses() {
             <Typography sx={{ fontWeight: 400, fontSize: 20 }}>{productsCount}</Typography>
           </Box>
         </Box>
+          {/* Render grids for new users and new businesses */}
+
 
         <Grid container sx={{ mt: 2 }}>
           <Grid
@@ -204,11 +221,12 @@ export default function ManageBusinesses() {
                 border: "none",
                 borderBottom: "1px lightgray solid",
                 ml: 2,
-                //mt: 4,
+                
               }}
             >
               <Typography sx={{ fontWeight: 700 }}>NEW USERS</Typography>
             </Box>
+            {/* Render table headers */}
 
             <Grid
               container
@@ -216,7 +234,7 @@ export default function ManageBusinesses() {
                 backgroundColor: "#fafafa",
                 display: "flex",
                 flexDirection: "row",
-                //ml: 1,
+                
                 mt: 2,
                 pt: 2,
                 pb: 2,
@@ -358,6 +376,9 @@ export default function ManageBusinesses() {
             </Grid>
 
             {usersList.length === 0 ? (
+                            // If no users, display loading indicator
+
+                            
               <Box
                 sx={{
                   display: "flex",
@@ -370,6 +391,8 @@ export default function ManageBusinesses() {
                 <CircularProgress />
               </Box>
             ) : (
+                            // If users exist, map through them and display in a grid
+
               usersList.map((user) => (
                 <Grid
                   container
@@ -379,7 +402,7 @@ export default function ManageBusinesses() {
                     flexDirection: "row",
                     border: "none",
                     borderBottom: "1px lightgray solid",
-                    //ml: 1,
+    
                     mt: 4,
                   }}
                 >
@@ -389,15 +412,14 @@ export default function ManageBusinesses() {
                     sx={{
                       pl: 2,
                       pr: 2,
-                      //
-                      //border:"1px red solid"
+                      
                     }}
                   >
                     <Typography
                       sx={{
                         fontSize: 14,
                         display: "flex",
-                        //pb:1
+                  
                       }}
                       noWrap
                     >
@@ -413,7 +435,6 @@ export default function ManageBusinesses() {
                       pr: 2,
                       display: "flex",
                       alignItems: "center",
-                      //border:"1px red solid"
                     }}
                   >
                     <Typography sx={{ fontSize: 14 }} noWrap>
@@ -429,7 +450,7 @@ export default function ManageBusinesses() {
                       pr: 2,
                       display: "flex",
                       alignItems: "center",
-                      //border:"1px red solid"
+            
                     }}
                   >
                     <Typography sx={{ fontSize: 14 }} noWrap>
@@ -574,6 +595,7 @@ export default function ManageBusinesses() {
                   <UnfoldMoreIcon sx={{ fontSize: 17 }} />
                 </Typography>
               </Grid>
+          {/* Grid for new businesses */}
 
               <Grid
                 item
