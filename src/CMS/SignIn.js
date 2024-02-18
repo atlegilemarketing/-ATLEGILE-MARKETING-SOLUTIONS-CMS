@@ -13,28 +13,38 @@ import { firebase, firestore } from "../config";
 import CircularProgress from "@mui/material/CircularProgress";
 import AlertDialog from "./AlertDialog";
 import SideNav from "../SideNav";
+// Importing logo image
 
 const logo = require("../images/cropped-AMS-Shadow-Queen-Logo_BNY-1320x772 1.png");
+// SignIn component for user authentication
 
 export default function SignIn() {
   const navigate = useNavigate();
+  // State variables for user email, password, email validity, and alert modal
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isEmailValid, setIsEmailValid] = useState(true);
   const [openAlert, setOpenAlert] = useState(false);
+  // State variables for alert title, message, and loading modal
 
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
   const [open, setOpen] = useState(false);
+  // Regular expression for validating email format
+
   let validRegex = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}");
 
-  const [userData, setUserData] = useState(null); 
+  // State variable to store user data after successful sign-in
+
+  const [userData, setUserData] = useState(null);
+  // Function to handle changes in the email input field
 
   const handleEmailChange = (e) => {
     const inputEmail = e.target.value;
     setEmail(inputEmail);
     setIsEmailValid(validRegex.test(inputEmail));
   };
+  // Function to handle user sign-in
 
   const handleSignIn = () => {
     // Check if the email ends with "@ams.com"
@@ -65,7 +75,8 @@ export default function SignIn() {
         });
       })
       .catch((error) => {
-      
+        // Display error message if sign-in fails
+
         setTitle("Error: " + error.code);
         setMessage(error.message);
         setOpenAlert(true);
@@ -73,6 +84,7 @@ export default function SignIn() {
         setOpen(false);
       });
   };
+  // Render the SignIn component
 
   return (
     <>
@@ -82,7 +94,8 @@ export default function SignIn() {
         title={title}
         message={message}
       />
-      
+      {/* Loading modal displayed during sign-in process */}
+
       <Modal
         open={open}
         onClose={() => setOpen(true)}
@@ -98,6 +111,7 @@ export default function SignIn() {
       >
         <CircularProgress />
       </Modal>
+      {/* Main content container */}
 
       <Container
         maxWidth="sm"
@@ -109,6 +123,8 @@ export default function SignIn() {
           width: "100%",
         }}
       >
+        {/* Logo display */}
+
         <Box
           sx={{
             height: "45vh",
@@ -120,6 +136,7 @@ export default function SignIn() {
         >
           <img src={logo} alt="cropped AMS Shadow Queen Logo BNY-1320x772" />
         </Box>
+        {/* Sign-in form */}
 
         <Box
           sx={{
@@ -141,6 +158,7 @@ export default function SignIn() {
               Content Management System
             </Typography>
           </Box>
+          {/* Email and password input fields */}
 
           <Box sx={{ pt: 2 }}>
             <TextField
@@ -168,6 +186,7 @@ export default function SignIn() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </Box>
+          {/* Forgot password link */}
 
           <Box
             sx={{
@@ -193,6 +212,7 @@ export default function SignIn() {
               </Typography>
             </Button>
           </Box>
+          {/* Sign-in button */}
 
           <Box>
             <Button
@@ -214,6 +234,7 @@ export default function SignIn() {
               SIGN IN
             </Button>
           </Box>
+          {/* Sign in with Google button */}
 
           <Box
             sx={{
@@ -236,8 +257,9 @@ export default function SignIn() {
           </Box>
         </Box>
       </Container>
-      
-    
+
+      {/* Display SideNav component after successful sign-in */}
+
       {userData && <SideNav userData={userData} />}
     </>
   );
