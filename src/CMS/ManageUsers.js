@@ -16,6 +16,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import UserCard from "./UserCard";
 
 import clipArt from "../images/clipArtUsers.png";
+// State variables to store user data, counts, and search input
 
 export default function ManageUsers() {
   const [usersInfo, setUsersInfo] = useState([]);
@@ -237,6 +238,8 @@ export default function ManageUsers() {
             borderBottom: "1px lightgray solid",
           }}
         >
+          {/* Column headers */}
+
           <Grid
             item
             xs={2}
@@ -259,6 +262,8 @@ export default function ManageUsers() {
             >
               <UnfoldMoreIcon sx={{ fontSize: 17 }} />
             </Typography>
+            {/* Search input field */}
+
             {isSearchActive ? (
               <TextField
                 label="Search users"
