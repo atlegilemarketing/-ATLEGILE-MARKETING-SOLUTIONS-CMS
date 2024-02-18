@@ -3,10 +3,13 @@ import { Grid, Typography, Button, Modal, Box } from "@mui/material";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 function ProductCard({ product }) {
+  // State for controlling modal open/close
+
   const [open, setOpen] = useState(false);
-  // console.log(product.name);
   return (
     <>
+      {/* Modal for displaying product details */}
+
       <Modal
         open={open}
         onClose={() => setOpen(false)}
@@ -17,7 +20,8 @@ function ProductCard({ product }) {
           justifyContent: "center",
         }}
         aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description">
+        aria-describedby="modal-modal-description"
+      >
         <Box sx={{ maxWidth: "500px" }}>
           <Box
             sx={{
@@ -27,8 +31,10 @@ function ProductCard({ product }) {
               alignItems: "center",
               justifyContent: "space-between",
               color: "white",
-            }}>
+            }}
+          >
             <Typography sx={{ fontWeight: 700 }}>Product Details</Typography>
+            {/* Button to close the modal */}
 
             <Button
               onClick={() => setOpen(false)}
@@ -37,10 +43,12 @@ function ProductCard({ product }) {
                 display: "flex",
                 justifyContent: "center",
                 color: "white",
-              }}>
+              }}
+            >
               <HighlightOffIcon />
             </Button>
           </Box>
+          {/* Content of the modal */}
 
           <Grid container sx={{ backgroundColor: "white", p: 3 }}>
             <Grid item sx={{ fontWeight: 700 }} xs={4}>
@@ -51,7 +59,8 @@ function ProductCard({ product }) {
               sx={{
                 display: "flex",
               }}
-              xs={8}>
+              xs={8}
+            >
               {product.name}
             </Grid>
             <Grid sx={{ fontWeight: 700 }} xs={4}>
@@ -62,7 +71,8 @@ function ProductCard({ product }) {
               sx={{
                 display: "flex",
               }}
-              xs={8}>
+              xs={8}
+            >
               {product.businessName}
             </Grid>
             <Grid item sx={{ fontWeight: 700 }} xs={4}>
@@ -73,7 +83,8 @@ function ProductCard({ product }) {
               sx={{
                 display: "flex",
               }}
-              xs={8}>
+              xs={8}
+            >
               {product.description}
             </Grid>
             <Grid item sx={{ fontWeight: 700 }} xs={4}>
@@ -84,7 +95,8 @@ function ProductCard({ product }) {
               sx={{
                 display: "flex",
               }}
-              xs={8}>
+              xs={8}
+            >
               {product.quantity}
             </Grid>
 
@@ -96,12 +108,14 @@ function ProductCard({ product }) {
               sx={{
                 display: "flex",
               }}
-              xs={8}>
+              xs={8}
+            >
               {product.selectedProductCategory}
             </Grid>
           </Grid>
         </Box>
       </Modal>
+      {/* Product card displayed in a Grid */}
 
       <Grid
         container
@@ -113,7 +127,8 @@ function ProductCard({ product }) {
           borderBottom: "1px lightgray solid",
           ml: 2,
           mt: 2,
-        }}>
+        }}
+      >
         <Grid
           item
           xs={2}
@@ -122,7 +137,8 @@ function ProductCard({ product }) {
             pr: 2,
             display: "flex",
             alignItems: "center",
-          }}>
+          }}
+        >
           <Typography sx={{ fontSize: 14 }} noWrap>
             {product.name}
           </Typography>
@@ -136,7 +152,8 @@ function ProductCard({ product }) {
             pr: 2,
             display: "flex",
             alignItems: "center",
-          }}>
+          }}
+        >
           <Typography sx={{ fontSize: 14 }} noWrap>
             {product.businessName}
           </Typography>
@@ -150,7 +167,8 @@ function ProductCard({ product }) {
             pr: 2,
             display: "flex",
             alignItems: "center",
-          }}>
+          }}
+        >
           <Typography sx={{ fontSize: 14 }} noWrap>
             {product.price}
           </Typography>
@@ -164,7 +182,8 @@ function ProductCard({ product }) {
             pr: 2,
             display: "flex",
             alignItems: "center",
-          }}>
+          }}
+        >
           <Typography sx={{ fontSize: 14 }} noWrap>
             {product.quantity}
           </Typography>
@@ -178,7 +197,8 @@ function ProductCard({ product }) {
             pr: 2,
             display: "flex",
             alignItems: "center",
-          }}>
+          }}
+        >
           <Typography sx={{ fontSize: 14 }} noWrap>
             {product.selectedProductCategory}
           </Typography>
@@ -192,11 +212,13 @@ function ProductCard({ product }) {
             pr: 1,
             display: "flex",
             alignItems: "center",
-          }}>
+          }}
+        >
           <Button
             onClick={() => setOpen(true)}
             variant="text"
-            sx={{ textDecoration: "none", color: "#1890ff", fontSize: 14 }}>
+            sx={{ textDecoration: "none", color: "#1890ff", fontSize: 14 }}
+          >
             View Details
           </Button>
         </Grid>
