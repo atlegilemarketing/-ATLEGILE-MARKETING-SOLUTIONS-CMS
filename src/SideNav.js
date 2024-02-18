@@ -13,10 +13,9 @@ onAuthStateChanged(auth, (user) => {
     // https://firebase.google.com/docs/reference/js/auth.user
     
     console.log("User logged in with ID: ",user.email)
-    // ...
+  
   } else {
-    // User is signed out
-    // ...
+    
     console.log("No user logged in.")
   }
 });
@@ -24,7 +23,6 @@ onAuthStateChanged(auth, (user) => {
 
   const navigate = useNavigate();
   const [activePage, setActivePage] = React.useState("");
-  // eslint-disable-next-line
   const [image, setImage] = React.useState(null);
   const fileInputRef = React.useRef(null);
 
