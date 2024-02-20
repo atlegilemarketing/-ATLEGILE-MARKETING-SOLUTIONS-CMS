@@ -11,7 +11,7 @@ import ProductCard from "./ProductCard";
 import CircularProgress from "@mui/material/CircularProgress";
 
 export default function ManageProducts() {
-    // State variables to store data fetched from Firebase
+   // State variables to store data fetched from Firebase
 
   const [productsList, setProductsList] = useState([]);
   const [productsCount, setProductsCount] = useState(0);
@@ -25,7 +25,7 @@ export default function ManageProducts() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-                // Fetch products data
+      // Fetch products data
 
         const productsRef = firebase.firestore().collection("Products");
         const snapshot = await productsRef.get();
@@ -48,7 +48,7 @@ export default function ManageProducts() {
       }
 
       try {
-                // Fetch users data
+           // Fetch users data
 
         const usersRef = firebase.firestore().collection("Users");
         const usersSnapshot = await usersRef.get();
@@ -62,7 +62,7 @@ export default function ManageProducts() {
         console.error("Error fetching users:", error);
       }
       try {
-                // Fetch orders data
+          // Fetch orders data
 
         const ordersRef = firebase.firestore().collection("Orders");
         const ordersSnapshot = await ordersRef.get();
@@ -79,7 +79,7 @@ export default function ManageProducts() {
 
   return (
     <>
-          {/* Main container */}
+      {/* Main container */}
 
       <Box
         sx={{
