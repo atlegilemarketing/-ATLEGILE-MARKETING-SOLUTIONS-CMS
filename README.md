@@ -6,17 +6,17 @@ users, businesses, orders and products.
 
 ## Tech Stack
 
-React.js
-Firebase
+React.js<br/>
+Firebase<br/>
 Material UI
 
 ### Features
 
-Login: Secure login system for administrators.
-Dashboard: An overview of website statistics and a table of Users as well as Businesses.
-Manage Users: View the users that are registered on the main website.
-Manage Businesses: View the business that are registered on the main website.
-Manage Products: View all the products that are available on the main website.
+Login: Secure login system for administrators. <br/>
+Dashboard: An overview of website statistics and a table of Users as well as Businesses.<br/>
+Manage Users: View the users that are registered on the main website.<br/>
+Manage Businesses: View the business that are registered on the main website.<br/>
+Manage Products: View all the products that are available on the main website.<br/>
 Manage Orders: View products that are purchased by customers.
 
 ### Quick Start
