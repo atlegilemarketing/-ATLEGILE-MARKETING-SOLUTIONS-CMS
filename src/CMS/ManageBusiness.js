@@ -11,7 +11,7 @@ import BusinessCard from "./BusinessCard";
 import CircularProgress from "@mui/material/CircularProgress";
 
 export default function ManageBusinesses() {
-    // State variables to store data fetched from Firebase
+    // State variabl
 
   const [businessesList, setBusinessesList] = useState([]);
   const [usersCount, setUsersCount] = useState(0);
